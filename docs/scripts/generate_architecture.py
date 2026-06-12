@@ -13,8 +13,8 @@ Dependencies:
 
 import os
 
-SVG_WIDTH = 900
-SVG_HEIGHT = 800
+SVG_WIDTH = 960
+SVG_HEIGHT = 640
 
 
 def generate_architecture_svg():
@@ -23,145 +23,206 @@ def generate_architecture_svg():
     svg = f'''<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}" width="{SVG_WIDTH}" height="{SVG_HEIGHT}">
   <defs>
-    <filter id="shadow" x="-2%" y="-2%" width="104%" height="104%">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/>
+    <filter id="glow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
-    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-      <path d="M0,0 L10,5 L0,10 Z" fill="#6B7280"/>
-    </marker>
-    <marker id="arrow-accent" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-      <path d="M0,0 L10,5 L0,10 Z" fill="#2563EB"/>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.25"/>
+    </filter>
+    <linearGradient id="bg-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="phase1-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="rgba(30,41,59,0.8)"/>
+      <stop offset="100%" stop-color="rgba(15,23,42,0.5)"/>
+    </linearGradient>
+    <linearGradient id="phase2-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="rgba(30,41,59,0.8)"/>
+      <stop offset="100%" stop-color="rgba(15,23,42,0.5)"/>
+    </linearGradient>
+    <linearGradient id="core-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#312e81"/>
+      <stop offset="100%" stop-color="#1e1b4b"/>
+    </linearGradient>
+    <linearGradient id="output-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#064e3b"/>
+      <stop offset="100%" stop-color="#022c22"/>
+    </linearGradient>
+    <linearGradient id="accent-line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#818cf800"/>
+      <stop offset="50%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#818cf800"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,1 L10,5 L0,9 Z" fill="#64748b"/>
     </marker>
   </defs>
 
   <!-- Background -->
-  <rect width="{SVG_WIDTH}" height="{SVG_HEIGHT}" fill="#FAFBFC" rx="8"/>
+  <rect width="{SVG_WIDTH}" height="{SVG_HEIGHT}" fill="url(#bg-grad)" rx="12"/>
+
+  <!-- Subtle grid pattern -->
+  <g opacity="0.03">
+    <line x1="0" y1="0" x2="{SVG_WIDTH}" y2="{SVG_HEIGHT}" stroke="#fff" stroke-width="0.5"/>
+    <line x1="{SVG_WIDTH}" y1="0" x2="0" y2="{SVG_HEIGHT}" stroke="#fff" stroke-width="0.5"/>
+    <line x1="{SVG_WIDTH/2}" y1="0" x2="{SVG_WIDTH/2}" y2="{SVG_HEIGHT}" stroke="#fff" stroke-width="0.5"/>
+    <line x1="0" y1="{SVG_HEIGHT/2}" x2="{SVG_WIDTH}" y2="{SVG_HEIGHT/2}" stroke="#fff" stroke-width="0.5"/>
+  </g>
 
   <!-- Title -->
-  <text x="{SVG_WIDTH/2}" y="42" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1A1A1A">Sci-Plot Workflow</text>
-  <text x="{SVG_WIDTH/2}" y="66" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#6B7280">6-Round Pipeline: From Research Content to Cross-Platform Image Prompts</text>
+  <text x="{SVG_WIDTH/2}" y="38" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="20" font-weight="800" fill="#f1f5f9" letter-spacing="-0.5">Sci-Plot Workflow</text>
+  <text x="{SVG_WIDTH/2}" y="58" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="11" fill="#94a3b8">6-Round Pipeline: From Research Content to Cross-Platform Image Prompts</text>
 
-  <!-- ===== ROUND 0 ===== -->
-  <rect x="40" y="95" width="200" height="70" rx="6" fill="#FFFFFF" stroke="#2563EB" stroke-width="2" filter="url(#shadow)"/>
-  <text x="140" y="122" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#2563EB">Round 0</text>
-  <text x="140" y="142" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#333">确定分析目标</text>
-  <text x="140" y="158" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#6B7280">路径 / 链接 / 工作区</text>
+  <!-- =================== PHASE 1: INPUT & ANALYSIS =================== -->
+  <rect x="30" y="78" width="{SVG_WIDTH-60}" height="160" rx="10" fill="url(#phase1-bg)" stroke="#1e293b" stroke-width="1"/>
+  <rect x="30" y="78" width="{SVG_WIDTH-60}" height="1" fill="url(#accent-line)" rx="0.5"/>
+
+  <!-- Phase label -->
+  <rect x="44" y="86" width="155" height="20" rx="10" fill="rgba(30,41,59,0.8)" stroke="#334155" stroke-width="0.5"/>
+  <text x="121" y="100" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" font-weight="700" fill="#94a3b8" letter-spacing="1.2">INPUT &amp; ANALYSIS</text>
+
+  <!-- Round 0 -->
+  <rect x="50" y="120" width="260" height="98" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="56" y="130" width="52" height="20" rx="10" fill="rgba(14,165,233,0.15)" stroke="rgba(14,165,233,0.3)" stroke-width="0.5"/>
+  <text x="82" y="143" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" font-weight="700" fill="#7dd3fc" letter-spacing="0.5">ENTRY</text>
+  <text x="66" y="168" font-family="Inter, -apple-system, Arial, sans-serif" font-size="11" font-weight="700" fill="#818cf8">Round 0</text>
+  <text x="66" y="186" font-family="Inter, -apple-system, Arial, sans-serif" font-size="12" font-weight="700" fill="#f1f5f9">Determine Target</text>
+  <text x="66" y="204" font-family="Inter, -apple-system, Arial, sans-serif" font-size="9.5" fill="#64748b">Auto-detect .tex / .md / workspace</text>
 
   <!-- Arrow 0→1 -->
-  <line x1="240" y1="130" x2="285" y2="130" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="314" y1="169" x2="345" y2="169" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <circle cx="330" cy="169" r="3" fill="#818cf8" opacity="0.4"/>
 
-  <!-- ===== ROUND 1 ===== -->
-  <rect x="290" y="95" width="200" height="70" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.5" filter="url(#shadow)"/>
-  <text x="390" y="122" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#374151">Round 1</text>
-  <text x="390" y="142" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#333">分析输入内容</text>
-  <text x="390" y="158" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#6B7280">论文 / 代码 / 算法 / 文档</text>
+  <!-- Round 1 -->
+  <rect x="350" y="120" width="260" height="98" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="366" y="168" font-family="Inter, -apple-system, Arial, sans-serif" font-size="11" font-weight="700" fill="#818cf8">Round 1</text>
+  <text x="366" y="186" font-family="Inter, -apple-system, Arial, sans-serif" font-size="12" font-weight="700" fill="#f1f5f9">Analyze Content</text>
+  <text x="366" y="204" font-family="Inter, -apple-system, Arial, sans-serif" font-size="9.5" fill="#64748b">Paper / code / algorithm / doc</text>
 
   <!-- Arrow 1→2 -->
-  <line x1="490" y1="130" x2="535" y2="130" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="614" y1="169" x2="645" y2="169" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <circle cx="630" cy="169" r="3" fill="#818cf8" opacity="0.4"/>
 
-  <!-- ===== ROUND 2 ===== -->
-  <rect x="540" y="95" width="200" height="70" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.5" filter="url(#shadow)"/>
-  <text x="640" y="122" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#374151">Round 2</text>
-  <text x="640" y="142" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#333">提取可图解内容</text>
-  <text x="640" y="158" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#6B7280">必须 / 可选 / 不图解</text>
+  <!-- Round 2 -->
+  <rect x="650" y="120" width="260" height="98" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="666" y="168" font-family="Inter, -apple-system, Arial, sans-serif" font-size="11" font-weight="700" fill="#818cf8">Round 2</text>
+  <text x="666" y="186" font-family="Inter, -apple-system, Arial, sans-serif" font-size="12" font-weight="700" fill="#f1f5f9">Extract Visuals</text>
+  <text x="666" y="204" font-family="Inter, -apple-system, Arial, sans-serif" font-size="9.5" fill="#64748b">Must / optional / skip filter</text>
 
-  <!-- Arrow 2→3 -->
-  <line x1="740" y1="130" x2="785" y2="130" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <!-- =================== PHASE 2: CONFIRM & GENERATE =================== -->
+  <rect x="30" y="254" width="{SVG_WIDTH-60}" height="160" rx="10" fill="url(#phase2-bg)" stroke="#1e293b" stroke-width="1"/>
+  <rect x="30" y="254" width="{SVG_WIDTH-60}" height="1" fill="url(#accent-line)" rx="0.5"/>
 
-  <!-- ===== ROUND 3 ===== -->
-  <rect x="40" y="200" width="200" height="70" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.5" filter="url(#shadow)"/>
-  <text x="140" y="227" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#374151">Round 3</text>
-  <text x="140" y="247" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#333">询问用户</text>
-  <text x="140" y="263" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#6B7280">语言 / 风格 / 张数 / 比例</text>
+  <!-- Phase label -->
+  <rect x="44" y="262" width="175" height="20" rx="10" fill="rgba(30,41,59,0.8)" stroke="#334155" stroke-width="0.5"/>
+  <text x="131" y="276" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" font-weight="700" fill="#94a3b8" letter-spacing="1.2">CONFIRM &amp; GENERATE</text>
+
+  <!-- Round 3 -->
+  <rect x="50" y="296" width="260" height="98" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="66" y="344" font-family="Inter, -apple-system, Arial, sans-serif" font-size="11" font-weight="700" fill="#818cf8">Round 3</text>
+  <text x="66" y="362" font-family="Inter, -apple-system, Arial, sans-serif" font-size="12" font-weight="700" fill="#f1f5f9">Confirm with User</text>
+  <text x="66" y="380" font-family="Inter, -apple-system, Arial, sans-serif" font-size="9.5" fill="#64748b">Language, style, count, ratio</text>
 
   <!-- Arrow 3→4 -->
-  <line x1="240" y1="235" x2="285" y2="235" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="314" y1="345" x2="345" y2="345" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <circle cx="330" cy="345" r="3" fill="#818cf8" opacity="0.4"/>
 
-  <!-- ===== ROUND 4 ===== -->
-  <rect x="290" y="200" width="200" height="70" rx="6" fill="#EFF6FF" stroke="#2563EB" stroke-width="2" filter="url(#shadow)"/>
-  <text x="390" y="227" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#2563EB">Round 4</text>
-  <text x="390" y="247" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#333">生成提示词</text>
-  <text x="390" y="263" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#6B7280">按模板生成结构化文件</text>
+  <!-- Round 4 — CORE HIGHLIGHT -->
+  <rect x="350" y="296" width="260" height="98" rx="8" fill="url(#core-grad)" stroke="#818cf860" stroke-width="2" filter="url(#glow)"/>
+  <rect x="350" y="296" width="260" height="98" rx="8" fill="none" stroke="#818cf8" stroke-width="0.5" stroke-dasharray="2,4" opacity="0.3"/>
+  <rect x="356" y="306" width="44" height="20" rx="10" fill="rgba(129,140,248,0.2)" stroke="rgba(129,140,248,0.4)" stroke-width="0.5"/>
+  <text x="378" y="319" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" font-weight="700" fill="#a5b4fc" letter-spacing="0.5">CORE</text>
+  <text x="366" y="344" font-family="Inter, -apple-system, Arial, sans-serif" font-size="11" font-weight="700" fill="#a5b4fc">Round 4</text>
+  <text x="366" y="362" font-family="Inter, -apple-system, Arial, sans-serif" font-size="12" font-weight="700" fill="#f1f5f9">Generate Prompts</text>
+  <text x="366" y="380" font-family="Inter, -apple-system, Arial, sans-serif" font-size="9.5" fill="#64748b">Template-based structured files</text>
 
   <!-- Arrow 4→5 -->
-  <line x1="490" y1="235" x2="535" y2="235" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="614" y1="345" x2="645" y2="345" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <circle cx="630" cy="345" r="3" fill="#34d399" opacity="0.4"/>
 
-  <!-- ===== ROUND 5 ===== -->
-  <rect x="540" y="200" width="200" height="70" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.5" filter="url(#shadow)"/>
-  <text x="640" y="227" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#374151">Round 5</text>
-  <text x="640" y="247" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#333">输出与汇总</text>
-  <text x="640" y="263" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#6B7280">sci-plot-output/ 目录</text>
+  <!-- Round 5 — OUTPUT -->
+  <rect x="650" y="296" width="260" height="98" rx="8" fill="url(#output-grad)" stroke="#34d39940" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="656" y="306" width="52" height="20" rx="10" fill="rgba(52,211,153,0.15)" stroke="rgba(52,211,153,0.3)" stroke-width="0.5"/>
+  <text x="682" y="319" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" font-weight="700" fill="#6ee7b7" letter-spacing="0.5">OUTPUT</text>
+  <text x="666" y="344" font-family="Inter, -apple-system, Arial, sans-serif" font-size="11" font-weight="700" fill="#6ee7b7">Round 5</text>
+  <text x="666" y="362" font-family="Inter, -apple-system, Arial, sans-serif" font-size="12" font-weight="700" fill="#f1f5f9">Output &amp; Summarize</text>
+  <text x="666" y="380" font-family="Inter, -apple-system, Arial, sans-serif" font-size="9.5" fill="#64748b">sci-plot-output/ directory</text>
 
-  <!-- ===== OUTPUT SECTION ===== -->
-  <rect x="80" y="310" width="740" height="155" rx="8" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1.5" filter="url(#shadow)"/>
-  <text x="450" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1A1A1A">Output: sci-plot-output/</text>
+  <!-- =================== OUTPUT PANEL =================== -->
+  <rect x="30" y="434" width="570" height="178" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+  <rect x="30" y="434" width="570" height="32" rx="10" fill="rgba(30,41,59,0.6)"/>
+  <rect x="30" y="456" width="570" height="10" rx="0" fill="rgba(30,41,59,0.6)"/>
 
-  <!-- Output files -->
-  <rect x="110" y="355" width="155" height="40" rx="5" fill="#F0F9FF" stroke="#BAE6FD" stroke-width="1"/>
-  <text x="187" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#0369A1">analysis.md</text>
+  <!-- Output header -->
+  <text x="50" y="455" font-family="Inter, -apple-system, Arial, sans-serif" font-size="12" font-weight="700" fill="#f1f5f9">Output: </text>
+  <text x="104" y="455" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600" fill="#818cf8">sci-plot-output/</text>
 
-  <rect x="280" y="355" width="155" height="40" rx="5" fill="#F0F9FF" stroke="#BAE6FD" stroke-width="1"/>
-  <text x="357" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#0369A1">figure-plan.md</text>
+  <!-- File cards -->
+  <rect x="50" y="476" width="120" height="52" rx="6" fill="#1e293b" stroke="#334155" stroke-width="0.5"/>
+  <text x="110" y="498" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="600" fill="#818cf8">analysis.md</text>
+  <text x="110" y="516" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="8" fill="#64748b">Analysis summary</text>
 
-  <rect x="450" y="355" width="155" height="40" rx="5" fill="#F0F9FF" stroke="#BAE6FD" stroke-width="1"/>
-  <text x="527" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#0369A1">prompts/*.md</text>
+  <rect x="180" y="476" width="120" height="52" rx="6" fill="#1e293b" stroke="#334155" stroke-width="0.5"/>
+  <text x="240" y="498" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="600" fill="#818cf8">figure-plan.md</text>
+  <text x="240" y="516" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="8" fill="#64748b">Plan per page</text>
 
-  <rect x="620" y="355" width="170" height="40" rx="5" fill="#F0F9FF" stroke="#BAE6FD" stroke-width="1"/>
-  <text x="705" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#0369A1">README.md</text>
+  <rect x="310" y="476" width="120" height="52" rx="6" fill="#1e293b" stroke="#334155" stroke-width="0.5"/>
+  <text x="370" y="498" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="600" fill="#818cf8">prompts/*.md</text>
+  <text x="370" y="516" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="8" fill="#64748b">One per figure</text>
 
-  <!-- Downstream -->
-  <text x="450" y="430" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#6B7280">Copy English Prompt →</text>
+  <rect x="440" y="476" width="140" height="52" rx="6" fill="#1e293b" stroke="#334155" stroke-width="0.5"/>
+  <text x="510" y="498" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="600" fill="#818cf8">README.md</text>
+  <text x="510" y="516" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="8" fill="#64748b">Usage instructions</text>
 
-  <!-- Target tools -->
-  <rect x="110" y="445" width="130" height="32" rx="5" fill="#F3F4F6" stroke="#D1D5DB" stroke-width="1"/>
-  <text x="175" y="466" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">ChatGPT/DALL-E</text>
+  <!-- Flow hint -->
+  <text x="315" y="552" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="9" fill="#475569">Copy English Prompt &#x2192;</text>
 
-  <rect x="255" y="445" width="100" height="32" rx="5" fill="#F3F4F6" stroke="#D1D5DB" stroke-width="1"/>
-  <text x="305" y="466" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">Doubao</text>
+  <!-- Platform pills -->
+  <rect x="50" y="564" width="105" height="24" rx="12" fill="rgba(30,41,59,0.8)" stroke="#334155" stroke-width="0.5"/>
+  <text x="102" y="580" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="8" fill="#94a3b8">ChatGPT/DALL-E</text>
 
-  <rect x="370" y="445" width="100" height="32" rx="5" fill="#F3F4F6" stroke="#D1D5DB" stroke-width="1"/>
-  <text x="420" y="466" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">Qwen</text>
+  <rect x="163" y="564" width="68" height="24" rx="12" fill="rgba(30,41,59,0.8)" stroke="#334155" stroke-width="0.5"/>
+  <text x="197" y="580" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="8" fill="#94a3b8">Doubao</text>
 
-  <rect x="485" y="445" width="100" height="32" rx="5" fill="#F3F4F6" stroke="#D1D5DB" stroke-width="1"/>
-  <text x="535" y="466" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">Midjourney</text>
+  <rect x="239" y="564" width="58" height="24" rx="12" fill="rgba(30,41,59,0.8)" stroke="#334155" stroke-width="0.5"/>
+  <text x="268" y="580" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="8" fill="#94a3b8">Qwen</text>
 
-  <rect x="600" y="445" width="120" height="32" rx="5" fill="#F3F4F6" stroke="#D1D5DB" stroke-width="1"/>
-  <text x="660" y="466" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">Stable Diffusion</text>
+  <rect x="305" y="564" width="82" height="24" rx="12" fill="rgba(30,41,59,0.8)" stroke="#334155" stroke-width="0.5"/>
+  <text x="346" y="580" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="8" fill="#94a3b8">Midjourney</text>
 
-  <!-- ===== REFERENCE FILES SECTION ===== -->
-  <rect x="80" y="510" width="355" height="115" rx="8" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1.5" filter="url(#shadow)"/>
-  <text x="257" y="538" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1A1A1A">Reference Rules (references/)</text>
+  <rect x="395" y="564" width="100" height="24" rx="12" fill="rgba(30,41,59,0.8)" stroke="#334155" stroke-width="0.5"/>
+  <text x="445" y="580" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="8" fill="#94a3b8">Stable Diffusion</text>
 
-  <!-- Core rules -->
-  <rect x="100" y="552" width="155" height="34" rx="5" fill="#FEF3C7" stroke="#FCD34D" stroke-width="1"/>
-  <text x="177" y="568" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#92400E">prompt-rules.md</text>
-  <text x="177" y="581" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#92400E">Core rules</text>
+  <!-- =================== REFERENCE PANEL =================== -->
+  <rect x="614" y="434" width="316" height="100" rx="10" fill="rgba(30,41,59,0.6)" stroke="#1e293b" stroke-width="1"/>
+  <text x="630" y="455" font-family="Inter, -apple-system, Arial, sans-serif" font-size="11" font-weight="700" fill="#f1f5f9">Reference Rules</text>
+  <text x="735" y="455" font-family="JetBrains Mono, monospace" font-size="8" fill="#475569">references/</text>
 
-  <rect x="265" y="552" width="155" height="34" rx="5" fill="#FEF3C7" stroke="#FCD34D" stroke-width="1"/>
-  <text x="342" y="568" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#92400E">analysis-guide.md</text>
-  <text x="342" y="581" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#92400E">Checklists</text>
+  <rect x="630" y="466" width="92" height="52" rx="6" fill="rgba(245,158,11,0.06)" stroke="rgba(245,158,11,0.2)" stroke-width="0.5"/>
+  <text x="676" y="488" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.5" font-weight="700" fill="#fbbf24">prompt-rules.md</text>
+  <text x="676" y="504" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="7" fill="#78716c">Core rules</text>
 
-  <!-- Styles line -->
-  <text x="257" y="608" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#6B7280">5 Styles: paper-figure | sketchnote | journal-minimal | warm-notes | business-research</text>
+  <rect x="728" y="466" width="92" height="52" rx="6" fill="rgba(56,189,248,0.06)" stroke="rgba(56,189,248,0.2)" stroke-width="0.5"/>
+  <text x="774" y="488" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.5" font-weight="700" fill="#38bdf8">analysis-guide.md</text>
+  <text x="774" y="504" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="7" fill="#64748b">Checklists</text>
 
-  <!-- ===== PROJECT OVERVIEW SECTION ===== -->
-  <rect x="450" y="510" width="370" height="115" rx="8" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1.5" filter="url(#shadow)"/>
-  <text x="635" y="538" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#166534">Project Overview (project_overview/)</text>
+  <rect x="826" y="466" width="92" height="52" rx="6" fill="rgba(52,211,153,0.06)" stroke="rgba(52,211,153,0.2)" stroke-width="0.5"/>
+  <text x="872" y="488" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.5" font-weight="700" fill="#34d399">layout-rules.md</text>
+  <text x="872" y="504" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="7" fill="#64748b">Composition</text>
 
-  <rect x="470" y="552" width="115" height="34" rx="5" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
-  <text x="527" y="568" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#166534">overview.html</text>
-  <text x="527" y="581" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#166534">Entry page</text>
-
-  <rect x="593" y="552" width="105" height="34" rx="5" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
-  <text x="645" y="568" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#166534">styles.css</text>
-  <text x="645" y="581" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#166534">Dark theme</text>
-
-  <rect x="706" y="552" width="100" height="34" rx="5" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
-  <text x="756" y="568" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#166534">main.js</text>
-  <text x="756" y="581" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#166534">Interactions</text>
+  <!-- =================== STYLES NOTE =================== -->
+  <rect x="614" y="546" width="316" height="66" rx="10" fill="rgba(30,41,59,0.4)" stroke="#1e293b" stroke-width="1"/>
+  <text x="630" y="566" font-family="Inter, -apple-system, Arial, sans-serif" font-size="11" font-weight="700" fill="#f1f5f9">5 Visual Styles</text>
+  <text x="630" y="584" font-family="JetBrains Mono, monospace" font-size="8" fill="#64748b">paper-figure</text>
+  <text x="630" y="598" font-family="JetBrains Mono, monospace" font-size="8" fill="#64748b">sketchnote</text>
+  <text x="714" y="598" font-family="JetBrains Mono, monospace" font-size="8" fill="#64748b">journal-minimal</text>
+  <text x="822" y="598" font-family="JetBrains Mono, monospace" font-size="8" fill="#64748b">warm-notes</text>
+  <text x="714" y="584" font-family="JetBrains Mono, monospace" font-size="8" fill="#64748b">business-research</text>
 
   <!-- Footer -->
-  <text x="450" y="770" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#9CA3AF">sci-plot — Scientific figure prompt engine | github.com/LPK3215/sci-plot</text>
+  <text x="{SVG_WIDTH/2}" y="{SVG_HEIGHT-8}" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="9" fill="#334155">sci-plot — Scientific Figure Prompt Engine | github.com/LPK3215/sci-plot</text>
 </svg>'''
 
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
