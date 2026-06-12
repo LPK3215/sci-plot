@@ -14,7 +14,7 @@ description: >
 
 Turn papers, projects, and algorithms into high-quality, cross-platform image generation prompts. You provide the content, sci-plot produces prompts, you paste them into any image generation tool.
 
----
+</div>
 
 ## Core Positioning
 
@@ -28,21 +28,15 @@ Prompts are cross-platform compatible (ChatGPT/DALL-E, Doubao, Qwen, Midjourney,
 
 ---
 
-## Mandatory Workflow &mdash; 6-Round Pipeline
-
-</div>
+## Mandatory Workflow (Every step is mandatory)
 
 ### Round 0: Determine Analysis Target
 
-<div align="center">
-
-| Step | Action |
-|:---:|---|
-| 1 | If the user explicitly specifies a target (path/link/pasted content), use it directly |
-| 2 | If not specified, auto-detect from the current workspace: prioritize `.tex` files (LaTeX papers), then `.md`, `.pdf`, `.py` |
-| 3 | If the workspace has no analyzable content, prompt the user to provide a target |
-
-</div>
+1. If the user explicitly specifies a target (path/link/pasted content), use it directly
+2. If not specified, auto-detect from the current workspace:
+   - Prioritize `.tex` files (LaTeX papers — methods, formulas, architecture are all there)
+   - Then `.md` documents, `.pdf`, `.py` and other source files
+3. If the workspace also has no analyzable content, prompt the user to provide a target
 
 ### Round 1: Analyze Input Content
 
@@ -50,16 +44,12 @@ Prompts are cross-platform compatible (ChatGPT/DALL-E, Doubao, Qwen, Midjourney,
 
 Read the target content determined in Round 0, analyze comprehensively, covering the following dimensions:
 
-<div align="center">
-
 | Content Type | Analysis Points |
-|:---:|---|
-| **Paper** | Core innovations (1-3), method input→process→output flow, key experiments/results, architecture/module relationships |
-| **Project Code** | Project structure, core modules, data flow, key algorithm functions, module dependencies |
-| **Document** | Architecture design, API interfaces, data models, business processes |
-| **Algorithm** | Input/output, core steps, key data structures, complexity, baseline comparison |
-
-</div>
+|---|---|
+| Paper | Core innovations (1-3), method input→process→output flow, key experiments/results, architecture/module relationships |
+| Project Code | Project structure, core modules, data flow, key algorithm functions, module dependencies |
+| Document | Architecture design, API interfaces, data models, business processes |
+| Algorithm | Input/output, core steps, key data structures, complexity, baseline comparison |
 
 **Self-check**: Is the content fully understood? Can you explain the key concepts in your own words?
 
@@ -67,15 +57,20 @@ Read the target content determined in Round 0, analyze comprehensively, covering
 
 Filter content from the analysis results that is **suitable for illustration**:
 
-<div align="center">
+**Must illustrate (1-2 pages each):**
+- Method overall flow/architecture (input→modules→output)
+- Each core innovation mechanism (zoomed-in internal view)
+- Most compelling experimental results/data
 
-| Priority | Description | Examples |
-|:---:|---|---|
-| **Must illustrate** (1-2 pages each) | Method overall flow/architecture, each core innovation mechanism, most compelling experimental results | input→modules→output, zoomed-in internal view, key data |
-| **Optional** | Visual comparison with baselines, key data processing pipelines, system architecture/module relationship diagrams | baseline charts, pipeline flow, module diagrams |
-| **Do NOT illustrate** | Related work/background, similar ablation experiments, abstract inspiration/concepts | text-only content |
+**Optional illustration:**
+- Visual comparison with baselines
+- Key data processing pipelines
+- System architecture/module relationship diagrams
 
-</div>
+**Do NOT illustrate:**
+- Related work/background introduction (text suffices)
+- Multiple similar ablation experiments
+- Abstract inspiration/concepts
 
 ### Round 3: Ask the User
 
@@ -83,17 +78,11 @@ Filter content from the analysis results that is **suitable for illustration**:
 
 Confirm the following 5 items. If the user does not reply, provide default recommendations:
 
-<div align="center">
-
-| # | Item | Options |
-|:---:|---|---|
-| 1 | **Language** | Chinese / English / Bilingual (default: Chinese) |
-| 2 | **Visual Style** | See style table below |
-| 3 | **Number of Figures** | Recommend based on content complexity, explaining what each figure covers |
-| 4 | **Aspect Ratio** | 16:9 (landscape) / 4:3 (landscape) / 2:3 (portrait, default for method diagrams) |
-| 5 | **Purpose** | Journal figure / Technical blog / README / Defense presentation / Science communication |
-
-</div>
+1. **Language**: Chinese / English / Bilingual (default: Chinese)
+2. **Visual Style** (see style table below)
+3. **Number of Figures**: Recommend based on content complexity, explaining what each figure covers
+4. **Aspect Ratio**: 16:9 (landscape) / 4:3 (landscape) / 2:3 (portrait, default for method diagrams)
+5. **Purpose**: Journal figure / Technical blog / README / Defense presentation / Science communication
 
 **Confirmation template:**
 
@@ -124,7 +113,7 @@ Write a structured prompt for each page and save to `sci-plot-output/prompts/` d
 
 Also follow all constraints in `prompt-rules.md`: three composition layers, ≤3 colors, per-page must-have/forbidden lists, information density requirements.
 
-### Round 5: Output &amp; Summary
+### Round 5: Output & Summary
 
 Generate the following outputs:
 
@@ -139,34 +128,32 @@ sci-plot-output/
 └── README.md               # Usage instructions (how to copy prompts to each platform)
 ```
 
-<div align="center">
-
 ---
 
 ## Five Visual Styles
 
-| Style | Visual Effect | Best For |
-|:---:|---|---|
-| **paper-figure** (default) | Paper figure style, white background, vector feel modules, restrained colors | Journal figures, README hero, technical display |
-| **sketchnote** | Warm research notes style, cream background, hand-drawn lines, colored pencil accents | Knowledge sharing, video promotion, learning notes |
-| **journal-minimal** | Nature/IEEE style, extremely restrained academic charts | Paper submission, defense, group meeting |
-| **warm-notes** | Bright handwritten style, approachable yet professional teaching feel | Science communication, courses, paper study notes |
-| **business-research** | Business research brief style, structured, data-driven | Industry analysis, investor presentations |
+| Style | Visual Effect | Best For | Tool Compatibility |
+|------|---------|---------|--------------|
+| **paper-figure** (default) | Paper figure style, white background, vector feel modules, restrained colors | Journal figures, README hero, technical display | All tools universal |
+| **sketchnote** | Warm research notes style, cream background, hand-drawn lines, colored pencil accents | Knowledge sharing, video promotion, learning notes | All tools universal |
+| **journal-minimal** | Nature/IEEE style, extremely restrained academic charts | Paper submission, defense, group meeting | All tools universal |
+| **warm-notes** | Bright handwritten style, approachable yet professional teaching feel | Science communication, courses, paper study notes | All tools universal |
+| **business-research** | Business research brief style, structured, data-driven | Industry analysis, investor presentations | All tools universal |
 
-*All styles are cross-platform compatible. Detailed specifications in `references/styles/`.*
+Detailed specifications in `references/styles/` directory.
 
 ---
 
 ## Figure Count Recommendations
 
 | Content Complexity | Recommended Count | Content Allocation |
-|:---:|:---:|---|
-| Cover / promotional image | 1 | One overview explaining what was done |
-| Quick understanding | 2-3 | Overview + core mechanism + results |
-| Medium (2 core methods) | 4-6 | Overview + 2-3 mechanisms + key results |
-| Complex (3+ core methods) | 6-10 | Overview + 1 per mechanism + comparison/results |
+|-----------|---------|---------|
+| Cover / promotional image | 1 figure | One overview explaining what was done |
+| Quick understanding | 2-3 figures | Overview + core mechanism + results |
+| Medium (2 core methods) | 4-6 figures | Overview + 2-3 mechanisms + key results |
+| Complex (3+ core methods) | 6-10 figures | Overview + 1 per mechanism + comparison/results |
 
-**Minimum 1, maximum 10.** Prefer fewer over more.
+**Minimum 1, maximum 10**. Prefer fewer over more.
 
 ---
 
@@ -188,13 +175,11 @@ sci-plot-output/
 
 ## Reference Files
 
-`references/prompt-rules.md` — Core prompt generation rules (composition, annotation, color, forbidden items)<br>
-`references/analysis-guide.md` — Project/paper/code analysis guide<br>
-`references/layout-rules.md` — Page composition &amp; role definitions<br>
-`references/styles/paper-figure.md` — Paper figure style specification<br>
-`references/styles/sketchnote.md` — Warm sketchnote style specification<br>
-`references/styles/journal-minimal.md` — Nature/IEEE minimal style specification<br>
-`references/styles/warm-notes.md` — Bright handwritten style specification<br>
-`references/styles/business-research.md` — Business research brief style specification
-
-</div>
+- `references/prompt-rules.md` — Core prompt generation rules (composition, annotation, color, forbidden items)
+- `references/analysis-guide.md` — Project/paper/code analysis guide
+- `references/layout-rules.md` — Page composition & role definitions
+- `references/styles/paper-figure.md` — Paper figure style specification
+- `references/styles/sketchnote.md` — Warm sketchnote style specification
+- `references/styles/journal-minimal.md` — Nature/IEEE minimal style specification
+- `references/styles/warm-notes.md` — Bright handwritten style specification
+- `references/styles/business-research.md` — Business research brief style specification
