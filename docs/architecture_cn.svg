@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 640" width="960" height="640">
+  <defs>
+    <filter id="glow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.25"/>
+    </filter>
+    <linearGradient id="bg-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="phase1-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="rgba(30,41,59,0.8)"/>
+      <stop offset="100%" stop-color="rgba(15,23,42,0.5)"/>
+    </linearGradient>
+    <linearGradient id="phase2-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="rgba(30,41,59,0.8)"/>
+      <stop offset="100%" stop-color="rgba(15,23,42,0.5)"/>
+    </linearGradient>
+    <linearGradient id="core-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#312e81"/>
+      <stop offset="100%" stop-color="#1e1b4b"/>
+    </linearGradient>
+    <linearGradient id="output-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#064e3b"/>
+      <stop offset="100%" stop-color="#022c22"/>
+    </linearGradient>
+    <linearGradient id="accent-line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#818cf800"/>
+      <stop offset="50%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#818cf800"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,1 L10,5 L0,9 Z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="640" fill="url(#bg-grad)" rx="12"/>
+
+  <!-- Subtle grid pattern -->
+  <g opacity="0.03">
+    <line x1="0" y1="0" x2="960" y2="640" stroke="#fff" stroke-width="0.5"/>
+    <line x1="960" y1="0" x2="0" y2="640" stroke="#fff" stroke-width="0.5"/>
+    <line x1="480.0" y1="0" x2="480.0" y2="640" stroke="#fff" stroke-width="0.5"/>
+    <line x1="0" y1="320.0" x2="960" y2="320.0" stroke="#fff" stroke-width="0.5"/>
+  </g>
+
+  <!-- Title -->
+  <text x="480.0" y="38" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="20" font-weight="800" fill="#f1f5f9" letter-spacing="-0.5">Sci-Plot 工作流</text>
+  <text x="480.0" y="58" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="11" fill="#94a3b8">6 轮流水线：从研究内容到跨平台绘图提示词</text>
+
+  <!-- =================== PHASE 1 =================== -->
+  <rect x="30" y="78" width="900" height="160" rx="10" fill="url(#phase1-bg)" stroke="#1e293b" stroke-width="1"/>
+  <rect x="30" y="78" width="900" height="1" fill="url(#accent-line)" rx="0.5"/>
+
+  <!-- Phase label -->
+  <rect x="44" y="86" width="155" height="20" rx="10" fill="rgba(30,41,59,0.8)" stroke="#334155" stroke-width="0.5"/>
+  <text x="121" y="100" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" font-weight="700" fill="#94a3b8" letter-spacing="1.2">输入与分析</text>
+
+  <!-- Round 0 -->
+  <rect x="50" y="120" width="260" height="98" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="56" y="130" width="52" height="20" rx="10" fill="rgba(14,165,233,0.15)" stroke="rgba(14,165,233,0.3)" stroke-width="0.5"/>
+  <text x="82" y="143" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" font-weight="700" fill="#7dd3fc" letter-spacing="0.5">ENTRY</text>
+  <text x="66" y="168" font-family="Inter, -apple-system, Arial, sans-serif" font-size="11" font-weight="700" fill="#818cf8">Round 0</text>
+  <text x="66" y="186" font-family="Inter, -apple-system, Arial, sans-serif" font-size="12" font-weight="700" fill="#f1f5f9">确定目标</text>
+  <text x="66" y="204" font-family="Inter, -apple-system, Arial, sans-serif" font-size="9.5" fill="#64748b">自动检测 .tex / .md / 工作区</text>
+
+  <!-- Arrow 0→1 -->
+  <line x1="314" y1="169" x2="345" y2="169" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <circle cx="330" cy="169" r="3" fill="#818cf8" opacity="0.4"/>
+
+  <!-- Round 1 -->
+  <rect x="350" y="120" width="260" height="98" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="366" y="168" font-family="Inter, -apple-system, Arial, sans-serif" font-size="11" font-weight="700" fill="#818cf8">Round 1</text>
+  <text x="366" y="186" font-family="Inter, -apple-system, Arial, sans-serif" font-size="12" font-weight="700" fill="#f1f5f9">分析内容</text>
+  <text x="366" y="204" font-family="Inter, -apple-system, Arial, sans-serif" font-size="9.5" fill="#64748b">论文 / 代码 / 算法 / 文档</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="614" y1="169" x2="645" y2="169" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <circle cx="630" cy="169" r="3" fill="#818cf8" opacity="0.4"/>
+
+  <!-- Round 2 -->
+  <rect x="650" y="120" width="260" height="98" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="666" y="168" font-family="Inter, -apple-system, Arial, sans-serif" font-size="11" font-weight="700" fill="#818cf8">Round 2</text>
+  <text x="666" y="186" font-family="Inter, -apple-system, Arial, sans-serif" font-size="12" font-weight="700" fill="#f1f5f9">提取视觉要素</text>
+  <text x="666" y="204" font-family="Inter, -apple-system, Arial, sans-serif" font-size="9.5" fill="#64748b">必选 / 可选 / 跳过过滤</text>
+
+  <!-- =================== PHASE 2 =================== -->
+  <rect x="30" y="254" width="900" height="160" rx="10" fill="url(#phase2-bg)" stroke="#1e293b" stroke-width="1"/>
+  <rect x="30" y="254" width="900" height="1" fill="url(#accent-line)" rx="0.5"/>
+
+  <!-- Phase label -->
+  <rect x="44" y="262" width="175" height="20" rx="10" fill="rgba(30,41,59,0.8)" stroke="#334155" stroke-width="0.5"/>
+  <text x="131" y="276" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" font-weight="700" fill="#94a3b8" letter-spacing="1.2">确认与生成</text>
+
+  <!-- Round 3 -->
+  <rect x="50" y="296" width="260" height="98" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="66" y="344" font-family="Inter, -apple-system, Arial, sans-serif" font-size="11" font-weight="700" fill="#818cf8">Round 3</text>
+  <text x="66" y="362" font-family="Inter, -apple-system, Arial, sans-serif" font-size="12" font-weight="700" fill="#f1f5f9">用户确认</text>
+  <text x="66" y="380" font-family="Inter, -apple-system, Arial, sans-serif" font-size="9.5" fill="#64748b">语言、风格、张数、比例</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="314" y1="345" x2="345" y2="345" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <circle cx="330" cy="345" r="3" fill="#818cf8" opacity="0.4"/>
+
+  <!-- Round 4 — CORE HIGHLIGHT -->
+  <rect x="350" y="296" width="260" height="98" rx="8" fill="url(#core-grad)" stroke="#818cf860" stroke-width="2" filter="url(#glow)"/>
+  <rect x="350" y="296" width="260" height="98" rx="8" fill="none" stroke="#818cf8" stroke-width="0.5" stroke-dasharray="2,4" opacity="0.3"/>
+  <rect x="356" y="306" width="44" height="20" rx="10" fill="rgba(129,140,248,0.2)" stroke="rgba(129,140,248,0.4)" stroke-width="0.5"/>
+  <text x="378" y="319" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" font-weight="700" fill="#a5b4fc" letter-spacing="0.5">CORE</text>
+  <text x="366" y="344" font-family="Inter, -apple-system, Arial, sans-serif" font-size="11" font-weight="700" fill="#a5b4fc">Round 4</text>
+  <text x="366" y="362" font-family="Inter, -apple-system, Arial, sans-serif" font-size="12" font-weight="700" fill="#f1f5f9">生成提示词</text>
+  <text x="366" y="380" font-family="Inter, -apple-system, Arial, sans-serif" font-size="9.5" fill="#64748b">基于模板的结构化文件</text>
+
+  <!-- Arrow 4→5 -->
+  <line x1="614" y1="345" x2="645" y2="345" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <circle cx="630" cy="345" r="3" fill="#34d399" opacity="0.4"/>
+
+  <!-- Round 5 — OUTPUT -->
+  <rect x="650" y="296" width="260" height="98" rx="8" fill="url(#output-grad)" stroke="#34d39940" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="656" y="306" width="52" height="20" rx="10" fill="rgba(52,211,153,0.15)" stroke="rgba(52,211,153,0.3)" stroke-width="0.5"/>
+  <text x="682" y="319" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" font-weight="700" fill="#6ee7b7" letter-spacing="0.5">OUTPUT</text>
+  <text x="666" y="344" font-family="Inter, -apple-system, Arial, sans-serif" font-size="11" font-weight="700" fill="#6ee7b7">Round 5</text>
+  <text x="666" y="362" font-family="Inter, -apple-system, Arial, sans-serif" font-size="12" font-weight="700" fill="#f1f5f9">输出与汇总</text>
+  <text x="666" y="380" font-family="Inter, -apple-system, Arial, sans-serif" font-size="9.5" fill="#64748b">sci-plot-output/ 目录</text>
+
+  <!-- =================== OUTPUT PANEL =================== -->
+  <rect x="30" y="434" width="570" height="178" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+  <rect x="30" y="434" width="570" height="32" rx="10" fill="rgba(30,41,59,0.6)"/>
+  <rect x="30" y="456" width="570" height="10" rx="0" fill="rgba(30,41,59,0.6)"/>
+
+  <!-- Output header -->
+  <text x="50" y="455" font-family="Inter, -apple-system, Arial, sans-serif" font-size="12" font-weight="700" fill="#f1f5f9">输出：</text>
+  <text x="104" y="455" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600" fill="#818cf8">sci-plot-output/</text>
+
+  <!-- File cards -->
+  <rect x="50" y="476" width="120" height="52" rx="6" fill="#1e293b" stroke="#334155" stroke-width="0.5"/>
+  <text x="110" y="498" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="600" fill="#818cf8">analysis.md</text>
+  <text x="110" y="516" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="8" fill="#64748b">分析摘要</text>
+
+  <rect x="180" y="476" width="120" height="52" rx="6" fill="#1e293b" stroke="#334155" stroke-width="0.5"/>
+  <text x="240" y="498" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="600" fill="#818cf8">figure-plan.md</text>
+  <text x="240" y="516" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="8" fill="#64748b">每页方案</text>
+
+  <rect x="310" y="476" width="120" height="52" rx="6" fill="#1e293b" stroke="#334155" stroke-width="0.5"/>
+  <text x="370" y="498" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="600" fill="#818cf8">prompts/*.md</text>
+  <text x="370" y="516" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="8" fill="#64748b">每图一个</text>
+
+  <rect x="440" y="476" width="140" height="52" rx="6" fill="#1e293b" stroke="#334155" stroke-width="0.5"/>
+  <text x="510" y="498" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="600" fill="#818cf8">README.md</text>
+  <text x="510" y="516" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="8" fill="#64748b">使用说明</text>
+
+  <!-- Flow hint -->
+  <text x="315" y="552" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="9" fill="#475569">复制英文提示词 →</text>
+
+  <!-- Platform pills -->
+  <rect x="50" y="564" width="105" height="24" rx="12" fill="rgba(30,41,59,0.8)" stroke="#334155" stroke-width="0.5"/>
+  <text x="102" y="580" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="8" fill="#94a3b8">ChatGPT/DALL-E</text>
+
+  <rect x="163" y="564" width="68" height="24" rx="12" fill="rgba(30,41,59,0.8)" stroke="#334155" stroke-width="0.5"/>
+  <text x="197" y="580" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="8" fill="#94a3b8">Doubao</text>
+
+  <rect x="239" y="564" width="58" height="24" rx="12" fill="rgba(30,41,59,0.8)" stroke="#334155" stroke-width="0.5"/>
+  <text x="268" y="580" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="8" fill="#94a3b8">Qwen</text>
+
+  <rect x="305" y="564" width="82" height="24" rx="12" fill="rgba(30,41,59,0.8)" stroke="#334155" stroke-width="0.5"/>
+  <text x="346" y="580" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="8" fill="#94a3b8">Midjourney</text>
+
+  <rect x="395" y="564" width="100" height="24" rx="12" fill="rgba(30,41,59,0.8)" stroke="#334155" stroke-width="0.5"/>
+  <text x="445" y="580" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="8" fill="#94a3b8">Stable Diffusion</text>
+
+  <!-- =================== REFERENCE PANEL =================== -->
+  <rect x="614" y="434" width="316" height="100" rx="10" fill="rgba(30,41,59,0.6)" stroke="#1e293b" stroke-width="1"/>
+  <text x="630" y="455" font-family="Inter, -apple-system, Arial, sans-serif" font-size="11" font-weight="700" fill="#f1f5f9">参考规则</text>
+  <text x="735" y="455" font-family="JetBrains Mono, monospace" font-size="8" fill="#475569">references/</text>
+
+  <rect x="630" y="466" width="92" height="52" rx="6" fill="rgba(245,158,11,0.06)" stroke="rgba(245,158,11,0.2)" stroke-width="0.5"/>
+  <text x="676" y="488" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.5" font-weight="700" fill="#fbbf24">prompt-rules.md</text>
+  <text x="676" y="504" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="7" fill="#78716c">核心规则</text>
+
+  <rect x="728" y="466" width="92" height="52" rx="6" fill="rgba(56,189,248,0.06)" stroke="rgba(56,189,248,0.2)" stroke-width="0.5"/>
+  <text x="774" y="488" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.5" font-weight="700" fill="#38bdf8">analysis-guide.md</text>
+  <text x="774" y="504" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="7" fill="#64748b">检查清单</text>
+
+  <rect x="826" y="466" width="92" height="52" rx="6" fill="rgba(52,211,153,0.06)" stroke="rgba(52,211,153,0.2)" stroke-width="0.5"/>
+  <text x="872" y="488" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.5" font-weight="700" fill="#34d399">layout-rules.md</text>
+  <text x="872" y="504" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="7" fill="#64748b">构图规则</text>
+
+  <!-- =================== STYLES NOTE =================== -->
+  <rect x="614" y="546" width="316" height="66" rx="10" fill="rgba(30,41,59,0.4)" stroke="#1e293b" stroke-width="1"/>
+  <text x="630" y="566" font-family="Inter, -apple-system, Arial, sans-serif" font-size="11" font-weight="700" fill="#f1f5f9">5 种视觉风格</text>
+  <text x="630" y="584" font-family="JetBrains Mono, monospace" font-size="8" fill="#64748b">paper-figure</text>
+  <text x="630" y="598" font-family="JetBrains Mono, monospace" font-size="8" fill="#64748b">sketchnote</text>
+  <text x="714" y="598" font-family="JetBrains Mono, monospace" font-size="8" fill="#64748b">journal-minimal</text>
+  <text x="822" y="598" font-family="JetBrains Mono, monospace" font-size="8" fill="#64748b">warm-notes</text>
+  <text x="714" y="584" font-family="JetBrains Mono, monospace" font-size="8" fill="#64748b">business-research</text>
+
+  <!-- Footer -->
+  <text x="480.0" y="632" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="9" fill="#334155">sci-plot — 科研绘图提示词引擎 | github.com/LPK3215/sci-plot</text>
+</svg>
