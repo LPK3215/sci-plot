@@ -1,6 +1,14 @@
 # Sci-Plot — 科研绘图提示词生成器
 
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/version-1.0.0-brightgreen.svg)](CHANGELOG.md)
+[![CodeBuddy Skill](https://img.shields.io/badge/CodeBuddy-skill-6366F1.svg)](SKILL.md)
+
 把论文、项目、算法变成可直接用于生图工具的高质量提示词。不直接生图，只产出跨平台提示词。
+
+## 工作流架构
+
+![Architecture](./docs/architecture.svg)
 
 ## 典型使用场景
 
@@ -78,6 +86,57 @@ sci-plot-output/
 └── README.md            # 本说明
 ```
 
+## 项目结构
+
+```
+sci-plot/
+├── SKILL.md                              # AI 指令：6 轮强制工作流
+├── README.md                             # 用户说明文档
+├── LICENSE                               # MIT License
+├── CHANGELOG.md                          # 版本历史
+├── CONTRIBUTING.md                       # 贡献指南
+├── .gitignore                            # 版本控制排除
+├── .gitattributes                        # 行尾规范化
+├── docs/
+│   ├── architecture.svg                  # 工作流架构图
+│   └── scripts/
+│       └── generate_architecture.py      # 架构图生成脚本
+└── references/
+    ├── prompt-rules.md                   # 提示词生成核心规则
+    ├── analysis-guide.md                 # 内容分析指南
+    ├── layout-rules.md                   # 页面构图与角色定义
+    └── styles/
+        ├── paper-figure.md               # 论文框架图风
+        ├── sketchnote.md                 # 温暖科研笔记风
+        ├── journal-minimal.md            # Nature/IEEE 极简风
+        ├── warm-notes.md                 # 明亮手记风
+        └── business-research.md          # 商业简报风
+```
+
+## FAQ
+
+**Q: sci-plot 能直接生成图片吗？**  
+A: 不能。sci-plot 只产出提示词，你需要把提示词复制到 ChatGPT/DALL-E、豆包、Qwen、Midjourney 等生图工具中出图。这样做的好处是提示词跨平台通用，不绑定任何特定工具。
+
+**Q: 没有完整的论文或项目能用吗？**  
+A: 可以，但效果会打折。sci-plot 有现成文章时效果最好——内容越完整、结构越清晰，提取就越精准。如果只给一句模糊的想法，生成的提示词会偏泛化。
+
+**Q: 支持哪些输入格式？**  
+A: 支持 LaTeX 论文（`.tex`，优先级最高）、Markdown 文档、PDF、Python 源码、arxiv 链接或 ID，以及直接粘贴的文本内容。
+
+**Q: 提示词文件里哪个部分是核心？**  
+A: 每个提示词文件的 `▶ English Prompt（核心，直接复制）` 部分是核心产出，直接复制到生图工具即可。中文说明、构图描述、内容元素是给人看的解释。
+
+**Q: 如何添加新的视觉风格？**  
+A: 在 `references/styles/` 下创建新 `.md` 文件，参照现有风格文件的格式，然后在 `SKILL.md` 和 `README.md` 的风格表中注册。详见 [CONTRIBUTING.md](CONTRIBUTING.md)。
+
+**Q: 最多能生成几张图的提示词？**  
+A: 最少 1 张，最多 10 张。具体张数取决于内容复杂度：简单内容 1-3 张，中等 4-6 张，复杂 6-10 张。
+
+## 作者
+
+- **LPK3215** — [GitHub](https://github.com/LPK3215)
+
 ## License
 
-MIT
+MIT — 详见 [LICENSE](LICENSE)

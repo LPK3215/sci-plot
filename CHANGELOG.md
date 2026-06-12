@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Added `sci-plot-output/` to `.gitignore` to exclude generated output from version control.
+- Added workflow architecture diagram (`docs/architecture.svg`) with generation script (`docs/scripts/generate_architecture.py`).
+- Added badges (License, Version, CodeBuddy Skill) to README.md.
+- Added project structure tree, FAQ section, and author information to README.md.
+- Added visual architecture diagram section to README.md.
 
 ## [1.0.0] - 2026-06-13
 
