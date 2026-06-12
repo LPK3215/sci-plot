@@ -3,7 +3,7 @@
 # Sci-Plot — 科研绘图 —— 从论文到插图的一站式引擎
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.0.0-brightgreen.svg)](CHANGELOG_CN.md)
+[![Version](https://img.shields.io/badge/version-1.1.0-brightgreen.svg)](CHANGELOG_CN.md)
 [![CodeBuddy Skill](https://img.shields.io/badge/CodeBuddy-skill-6366F1.svg)](SKILL.md)
 
 科研绘图，从论文到插图的一站式引擎。不直接生图，只产出跨平台提示词。
@@ -14,7 +14,7 @@
 
 ## 工作流架构
 
-![Architecture](./docs/architecture.svg)
+![Architecture](./docs/architecture_cn.svg)
 
 ## 典型使用场景
 
@@ -111,7 +111,8 @@ sci-plot/
 │   ├── styles.css                        # 深色主题样式
 │   └── main.js                           # 交互逻辑
 ├── docs/
-│   ├── architecture.svg                  # 工作流架构图
+│   ├── architecture.svg                  # 工作流架构图（英文）
+│   ├── architecture_cn.svg               # 工作流架构图（中文）
 │   └── scripts/
 │       └── generate_architecture.py      # 架构图生成脚本
 └── references/

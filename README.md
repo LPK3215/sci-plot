@@ -3,7 +3,7 @@
 # Sci-Plot — Scientific Figure Prompt Engine
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.0.0-brightgreen.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.1.0-brightgreen.svg)](CHANGELOG.md)
 [![CodeBuddy Skill](https://img.shields.io/badge/CodeBuddy-skill-6366F1.svg)](SKILL.md)
 
 Scientific illustration, from paper to figure — an all-in-one prompt engine. sci-plot does not generate images directly; it produces cross-platform prompts that you copy into any AI image generation tool.
@@ -111,7 +111,8 @@ sci-plot/
 │   ├── styles.css                        # Dark theme styles
 │   └── main.js                           # Interactive logic
 ├── docs/
-│   ├── architecture.svg                  # Workflow architecture diagram
+│   ├── architecture.svg                  # Workflow architecture diagram (English)
+│   ├── architecture_cn.svg               # Workflow architecture diagram (Chinese)
 │   └── scripts/
 │       └── generate_architecture.py      # Architecture diagram generation script
 └── references/
