@@ -8,7 +8,7 @@
 
 科研绘图，从论文到插图的一站式引擎。不直接生图，只产出跨平台提示词。
 
-[English Documentation](README.md)
+**[🌐 在线演示](https://lpk3215.github.io/sci-plot/)** | [English Documentation](README.md)
 
 </div>
 
