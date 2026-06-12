@@ -4,9 +4,11 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-1.1.0-brightgreen.svg)](CHANGELOG_CN.md)
-[![CodeBuddy Skill](https://img.shields.io/badge/CodeBuddy-skill-6366F1.svg)](SKILL.md)
+[![AI Skill](https://img.shields.io/badge/AI-skill-6366F1.svg)](SKILL.md)
 
 科研绘图，从论文到插图的一站式引擎。不直接生图，只产出跨平台提示词。
+
+**兼容所有 AI 编程助手** — Claude Code、Cursor、Windsurf、GitHub Copilot、Cline、Continue、Aider 或任何能读取项目文件的 AI。只需打开此目录，AI 就能理解 SKILL.md 中的指令。
 
 **[🌐 在线演示](https://lpk3215.github.io/sci-plot/project_overview.html)** | [English Documentation](README.md)
 

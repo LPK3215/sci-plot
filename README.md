@@ -4,9 +4,11 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-1.1.0-brightgreen.svg)](CHANGELOG.md)
-[![CodeBuddy Skill](https://img.shields.io/badge/CodeBuddy-skill-6366F1.svg)](SKILL.md)
+[![AI Skill](https://img.shields.io/badge/AI-skill-6366F1.svg)](SKILL.md)
 
 Scientific illustration, from paper to figure — an all-in-one prompt engine. sci-plot does not generate images directly; it produces cross-platform prompts that you copy into any AI image generation tool.
+
+**Works with any AI coding assistant** — Claude Code, Cursor, Windsurf, GitHub Copilot, Cline, Continue, Aider, or any AI that can read project files. Just open this directory and the AI will understand SKILL.md instructions.
 
 **[🌐 Live Demo](https://lpk3215.github.io/sci-plot/project_overview.html)** | [中文文档](README_CN.md)
 
