@@ -32,6 +32,10 @@ git clone https://github.com/LPK3215/sci-plot.git
 
 克隆后，打开 sci-plot 目录（或把整个目录作为工作区/子项目打开），AI 就能读到 SKILL.md 中的规则。
 
+## 快速开始
+
+**先看完整示例**：查看 [`examples/transformer-paper/`](examples/transformer-paper/) 了解 sci-plot 的实际产出——以经典 Transformer 论文为例的分析、图解方案和可直接使用的提示词。
+
 ## 使用方式
 
 ### 基本用法

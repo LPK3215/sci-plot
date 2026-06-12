@@ -32,6 +32,10 @@ git clone https://github.com/LPK3215/sci-plot.git
 
 After cloning, open the sci-plot directory (or add it as a workspace/subproject). The AI will read SKILL.md and apply its rules.
 
+## Quick Start
+
+**See a complete example first**: Check out [`examples/transformer-paper/`](examples/transformer-paper/) to see what sci-plot outputs look like — analysis, figure plan, and ready-to-use prompts for the classic Transformer paper.
+
 ## Usage
 
 ### Basic Usage
