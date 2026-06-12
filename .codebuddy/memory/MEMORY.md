@@ -7,9 +7,9 @@
 - 支持 ChatGPT/DALL-E、豆包、Qwen、Midjourney、Stable Diffusion 等
 
 ## 文档规范
-- 所有文档采用中英文双语格式，英文在前、中文在后（英文为主）
-- SKILL.md 保持单文件双语格式，不拆成中英文两个文件（CodeBuddy 只会加载 SKILL.md）
-- 涉及文件：README.md、SKILL.md、CHANGELOG.md、CONTRIBUTING.md、references/ 下所有文件
+- 用户面向文档（README/CHANGELOG/CONTRIBUTING）拆分为独立 EN/CN 双份文件
+- AI 面向文档（SKILL.md + references/*.md）保持纯英文，提升 AI 理解能力
+- 架构图资源：英文文档用 architecture.svg，中文文档用 architecture_cn.svg
 
 ## 项目观览页
 - project_overview.html 为入口文件，project_overview/ 目录存放 CSS 和 JS
