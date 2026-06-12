@@ -8,7 +8,7 @@
 
 Scientific illustration, from paper to figure — an all-in-one prompt engine. sci-plot does not generate images directly; it produces cross-platform prompts that you copy into any AI image generation tool.
 
-**[🌐 Live Demo](https://lpk3215.github.io/sci-plot/)** | [中文文档](README_CN.md)
+**[🌐 Live Demo](https://lpk3215.github.io/sci-plot/project_overview.html)** | [中文文档](README_CN.md)
 
 </div>
 
