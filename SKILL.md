@@ -8,9 +8,13 @@ description: >
   prompts only.
 ---
 
+<div align="center">
+
 # Sci-Plot — Scientific Figure Prompt Engine
 
 Turn papers, projects, and algorithms into high-quality, cross-platform image generation prompts. You provide the content, sci-plot produces prompts, you paste them into any image generation tool.
+
+</div>
 
 ## Core Positioning
 

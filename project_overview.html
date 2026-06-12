@@ -260,85 +260,170 @@
         <p class="section-subtitle">6-Round Pipeline: From Research Content to Cross-Platform Image Prompts</p>
       </div>
 
-      <div class="arch-container fade-in">
-        <div class="arch-diagram">
+      <div class="workflow-wrap fade-in">
+        
+        <!-- Pipeline -->
+        <div class="pipeline">
 
-          <!-- Row 1: Rounds 0-2 -->
-          <div class="arch-flow">
-            <div class="arch-step active">
-              <div class="arch-step-num">Round 0</div>
-              <div class="arch-step-title">Determine Target</div>
-              <div class="arch-step-desc">Auto-detect .tex / .md / workspace</div>
+          <!-- Phase 1: Input & Analysis (Rounds 0-2) -->
+          <div class="phase-group">
+            <div class="phase-label"><span>INPUT &amp; ANALYSIS</span></div>
+            <div class="pipeline-track">
+              <div class="pipeline-step" data-round="0">
+                <div class="step-icon">&#x2699;</div>
+                <div class="step-body">
+                  <span class="step-badge entry">Entry</span>
+                  <h4>Round 0</h4>
+                  <p>Determine Target</p>
+                  <span class="step-detail">Auto-detect .tex / .md / workspace</span>
+                </div>
+              </div>
+
+              <div class="pipeline-connector"><div class="conn-line"></div><div class="conn-dot"></div><div class="conn-line"></div></div>
+
+              <div class="pipeline-step" data-round="1">
+                <div class="step-icon">&#x1F50D;</div>
+                <div class="step-body">
+                  <h4>Round 1</h4>
+                  <p>Analyze Content</p>
+                  <span class="step-detail">Paper / code / algorithm / doc</span>
+                </div>
+              </div>
+
+              <div class="pipeline-connector"><div class="conn-line"></div><div class="conn-dot"></div><div class="conn-line"></div></div>
+
+              <div class="pipeline-step" data-round="2">
+                <div class="step-icon">&#x1F4CA;</div>
+                <div class="step-body">
+                  <h4>Round 2</h4>
+                  <p>Extract Visuals</p>
+                  <span class="step-detail">Must / optional / skip filter</span>
+                </div>
+              </div>
+
+              <div class="pipeline-connector connector-down">
+                <div class="conn-elbow"></div>
+              </div>
             </div>
-            <div class="arch-arrow">&#10132;</div>
-            <div class="arch-step">
-              <div class="arch-step-num">Round 1</div>
-              <div class="arch-step-title">Analyze Content</div>
-              <div class="arch-step-desc">Paper / code / algorithm / doc</div>
-            </div>
-            <div class="arch-arrow">&#10132;</div>
-            <div class="arch-step">
-              <div class="arch-step-num">Round 2</div>
-              <div class="arch-step-title">Extract Visuals</div>
-              <div class="arch-step-desc">Must / optional / skip filter</div>
-            </div>
-            <div class="arch-arrow">&#10132;</div>
           </div>
 
-          <!-- Row 2: Rounds 3-5 (indented) -->
-          <div class="arch-flow-row" style="justify-content: center;">
-            <div style="width: 168px;"></div> <!-- offset spacer for arrow alignment -->
-            <div class="arch-step">
-              <div class="arch-step-num">Round 3</div>
-              <div class="arch-step-title">Confirm with User</div>
-              <div class="arch-step-desc">Language, style, count, ratio</div>
-            </div>
-            <div class="arch-arrow">&#10132;</div>
-            <div class="arch-step active">
-              <div class="arch-step-num">Round 4</div>
-              <div class="arch-step-title">Generate Prompts</div>
-              <div class="arch-step-desc">Template-based structured files</div>
-            </div>
-            <div class="arch-arrow">&#10132;</div>
-            <div class="arch-step">
-              <div class="arch-step-num">Round 5</div>
-              <div class="arch-step-title">Output &amp; Summarize</div>
-              <div class="arch-step-desc">sci-plot-output/ directory</div>
+          <!-- Phase 2: Confirm & Generate (Rounds 3-5) -->
+          <div class="phase-group">
+            <div class="phase-label"><span>CONFIRM &amp; GENERATE</span></div>
+            <div class="pipeline-track">
+              <div class="pipeline-step" data-round="3">
+                <div class="step-icon">&#x1F4AC;</div>
+                <div class="step-body">
+                  <h4>Round 3</h4>
+                  <p>Confirm with User</p>
+                  <span class="step-detail">Language, style, count, ratio</span>
+                </div>
+              </div>
+
+              <div class="pipeline-connector"><div class="conn-line"></div><div class="conn-dot"></div><div class="conn-line"></div></div>
+
+              <div class="pipeline-step highlight" data-round="4">
+                <div class="step-glow"></div>
+                <div class="step-icon">&#x2728;</div>
+                <div class="step-body">
+                  <span class="step-badge core">Core</span>
+                  <h4>Round 4</h4>
+                  <p>Generate Prompts</p>
+                  <span class="step-detail">Template-based structured files</span>
+                </div>
+              </div>
+
+              <div class="pipeline-connector"><div class="conn-line"></div><div class="conn-dot"></div><div class="conn-line"></div></div>
+
+              <div class="pipeline-step output-step" data-round="5">
+                <div class="step-icon">&#x1F4BE;</div>
+                <div class="step-body">
+                  <span class="step-badge exit">Output</span>
+                  <h4>Round 5</h4>
+                  <p>Output &amp; Summarize</p>
+                  <span class="step-detail">sci-plot-output/ directory</span>
+                </div>
+              </div>
             </div>
           </div>
 
-          <!-- Output Box -->
-          <div class="arch-output-box">
-            <h4>Output: sci-plot-output/</h4>
-            <div class="arch-output-files">
-              <span class="arch-output-file">analysis.md</span>
-              <span class="arch-output-file">figure-plan.md</span>
-              <span class="arch-output-file">prompts/*.md</span>
-              <span class="arch-output-file">README.md</span>
+        </div><!-- /.pipeline -->
+
+        <!-- Output Panel -->
+        <div class="output-panel">
+          <div class="output-panel-header">
+            <div class="output-icon">&#x1F4E5;</div>
+            <h4>Output: <code>sci-plot-output/</code></h4>
+          </div>
+          <div class="output-files-grid">
+            <div class="of-item">
+              <div class="of-icon">&#x1F4DD;</div>
+              <span>analysis.md</span>
+              <em>Content analysis summary</em>
             </div>
-            <p class="arch-copy-note">Copy English Prompt &#8594;</p>
-            <div class="arch-platforms">
-              <span class="arch-platform-tag">ChatGPT/DALL-E</span>
-              <span class="arch-platform-tag">Doubao</span>
-              <span class="arch-platform-tag">Qwen</span>
-              <span class="arch-platform-tag">Midjourney</span>
-              <span class="arch-platform-tag">Stable Diffusion</span>
+            <div class="of-item">
+              <div class="of-icon">&#x1F4F0;</div>
+              <span>figure-plan.md</span>
+              <em>Figure plan per page</em>
+            </div>
+            <div class="of-item of-wide">
+              <div class="of-icon">&#x1F4CB;</div>
+              <span>prompts/*.md</span>
+              <em>Image generation prompts (one per figure)</em>
+            </div>
+            <div class="of-item">
+              <div class="of-icon">&#x1F4D6;</div>
+              <span>README.md</span>
+              <em>Usage instructions</em>
             </div>
           </div>
+          <div class="output-flow-hint">
+            <span class="flow-arrow-text">Copy English Prompt &#8594;</span>
+            <div class="platform-pills">
+              <span>ChatGPT / DALL-E</span>
+              <span>Doubao</span>
+              <span>Qwen</span>
+              <span>Midjourney</span>
+              <span>Stable Diffusion</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reference Cards + Project Files -->
+        <div class="bottom-row">
 
           <!-- Reference Rules -->
-          <div class="arch-ref-section">
-            <h4>Reference Rules (references/)</h4>
-            <div class="arch-ref-cards">
-              <div class="arch-ref-card"><span class="ref-name">prompt-rules.md</span><span class="ref-desc">Core prompt generation rules</span></div>
-              <div class="arch-ref-card"><span class="ref-name">analysis-guide.md</span><span class="ref-desc">Content analysis checklists</span></div>
-              <div class="arch-ref-card"><span class="ref-name">layout-rules.md</span><span class="ref-desc">Page roles &amp; composition</span></div>
+          <div class="ref-panel">
+            <h4 class="panel-title">
+              <span class="pt-icon ref-pt">&#x1F4D1;</span>
+              Reference Rules
+              <code>references/</code>
+            </h4>
+            <div class="ref-items">
+              <div class="ri-card ri-yellow"><b>prompt-rules.md</b><span>Core prompt rules</span></div>
+              <div class="ri-card ri-blue"><b>analysis-guide.md</b><span>Analysis checklists</span></div>
+              <div class="ri-card ri-green"><b>layout-rules.md</b><span>Page roles &amp; composition</span></div>
             </div>
-            <p style="margin-top:14px;font-size:0.78rem;color:var(--text-muted);">5 Visual Styles: paper-figure | sketchnote | journal-minimal | warm-notes | business-research</p>
+            <p class="style-note">5 Visual Styles: paper-figure | sketchnote | journal-minimal | warm-notes | business-research</p>
           </div>
 
-        </div><!-- /.arch-diagram -->
-      </div>
+          <!-- Project Overview Files -->
+          <div class="proj-panel">
+            <h4 class="panel-title">
+              <span class="pt-icon proj-pt">&#x1F4C1;</span>
+              Project Overview
+              <code>project_overview/</code>
+            </h4>
+            <div class="proj-items">
+              <div class="pi-card"><b>overview.html</b><span>Entry page</span></div>
+              <div class="pi-card"><b>styles.css</b><span>Dark theme</span></div>
+              <div class="pi-card"><b>main.js</b><span>Interactions</span></div>
+            </div>
+          </div>
+
+        </div><!-- /.bottom-row -->
+
+      </div><!-- /.workflow-wrap -->
     </div>
   </section>
 
