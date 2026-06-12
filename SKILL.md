@@ -4,14 +4,14 @@ version: 1.1.0
 description: >
   Scientific figure prompt engine. Analyzes papers/projects/algorithms/code/documents,
   applies scientific figure conventions, and generates high-quality, cross-platform image
-  generation prompts. Users copy prompts into ChatGPT/DALL-E, Doubao, Qwen, Midjourney,
-  or any AI image tool to produce figures. Does not generate images directly — produces
-  prompts only.
+  generation prompts. Users copy prompts into ChatGPT/DALL-E, Doubao, Qwen (Tongyi Wanxiang),
+  Midjourney, Stable Diffusion, or any other AI image generation tool to produce figures.
+  Does not generate images directly — produces prompts only.
 ---
 
 # Sci-Plot — Scientific Figure Prompt Engine
 
-Turn papers, projects, and algorithms into high-quality, cross-platform image generation prompts. You provide the content, sci-plot produces prompts, you paste them into any image generation tool.
+Turn papers, projects, and algorithms into high-quality, cross-platform image generation prompts. You provide the content, sci-plot produces prompts, you paste them into ChatGPT/DALL-E, Doubao, Qwen, Midjourney, Stable Diffusion, or other AI image tools.
 
 ## Core Positioning
 

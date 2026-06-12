@@ -6,7 +6,7 @@
 [![Version](https://img.shields.io/badge/version-1.1.0-brightgreen.svg)](CHANGELOG_CN.md)
 [![AI Skill](https://img.shields.io/badge/AI-skill-6366F1.svg)](SKILL.md)
 
-科研绘图，从论文到插图的一站式引擎。不直接生图，只产出跨平台提示词。
+科研绘图，从论文到插图的一站式引擎。不直接生图，只产出跨平台提示词，复制到 **ChatGPT/DALL-E、豆包、Qwen（通义万相）、Midjourney、Stable Diffusion** 等任何 AI 生图工具即可使用。
 
 **兼容所有 AI 编程助手** — Claude Code、Cursor、Windsurf、GitHub Copilot、Cline、Continue、Aider 或任何能读取项目文件的 AI。只需打开此目录，AI 就能理解 SKILL.md 中的指令。
 
@@ -62,7 +62,7 @@ git clone 后打开 sci-plot 目录，直接发送给 AI 这段提示词：
 1. AI 分析你的内容，给出图解方案建议
 2. 你确认：语言（中文/English/双语）、风格、张数、比例、用途
 3. AI 生成提示词文件到 `sci-plot-output/prompts/` 目录
-4. 你复制提示词到生图工具中出图
+4. 你复制提示词到 **ChatGPT/DALL-E、豆包、Qwen、Midjourney、Stable Diffusion** 等生图工具中出图
 
 ### 可用风格
 

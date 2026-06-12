@@ -6,7 +6,7 @@
 [![Version](https://img.shields.io/badge/version-1.1.0-brightgreen.svg)](CHANGELOG.md)
 [![AI Skill](https://img.shields.io/badge/AI-skill-6366F1.svg)](SKILL.md)
 
-Scientific illustration, from paper to figure — an all-in-one prompt engine. sci-plot does not generate images directly; it produces cross-platform prompts that you copy into any AI image generation tool.
+Scientific illustration, from paper to figure — an all-in-one prompt engine. sci-plot does not generate images directly; it produces cross-platform prompts that you copy into **ChatGPT/DALL-E, Doubao, Qwen (Tongyi Wanxiang), Midjourney, Stable Diffusion**, or any other AI image generation tool.
 
 **Works with any AI coding assistant** — Claude Code, Cursor, Windsurf, GitHub Copilot, Cline, Continue, Aider, or any AI that can read project files. Just open this directory and the AI will understand SKILL.md instructions.
 
@@ -62,7 +62,7 @@ Target: [optional — leave blank to auto-analyze current project]
 1. AI analyzes your content and proposes a figure plan
 2. You confirm: language (Chinese/English/Bilingual), style, number of figures, aspect ratio, purpose
 3. AI generates prompt files into `sci-plot-output/prompts/` directory
-4. You copy prompts into any AI image generation tool
+4. You copy prompts into **ChatGPT/DALL-E, Doubao, Qwen, Midjourney, Stable Diffusion**, or other AI image tools
 
 ### Available Styles
 
