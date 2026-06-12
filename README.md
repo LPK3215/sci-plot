@@ -1,3 +1,5 @@
+<div align="center">
+
 # Sci-Plot — Scientific Figure Prompt Engine
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -7,6 +9,8 @@
 Scientific illustration, from paper to figure — an all-in-one prompt engine. sci-plot does not generate images directly; it produces cross-platform prompts that you copy into any AI image generation tool.
 
 [中文文档](README_CN.md)
+
+</div>
 
 ## Workflow Architecture
 

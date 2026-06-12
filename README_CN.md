@@ -1,3 +1,5 @@
+<div align="center">
+
 # Sci-Plot — 科研绘图 —— 从论文到插图的一站式引擎
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -7,6 +9,8 @@
 科研绘图，从论文到插图的一站式引擎。不直接生图，只产出跨平台提示词。
 
 [English Documentation](README.md)
+
+</div>
 
 ## 工作流架构
 
