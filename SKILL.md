@@ -1,5 +1,6 @@
 ---
 name: sci-plot
+version: 1.1.0
 description: >
   Scientific figure prompt engine. Analyzes papers/projects/algorithms/code/documents,
   applies scientific figure conventions, and generates high-quality, cross-platform image
