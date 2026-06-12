@@ -25,9 +25,9 @@ Thank you for your interest in contributing to sci-plot! This project is a CodeB
 ### Updating the Workflow
 
 1. Edit `SKILL.md` — the workflow lives there
-2. Each round must have `⛔` marker to indicate it's mandatory
-3. All reference files must be listed at the bottom of `SKILL.md`
-4. Any new "Read first" instruction must have the corresponding reference file
+2. All reference files must be listed at the bottom of `SKILL.md`
+3. Any new "Read first" instruction must have the corresponding reference file
+4. Maintain the mandatory 6-round workflow structure (Round 0-5)
 
 ### Submitting Changes
 
