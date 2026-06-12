@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sci-Plot — Project Overview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="project_overview/styles.css">
+</head>
+<body>
+
+  <!-- Background Particles -->
+  <div class="bg-particles">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <span>Sci-Plot</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#workflow">Workflow</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#styles">Styles</a></li>
+        <li><a href="#architecture">Architecture</a></li>
+        <li><a href="https://github.com/LPK3215/sci-plot" class="nav-cta">GitHub</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-content fade-in">
+        <div class="hero-badge">
+          <span class="dot"></span> CodeBuddy Skill &middot; v1.0.0
+        </div>
+        <h1>
+          科研绘图<br>
+          <span class="gradient-text">从论文到插图的一站式引擎</span>
+        </h1>
+        <p class="hero-desc">
+          分析论文、项目、算法、文档，基于科研绘图规范生成高质量、跨平台可用的生图提示词。不直接生图，只产出提示词，兼容 ChatGPT/DALL-E、豆包、Qwen、Midjourney 等全部生图工具。
+        </p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-value count-up" data-target="5">0</div>
+            <div class="hero-stat-label">视觉风格</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value count-up" data-target="6">0</div>
+            <div class="hero-stat-label">强制轮次</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value count-up" data-target="10">0</div>
+            <div class="hero-stat-label">最大页数</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value count-up" data-target="7">0</div>
+            <div class="hero-stat-label">兼容平台</div>
+          </div>
+        </div>
+        <div class="btn-group">
+          <a href="https://github.com/LPK3215/sci-plot" class="btn btn-primary" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            View on GitHub
+          </a>
+          <a href="#workflow" class="btn btn-secondary">Explore Workflow</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Stats Bar -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="stats-bar fade-in">
+        <div class="stat-item">
+          <div class="stat-number">6</div>
+          <div class="stat-desc">强制工作流轮次</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">5</div>
+          <div class="stat-desc">预设视觉风格</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">4</div>
+          <div class="stat-desc">输入类型支持</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">8</div>
+          <div class="stat-desc">参考规则文件</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Workflow -->
+  <section class="section" id="workflow">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Core Workflow</span>
+        <h2 class="section-title">六轮强制工作流</h2>
+        <p class="section-subtitle">每一步不可跳过，确保提示词质量始终如一</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item fade-in">
+          <div class="timeline-badge" style="background: linear-gradient(135deg, #6366f1, #818cf8);">0</div>
+          <div class="timeline-content">
+            <span class="tag" style="background: #818cf815; color: #818cf8;">⛔ 强制</span>
+            <h3>确定分析目标</h3>
+            <p>自动发现工作区中的 .tex / .md / .pdf / .py 文件，优先寻找 LaTeX 论文。支持本地路径、arxiv 链接、粘贴内容。</p>
+          </div>
+        </div>
+
+        <div class="timeline-item fade-in">
+          <div class="timeline-badge" style="background: linear-gradient(135deg, #06b6d4, #22d3ee);">1</div>
+          <div class="timeline-content">
+            <span class="tag" style="background: #06b6d415; color: #22d3ee;">⛔ 强制</span>
+            <h3>分析输入内容</h3>
+            <p>先读取 analysis-guide.md，按论文/代码/算法/文档四类分析清单执行完整分析。覆盖核心创新、方法流程、关键实验、架构关系。</p>
+          </div>
+        </div>
+
+        <div class="timeline-item fade-in">
+          <div class="timeline-badge" style="background: linear-gradient(135deg, #ec4899, #f472b6);">2</div>
+          <div class="timeline-content">
+            <span class="tag" style="background: #ec489915; color: #f472b6;">⛔ 强制</span>
+            <h3>提取可图解内容</h3>
+            <p>筛选适合画成图的内容：必须图解方法流程和核心机制，可选图解对比和架构，不图解相关工作和抽象概念。</p>
+          </div>
+        </div>
+
+        <div class="timeline-item fade-in">
+          <div class="timeline-badge" style="background: linear-gradient(135deg, #10b981, #34d399);">3</div>
+          <div class="timeline-content">
+            <span class="tag" style="background: #10b98115; color: #34d399;">⛔ 强制</span>
+            <h3>询问用户</h3>
+            <p>先读取 layout-rules.md，按页面角色组织方案。确认语言（中文/English）、视觉风格、生成张数、图片比例（16:9/4:3/2:3）、用途。</p>
+          </div>
+        </div>
+
+        <div class="timeline-item fade-in">
+          <div class="timeline-badge" style="background: linear-gradient(135deg, #f59e0b, #fb923c);">4</div>
+          <div class="timeline-content">
+            <span class="tag" style="background: #f59e0b15; color: #fb923c;">⛔ 强制</span>
+            <h3>生成提示词</h3>
+            <p>先读取 prompt-rules.md 和对应风格文件。严格使用模板格式，遵守构图三层次、颜色≤3种、每页必含/禁止清单等约束。</p>
+          </div>
+        </div>
+
+        <div class="timeline-item fade-in">
+          <div class="timeline-badge" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa);">5</div>
+          <div class="timeline-content">
+            <span class="tag" style="background: #8b5cf615; color: #a78bfa;">⛔ 强制</span>
+            <h3>输出与汇总</h3>
+            <p>生成 analysis.md、figure-plan.md、prompts/ 目录（每页一个 .md）、README.md 使用说明。所有产出统一放在 sci-plot-output/ 目录。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Features -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Features</span>
+        <h2 class="section-title">核心能力</h2>
+        <p class="section-subtitle">不只是提示词引擎，更是科研可视化的全流程解决方案</p>
+      </div>
+
+      <div class="feature-grid fade-in">
+        <div class="feature-card">
+          <div class="feature-icon" style="background: #818cf815; color: #818cf8;">📄</div>
+          <h4>多源输入</h4>
+          <p>支持 LaTeX 论文（.tex）、Markdown 文档、PDF、Python 源码、arxiv 链接/ID、直接粘贴文本，自动发现工作区内容。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background: #06b6d415; color: #22d3ee;">🎨</div>
+          <h4>五种风格</h4>
+          <p>论文框架图、温暖笔记、极简学术、明亮手记、商业简报，每种风格都有完整的颜色/构图/标注规范。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background: #ec489915; color: #f472b6;">🔒</div>
+          <h4>强制约束</h4>
+          <p>颜色≤3种、禁止花哨装饰、禁止无方向箭头、禁止模糊描述。构图三层次（主结构→子模块→标注）确保信息清晰。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background: #10b98115; color: #34d399;">🌐</div>
+          <h4>跨平台通用</h4>
+          <p>提示词兼容 ChatGPT/DALL-E、豆包、Qwen、Midjourney、Stable Diffusion 等全部主流生图工具，不绑定任何特定平台。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background: #f59e0b15; color: #fb923c;">📐</div>
+          <h4>灵活比例</h4>
+          <p>支持 16:9 横版、4:3 横版、2:3 竖版三种比例。默认竖版 2:3 用于方法图解，适配论文排版需求。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background: #8b5cf615; color: #a78bfa;">📋</div>
+          <h4>结构化输出</h4>
+          <p>每页独立 .md 文件，包含中文说明、构图描述、内容元素、English Prompt（核心，直接复制），以及平台使用指引。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visual Styles -->
+  <section class="section" id="styles">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Visual Styles</span>
+        <h2 class="section-title">五种视觉风格</h2>
+        <p class="section-subtitle">从论文投稿到商业汇报，覆盖全场景科研可视化需求</p>
+      </div>
+
+      <div class="grid-5 fade-in">
+        <div class="style-card">
+          <div class="style-preview" style="background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%); border: 2px solid #e2e8f0; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: #64748b;">📐 矢量模块</div>
+          <h4>Paper Figure</h4>
+          <p>论文框架图风<br>白底 + 克制配色</p>
+        </div>
+        <div class="style-card">
+          <div class="style-preview" style="background: linear-gradient(135deg, #fef9ef 0%, #fdf2e0 100%); border: 2px solid #f0d9a8; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: #b8860b;">✏️ 手绘线条</div>
+          <h4>Sketchnote</h4>
+          <p>温暖科研笔记风<br>米白底 + 彩铅强调</p>
+        </div>
+        <div class="style-card">
+          <div class="style-preview" style="background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); border: 1px solid #cbd5e1; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: #475569;">🔬 极简学术</div>
+          <h4>Journal Minimal</h4>
+          <p>Nature/IEEE 风<br>极简克制学术图表</p>
+        </div>
+        <div class="style-card">
+          <div class="style-preview" style="background: linear-gradient(135deg, #fffdf7 0%, #fff8e7 100%); border: 2px solid #fcd34d; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: #92400e;">📝 手记教学</div>
+          <h4>Warm Notes</h4>
+          <p>明亮手记风<br>亲和专业的教学感</p>
+        </div>
+        <div class="style-card">
+          <div class="style-preview" style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border: 2px solid #94a3b8; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: #334155;">📊 数据驱动</div>
+          <h4>Business Research</h4>
+          <p>商业简报风<br>结构化 + 数据驱动</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture -->
+  <section class="section" id="architecture">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Architecture</span>
+        <h2 class="section-title">Sci-Plot Workflow</h2>
+        <p class="section-subtitle">6-Round Pipeline: From Research Content to Cross-Platform Image Prompts</p>
+      </div>
+
+      <div class="arch-container fade-in">
+        <div class="arch-diagram">
+
+          <!-- Row 1: Rounds 0-2 -->
+          <div class="arch-flow">
+            <div class="arch-step active">
+              <div class="arch-step-num">Round 0</div>
+              <div class="arch-step-title">Determine Target</div>
+              <div class="arch-step-desc">Auto-detect .tex / .md / workspace</div>
+            </div>
+            <div class="arch-arrow">&#10132;</div>
+            <div class="arch-step">
+              <div class="arch-step-num">Round 1</div>
+              <div class="arch-step-title">Analyze Content</div>
+              <div class="arch-step-desc">Paper / code / algorithm / doc</div>
+            </div>
+            <div class="arch-arrow">&#10132;</div>
+            <div class="arch-step">
+              <div class="arch-step-num">Round 2</div>
+              <div class="arch-step-title">Extract Visuals</div>
+              <div class="arch-step-desc">Must / optional / skip filter</div>
+            </div>
+            <div class="arch-arrow">&#10132;</div>
+          </div>
+
+          <!-- Row 2: Rounds 3-5 (indented) -->
+          <div class="arch-flow-row" style="justify-content: center;">
+            <div style="width: 168px;"></div> <!-- offset spacer for arrow alignment -->
+            <div class="arch-step">
+              <div class="arch-step-num">Round 3</div>
+              <div class="arch-step-title">Confirm with User</div>
+              <div class="arch-step-desc">Language, style, count, ratio</div>
+            </div>
+            <div class="arch-arrow">&#10132;</div>
+            <div class="arch-step active">
+              <div class="arch-step-num">Round 4</div>
+              <div class="arch-step-title">Generate Prompts</div>
+              <div class="arch-step-desc">Template-based structured files</div>
+            </div>
+            <div class="arch-arrow">&#10132;</div>
+            <div class="arch-step">
+              <div class="arch-step-num">Round 5</div>
+              <div class="arch-step-title">Output &amp; Summarize</div>
+              <div class="arch-step-desc">sci-plot-output/ directory</div>
+            </div>
+          </div>
+
+          <!-- Output Box -->
+          <div class="arch-output-box">
+            <h4>Output: sci-plot-output/</h4>
+            <div class="arch-output-files">
+              <span class="arch-output-file">analysis.md</span>
+              <span class="arch-output-file">figure-plan.md</span>
+              <span class="arch-output-file">prompts/*.md</span>
+              <span class="arch-output-file">README.md</span>
+            </div>
+            <p class="arch-copy-note">Copy English Prompt &#8594;</p>
+            <div class="arch-platforms">
+              <span class="arch-platform-tag">ChatGPT/DALL-E</span>
+              <span class="arch-platform-tag">Doubao</span>
+              <span class="arch-platform-tag">Qwen</span>
+              <span class="arch-platform-tag">Midjourney</span>
+              <span class="arch-platform-tag">Stable Diffusion</span>
+            </div>
+          </div>
+
+          <!-- Reference Rules -->
+          <div class="arch-ref-section">
+            <h4>Reference Rules (references/)</h4>
+            <div class="arch-ref-cards">
+              <div class="arch-ref-card"><span class="ref-name">prompt-rules.md</span><span class="ref-desc">Core prompt generation rules</span></div>
+              <div class="arch-ref-card"><span class="ref-name">analysis-guide.md</span><span class="ref-desc">Content analysis checklists</span></div>
+              <div class="arch-ref-card"><span class="ref-name">layout-rules.md</span><span class="ref-desc">Page roles &amp; composition</span></div>
+            </div>
+            <p style="margin-top:14px;font-size:0.78rem;color:var(--text-muted);">5 Visual Styles: paper-figure | sketchnote | journal-minimal | warm-notes | business-research</p>
+          </div>
+
+        </div><!-- /.arch-diagram -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Output Structure -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Output</span>
+        <h2 class="section-title">产出文件结构</h2>
+        <p class="section-subtitle">一键生成，开箱即用</p>
+      </div>
+
+      <div class="output-tree fade-in">
+        <span class="dir">sci-plot-output/</span><br>
+        &nbsp;&nbsp;<span class="dir">├──</span> <span class="file">analysis.md</span> <span class="comment"># 内容分析摘要</span><br>
+        &nbsp;&nbsp;<span class="dir">├──</span> <span class="file">figure-plan.md</span> <span class="comment"># 图解方案（每页讲什么）</span><br>
+        &nbsp;&nbsp;<span class="dir">├──</span> <span class="file">README.md</span> <span class="comment"># 使用说明（如何复制到各平台）</span><br>
+        &nbsp;&nbsp;<span class="dir">└──</span> <span class="dir">prompts/</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">├──</span> <span class="file">01-overview.md</span> <span class="comment"># 第1页提示词</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">├──</span> <span class="file">02-mechanism-a.md</span> <span class="comment"># 第2页提示词</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">└──</span> <span class="file">...</span> <span class="comment"># 后续页提示词</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Supported Platforms -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Compatibility</span>
+        <h2 class="section-title">支持的生图平台</h2>
+        <p class="section-subtitle">提示词跨平台通用，复制即用</p>
+      </div>
+
+      <div class="platform-grid fade-in">
+        <span class="platform-badge primary">ChatGPT / DALL-E（优先建议）</span>
+        <span class="platform-badge">豆包</span>
+        <span class="platform-badge">Qwen（通义万相）</span>
+        <span class="platform-badge">Midjourney</span>
+        <span class="platform-badge">Stable Diffusion</span>
+        <span class="platform-badge">其他生图工具</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project File Tree -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Project Structure</span>
+        <h2 class="section-title">项目文件树</h2>
+        <p class="section-subtitle">17 个文件，8 个参考规则文件，5 种视觉风格</p>
+      </div>
+
+      <div class="output-tree fade-in">
+        <span class="dir">sci-plot/</span><br>
+        &nbsp;&nbsp;<span class="dir">├──</span> <span class="file">SKILL.md</span> <span class="comment"># AI 指令：6 轮强制工作流</span><br>
+        &nbsp;&nbsp;<span class="dir">├──</span> <span class="file">README.md</span> <span class="comment"># 用户说明文档</span><br>
+        &nbsp;&nbsp;<span class="dir">├──</span> <span class="file">LICENSE</span> <span class="comment"># MIT License</span><br>
+        &nbsp;&nbsp;<span class="dir">├──</span> <span class="file">CHANGELOG.md</span> <span class="comment"># 版本历史</span><br>
+        &nbsp;&nbsp;<span class="dir">├──</span> <span class="file">CONTRIBUTING.md</span> <span class="comment"># 贡献指南</span><br>
+        &nbsp;&nbsp;<span class="dir">├──</span> <span class="dir">docs/</span><br>
+        &nbsp;&nbsp;<span class="dir">│&nbsp;&nbsp;├──</span> <span class="file">architecture.svg</span> <span class="comment"># 工作流架构图</span><br>
+        &nbsp;&nbsp;<span class="dir">│&nbsp;&nbsp;└──</span> <span class="dir">scripts/</span><br>
+        &nbsp;&nbsp;<span class="dir">│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──</span> <span class="file">generate_architecture.py</span> <span class="comment"># 架构图生成脚本</span><br>
+        &nbsp;&nbsp;<span class="dir">└──</span> <span class="dir">references/</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">├──</span> <span class="file">prompt-rules.md</span> <span class="comment"># 提示词生成核心规则</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">├──</span> <span class="file">analysis-guide.md</span> <span class="comment"># 内容分析指南</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">├──</span> <span class="file">layout-rules.md</span> <span class="comment"># 页面构图与角色定义</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">└──</span> <span class="dir">styles/</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">├──</span> <span class="file">paper-figure.md</span> <span class="comment"># 论文框架图风</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">├──</span> <span class="file">sketchnote.md</span> <span class="comment"># 温暖科研笔记风</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">├──</span> <span class="file">journal-minimal.md</span> <span class="comment"># Nature/IEEE 极简风</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">├──</span> <span class="file">warm-notes.md</span> <span class="comment"># 明亮手记风</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">└──</span> <span class="file">business-research.md</span> <span class="comment"># 商业简报风</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="https://github.com/LPK3215/sci-plot" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://github.com/LPK3215/sci-plot/issues" target="_blank" rel="noopener">Issues</a>
+          <a href="LICENSE">MIT License</a>
+          <a href="CHANGELOG.md">Changelog</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 LPK3215. Built with love for the research community.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="project_overview/main.js"></script>
+</body>
+</html>

@@ -14,7 +14,7 @@ Dependencies:
 import os
 
 SVG_WIDTH = 900
-SVG_HEIGHT = 700
+SVG_HEIGHT = 800
 
 
 def generate_architecture_svg():
@@ -129,27 +129,39 @@ def generate_architecture_svg():
   <text x="660" y="466" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">Stable Diffusion</text>
 
   <!-- ===== REFERENCE FILES SECTION ===== -->
-  <rect x="80" y="510" width="740" height="155" rx="8" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1.5" filter="url(#shadow)"/>
-  <text x="450" y="538" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1A1A1A">Reference Rules (references/)</text>
+  <rect x="80" y="510" width="355" height="115" rx="8" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="257" y="538" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1A1A1A">Reference Rules (references/)</text>
 
   <!-- Core rules -->
-  <rect x="110" y="555" width="220" height="42" rx="5" fill="#FEF3C7" stroke="#FCD34D" stroke-width="1"/>
-  <text x="220" y="572" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#92400E">prompt-rules.md</text>
-  <text x="220" y="589" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#92400E">Core prompt generation rules</text>
+  <rect x="100" y="552" width="155" height="34" rx="5" fill="#FEF3C7" stroke="#FCD34D" stroke-width="1"/>
+  <text x="177" y="568" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#92400E">prompt-rules.md</text>
+  <text x="177" y="581" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#92400E">Core rules</text>
 
-  <rect x="345" y="555" width="220" height="42" rx="5" fill="#FEF3C7" stroke="#FCD34D" stroke-width="1"/>
-  <text x="455" y="572" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#92400E">analysis-guide.md</text>
-  <text x="455" y="589" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#92400E">Content analysis checklists</text>
+  <rect x="265" y="552" width="155" height="34" rx="5" fill="#FEF3C7" stroke="#FCD34D" stroke-width="1"/>
+  <text x="342" y="568" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#92400E">analysis-guide.md</text>
+  <text x="342" y="581" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#92400E">Checklists</text>
 
-  <rect x="580" y="555" width="210" height="42" rx="5" fill="#FEF3C7" stroke="#FCD34D" stroke-width="1"/>
-  <text x="685" y="572" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#92400E">layout-rules.md</text>
-  <text x="685" y="589" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#92400E">Page roles &amp; composition</text>
+  <!-- Styles line -->
+  <text x="257" y="608" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#6B7280">5 Styles: paper-figure | sketchnote | journal-minimal | warm-notes | business-research</text>
 
-  <!-- Styles -->
-  <text x="450" y="622" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#6B7280">5 Visual Styles: paper-figure | sketchnote | journal-minimal | warm-notes | business-research</text>
+  <!-- ===== PROJECT OVERVIEW SECTION ===== -->
+  <rect x="450" y="510" width="370" height="115" rx="8" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="635" y="538" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#166534">Project Overview (project_overview/)</text>
+
+  <rect x="470" y="552" width="115" height="34" rx="5" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+  <text x="527" y="568" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#166534">overview.html</text>
+  <text x="527" y="581" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#166534">Entry page</text>
+
+  <rect x="593" y="552" width="105" height="34" rx="5" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+  <text x="645" y="568" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#166534">styles.css</text>
+  <text x="645" y="581" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#166534">Dark theme</text>
+
+  <rect x="706" y="552" width="100" height="34" rx="5" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+  <text x="756" y="568" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#166534">main.js</text>
+  <text x="756" y="581" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#166534">Interactions</text>
 
   <!-- Footer -->
-  <text x="450" y="680" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#9CA3AF">sci-plot — Cross-platform scientific figure prompt generator | github.com/LPK3215/sci-plot</text>
+  <text x="450" y="770" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#9CA3AF">sci-plot — Scientific figure prompt engine | github.com/LPK3215/sci-plot</text>
 </svg>'''
 
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
