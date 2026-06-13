@@ -69,4 +69,4 @@ Copy the "English Prompt" section above in full to the input box of the followin
 - **ChatGPT (DALL-E)**: Paste directly
 - **Doubao**: Text-to-image entry
 - **Qwen (Tongyi Wanxiang)**: Text-to-image entry
-- **Midjourney**: Paste after `/imagine`
+- **Midjourney**: Shorten to key elements before pasting after `/imagine` (Midjourney works best with concise prompts under ~60 words)
