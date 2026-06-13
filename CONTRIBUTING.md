@@ -1,6 +1,6 @@
 # Contributing to Sci-Plot
 
-Thank you for your interest in contributing to sci-plot! This project is a CodeBuddy skill that generates scientific figure prompts.
+Thank you for your interest in contributing to sci-plot! This project is a cross-platform AI skill that generates scientific figure prompts.
 
 [中文贡献指南](CONTRIBUTING_CN.md)
 

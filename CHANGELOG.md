@@ -9,12 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Removed the non-standard `version` field from `SKILL.md` frontmatter to align with the AI skill spec (`name` + `description` only). The version is still tracked via this changelog and the README badge.
+- Replaced remaining "CodeBuddy" brand references with neutral "AI" wording in `CONTRIBUTING.md` / `CONTRIBUTING_CN.md` and the changelogs.
+- Completed the project structure tree in `README.md` / `README_CN.md` (added `index.html`, `examples/`, `SECURITY.md`).
+- Stopped tracking the local `.codebuddy/` directory in git (now gitignored).
+
 ## [1.1.0] - 2026-06-13
 
 ### Added
 - Added `sci-plot-output/` to `.gitignore` to exclude generated output from version control.
 - Added workflow architecture diagram (`docs/architecture.svg` + `docs/architecture_cn.svg`) with generation script (`docs/scripts/generate_architecture.py`).
-- Added badges (License, Version, CodeBuddy Skill) to README.md.
+- Added badges (License, Version, AI Skill) to README.md.
 - Added project structure tree, FAQ section, and author information to README.md.
 - Added visual architecture diagram section to README.md.
 - Added interactive project overview page (`project_overview.html` + `project_overview/`) with dark theme, animated workflow timeline, style previews, and modern card-style architecture diagram.

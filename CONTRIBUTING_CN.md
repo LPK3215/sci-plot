@@ -1,6 +1,6 @@
 # Sci-Plot 贡献指南
 
-感谢你对 sci-plot 的关注！本项目是一个生成科研绘图提示词的 CodeBuddy 技能。
+感谢你对 sci-plot 的关注！本项目是一个生成科研绘图提示词的跨平台 AI 技能。
 
 [English Contribution Guide](CONTRIBUTING.md)
 

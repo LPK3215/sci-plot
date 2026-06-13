@@ -9,12 +9,18 @@ sci-plot 所有重要变更均记录于此。
 
 ## [Unreleased]
 
+### 变更
+- 移除 `SKILL.md` frontmatter 中的非标准 `version` 字段，以符合 AI 技能规范（仅保留 `name` + `description`）。版本号仍由本更新日志与 README 徽章追踪。
+- 将 `CONTRIBUTING.md` / `CONTRIBUTING_CN.md` 及更新日志中残留的 "CodeBuddy" 品牌字样替换为中性的 "AI"。
+- 补全 `README.md` / `README_CN.md` 的项目结构树（新增 `index.html`、`examples/`、`SECURITY.md`）。
+- 取消 git 对本地 `.codebuddy/` 目录的跟踪（已加入 gitignore）。
+
 ## [1.1.0] - 2026-06-13
 
 ### 新增
 - 将 `sci-plot-output/` 加入 `.gitignore`，从版本控制中排除生成输出。
 - 新增工作流架构图（`docs/architecture.svg` + `docs/architecture_cn.svg`）及生成脚本（`docs/scripts/generate_architecture.py`）。
-- 在 README.md 中添加徽章（许可证、版本、CodeBuddy Skill）。
+- 在 README.md 中添加徽章（许可证、版本、AI Skill）。
 - 在 README.md 中添加项目结构树、FAQ 章节和作者信息。
 - 在 README.md 中添加可视化架构图章节。
 - 新增交互式项目全景观览页（`project_overview.html` + `project_overview/`），支持深色主题、动画工作流时间线、风格预览和现代卡片式架构图。

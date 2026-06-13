@@ -110,12 +110,16 @@ sci-plot/
 ├── CHANGELOG_CN.md                       # Version history (Chinese)
 ├── CONTRIBUTING.md                       # Contribution guidelines (English)
 ├── CONTRIBUTING_CN.md                    # Contribution guidelines (Chinese)
+├── SECURITY.md                           # Security policy
 ├── .gitignore                            # Version control exclusions
 ├── .gitattributes                        # Line ending normalization
+├── index.html                            # GitHub Pages entry (redirects to overview)
 ├── project_overview.html                 # Project overview dashboard entry
 ├── project_overview/
 │   ├── styles.css                        # Dark theme styles
 │   └── main.js                           # Interactive logic
+├── examples/
+│   └── transformer-paper/                # Worked example: analysis, plan & ready-to-use prompts
 ├── docs/
 │   ├── architecture.svg                  # Workflow architecture diagram (English)
 │   ├── architecture_cn.svg               # Workflow architecture diagram (Chinese)

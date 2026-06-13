@@ -110,12 +110,16 @@ sci-plot/
 ├── CHANGELOG_CN.md                       # 版本历史（中文）
 ├── CONTRIBUTING.md                       # 贡献指南（英文）
 ├── CONTRIBUTING_CN.md                    # 贡献指南（中文）
+├── SECURITY.md                           # 安全策略
 ├── .gitignore                            # 版本控制排除
 ├── .gitattributes                        # 行尾规范化
+├── index.html                            # GitHub Pages 入口（重定向到观览页）
 ├── project_overview.html                 # 项目全景观览页入口
 ├── project_overview/
 │   ├── styles.css                        # 深色主题样式
 │   └── main.js                           # 交互逻辑
+├── examples/
+│   └── transformer-paper/                # 完整示例：分析、方案与可直接使用的提示词
 ├── docs/
 │   ├── architecture.svg                  # 工作流架构图（英文）
 │   ├── architecture_cn.svg               # 工作流架构图（中文）
