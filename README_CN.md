@@ -53,7 +53,7 @@ git clone 后打开 sci-plot 目录，直接发送给 AI 这段提示词：
 
 - 留空 → 自动分析当前项目，优先找 `.tex` 文件
 - 本地路径 → `/path/to/your/paper/`
-- arxiv 链接 → `https://arxiv.org/abs/2401.12345`
+- arxiv 链接 → `https://arxiv.org/abs/9999.99999`
 - 粘贴内容 → 直接粘贴论文摘要、方法描述或算法步骤
 - arxiv ID → `1706.03762`
 

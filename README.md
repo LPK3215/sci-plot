@@ -53,7 +53,7 @@ Target: [optional — leave blank to auto-analyze current project]
 
 - Leave blank → auto-analyze current project, prioritizing `.tex` files
 - Local path → `/path/to/your/paper/`
-- arxiv link → `https://arxiv.org/abs/2401.12345`
+- arxiv link → `https://arxiv.org/abs/9999.99999`
 - Pasted content → paste abstract, method description, or algorithm steps directly
 - arxiv ID → `1706.03762`
 
