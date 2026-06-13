@@ -8,7 +8,7 @@
 
 Scientific illustration, from paper to figure — an all-in-one prompt engine. sci-plot does not generate images directly; it produces cross-platform prompts that you copy into **ChatGPT/DALL-E, Doubao, Qwen (Tongyi Wanxiang), Midjourney, Stable Diffusion**, or any other AI image generation tool.
 
-**Works with any AI coding assistant** — Claude Code, Cursor, Windsurf, GitHub Copilot, Cline, Continue, Aider, or any AI that can read project files. Just open this directory and the AI will understand SKILL.md instructions.
+**Works with any AI coding assistant** — Claude Code, Codex, Cursor, Windsurf, GitHub Copilot, Cline, Continue, Aider, or any AI that can read project files. Just open this directory and the AI will understand SKILL.md instructions.
 
 **[🌐 Live Demo](https://lpk3215.github.io/sci-plot/project_overview.html)** | [中文文档](README_CN.md)
 
