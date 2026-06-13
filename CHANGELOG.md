@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.1] - 2026-06-13
+
 ### Changed
 - Removed the non-standard `version` field from `SKILL.md` frontmatter to align with the AI skill spec (`name` + `description` only). The version is still tracked via this changelog and the README badge.
 - Replaced remaining "CodeBuddy" brand references with neutral "AI" wording in `CONTRIBUTING.md` / `CONTRIBUTING_CN.md` and the changelogs.

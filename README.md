@@ -3,7 +3,7 @@
 # Sci-Plot — Scientific Figure Prompt Engine
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.1.0-brightgreen.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.1.1-brightgreen.svg)](CHANGELOG.md)
 [![AI Skill](https://img.shields.io/badge/AI-skill-6366F1.svg)](SKILL.md)
 
 Scientific illustration, from paper to figure — an all-in-one prompt engine. sci-plot does not generate images directly; it produces cross-platform prompts that you copy into **ChatGPT/DALL-E, Doubao, Qwen (Tongyi Wanxiang), Midjourney, Stable Diffusion**, or any other AI image generation tool.

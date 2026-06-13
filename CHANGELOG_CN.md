@@ -9,6 +9,8 @@ sci-plot 所有重要变更均记录于此。
 
 ## [Unreleased]
 
+## [1.1.1] - 2026-06-13
+
 ### 变更
 - 移除 `SKILL.md` frontmatter 中的非标准 `version` 字段，以符合 AI 技能规范（仅保留 `name` + `description`）。版本号仍由本更新日志与 README 徽章追踪。
 - 将 `CONTRIBUTING.md` / `CONTRIBUTING_CN.md` 及更新日志中残留的 "CodeBuddy" 品牌字样替换为中性的 "AI"。

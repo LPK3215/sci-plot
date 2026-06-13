@@ -3,7 +3,7 @@
 # Sci-Plot — 科研绘图 —— 从论文到插图的一站式引擎
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.1.0-brightgreen.svg)](CHANGELOG_CN.md)
+[![Version](https://img.shields.io/badge/version-1.1.1-brightgreen.svg)](CHANGELOG_CN.md)
 [![AI Skill](https://img.shields.io/badge/AI-skill-6366F1.svg)](SKILL.md)
 
 科研绘图，从论文到插图的一站式引擎。不直接生图，只产出跨平台提示词，复制到 **ChatGPT/DALL-E、豆包、Qwen（通义万相）、Midjourney、Stable Diffusion** 等任何 AI 生图工具即可使用。
