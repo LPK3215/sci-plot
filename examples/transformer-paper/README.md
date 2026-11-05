@@ -10,7 +10,8 @@ transformer-paper/
 ├── figure-plan.md           # Figure plan (3 figures proposed)
 ├── prompts/
 │   ├── 01-overview.md       # Transformer architecture overview prompt
-│   └── 02-attention-mechanism.md  # Multi-head attention detail prompt
+│   ├── 02-attention-mechanism.md  # Multi-head attention detail prompt
+│   └── 03-positional-encoding.md  # Positional encoding prompt
 └── README.md                # This file
 ```
 
