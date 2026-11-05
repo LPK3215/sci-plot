@@ -32,3 +32,6 @@ build/
 .pytest_cache/
 .coverage
 htmlcov/
+
+# Local WorkBuddy session memory (do not publish)
+.workbuddy/

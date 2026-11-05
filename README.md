@@ -1,25 +1,27 @@
 <div align="center">
 
 <p align="center">
-  <img src="https://cdn.jsdelivr.net/gh/LPK3215/sci-plot@main/docs/assets/banner.svg" alt="Sci-Plot — Scientific Figure Prompt Engine" width="100%"/>
+  <img src="https://cdn.jsdelivr.net/gh/LPK3215/sci-plot@main/docs/assets/banner.svg" alt="Sci-Plot — Portable Prompt Compiler for AI Skills" width="100%"/>
 </p>
 
 # Sci-Plot
 
-[![Version](https://img.shields.io/badge/version-1.2.0-brightgreen.svg)](CHANGELOG.md)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/python-3.10+-3776AB.svg?logo=python&logoColor=white)](pyproject.toml)
-[![AI Skill](https://img.shields.io/badge/AI-skill-6366F1.svg)](SKILL.md)
-[![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)](tests/run_all_tests.py)
-[![Dependencies](https://img.shields.io/badge/dependencies-zero-success.svg)](requirements.txt)
+[![Version](https://img.shields.io/badge/version-1.2.0-1E4FD8.svg)](CHANGELOG.md)
+[![License](https://img.shields.io/badge/license-MIT-0E1A2B.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.10+-435266.svg?logo=python&logoColor=white)](pyproject.toml)
+[![AI Skill](https://img.shields.io/badge/AI-skill-0B8A78.svg)](SKILL.md)
+[![Tests](https://img.shields.io/badge/tests-passing-0B8A78.svg)](tests/run_all_tests.py)
+[![Dependencies](https://img.shields.io/badge/dependencies-zero-435266.svg)](requirements.txt)
 
-**Scientific illustration, from paper to figure — an all-in-one prompt engine.**
+**Turn any AI skill into portable Markdown prompt assets — no paid agent, no runtime lock-in.**
 
-Sci-Plot does not generate images directly; it produces publication-ready, cross-platform prompts.  
-Copy prompts into **ChatGPT/DALL-E, Doubao, Qwen, Midjourney, Stable Diffusion** to generate images,  
-or use them as specifications to generate **HTML, SVG, Matplotlib, or Origin** academic figures.
+Feed it any skill repository (a GitHub URL, a local folder, or your own rules) plus a business topic.  
+It distills those rules into structured **`.md` prompt files** — an auditable intermediate representation —  
+that you can paste into **ChatGPT, Claude, Doubao, Midjourney**, a local script, or any renderer.
 
-**Compatible with any AI coding assistant** — Claude Code, Codex, Cursor, Windsurf, GitHub Copilot, Cline, Antigravity, or any agent capable of reading skill definitions.
+**Zero runtime dependencies, zero vendor lock-in.** The compiled `.md` assets work in any chat client, any coding agent, or fully offline — no Codex subscription, no API keys, no special CLI.
+
+A **scientific-figure preset pack** ships as the built-in reference domain; the compiler itself is domain-agnostic.
 
 [Features](#-core-features) · [Architecture](#-visual-architecture-diagram) · [Workflow](#-5-round-standardized-pipeline) · [Quick Start](#-quick-start) · [FAQ](FAQ.md) · [🌐 Project Overview](https://lpk3215.github.io/sci-plot/)
 
@@ -33,20 +35,20 @@ or use them as specifications to generate **HTML, SVG, Matplotlib, or Origin** a
 
 - **Repository**: [https://github.com/LPK3215/sci-plot](https://github.com/LPK3215/sci-plot)
 - **Live Project Overview Dashboard**: [https://lpk3215.github.io/sci-plot/](https://lpk3215.github.io/sci-plot/)
-- **Core Philosophy**: **"Prompts as Intermediate Representation (IR), Never Direct Bitmaps"**
+- **Core Philosophy**: **"Distill the rules, not the runtime — prompts as a portable IR"**
 
-Many scientific illustration tools call image generation APIs directly inside agent environments. This creates three fatal engineering bottlenecks:
-1. **Environment Fragility & Crashes**: Direct API callers tightly couple to local runtime tools, Python packages, and API keys. Any network blockage or credential issue crashes the agent. Sci-Plot has **zero external runtime dependencies**.
-2. **Black-box Output**: A single typo or inverted arrow ruins an entire raster bitmap (PNG/JPEG) with no way to perform surgical edits.
-3. **No Asset Persistence**: Raster images cannot be easily audited, versioned, or tracked in Git repositories.
+Most AI skills are written for one specific agent. They assume a particular CLI, a paid coding assistant, local packages, and API credentials. Switch clients, lose the network, or skip the subscription, and the skill stops working. Three structural problems follow:
+1. **Environment lock-in**: Agent-bound skills couple to a specific runtime, CLI and credential set. Any network or subscription change breaks them. This project ships **zero external runtime dependencies** — its output is plain text.
+2. **Black-box output**: A directly generated bitmap cannot be surgically edited; one wrong label ruins the whole file. Markdown assets can be tweaked in seconds.
+3. **No durable asset**: One-off generations cannot be reviewed, versioned, or diffed in Git. A `.md` prompt package can.
 
-| Dimension | ❌ Traditional Direct Generation (Black Box) | ✅ Sci-Plot Prompt Engine (White Box IR) |
+| Dimension | ❌ Environment-bound Skills (Black Box) | ✅ Portable Prompt Compiler (White Box IR) |
 | :--- | :--- | :--- |
-| **Execution Model** | Calls brittle image API inside agent environment | Pure prompt engineering & structured IR synthesis |
-| **Output Asset** | Static raster bitmap (PNG/JPEG) | Publication-grade prompt package (`.md` IR) |
-| **Error Recovery** | Any typo or inverted arrow ruins entire image | **1-second surgical edits** to hex colors or labels |
-| **Consumption** | Locked into one model / API environment | Copy-paste to **ChatGPT, Midjourney, Doubao**, or compile to **HTML/SVG** |
-| **Environment Risk** | High crash risk from missing packages, tokens, network | **Zero external runtime dependencies** |
+| **Execution Model** | Runs a brittle toolchain inside one agent | Extracts rules, compiles structured Markdown IR |
+| **Output Asset** | Disposable bitmap or one-off chat reply | Portable, auditable prompt package (`.md` IR) |
+| **Error Recovery** | Regenerate the whole artifact | **1-second surgical edits** to any term, label or color |
+| **Consumption** | Locked to the agent the skill was written for | Any LLM, any image tool, any offline renderer |
+| **Environment Risk** | Needs the right agent, packages, tokens and network | **Zero runtime dependencies — no paid agent required** |
 | **Asset Persistence**| Binary blobs, cannot review in Git pull requests | 100% human-readable, auditable, Git-friendly |
 
 ```mermaid
@@ -61,14 +63,14 @@ flowchart TD
         S1(["Extract Rules<br/><i>Explicit & Implicit</i>"]) --> S2(["Structured IR<br/><i>Prompt Package</i>"]) --> S3{{"✨ Zero-Failure Control<br/><i>1s Micro-Edits · Any Platform</i>"}}
     end
 
-    style Trad fill:#fff1f2,stroke:#fda4af,stroke-width:1.5px,color:#9f1239
-    style Sci fill:#f0fdf4,stroke:#86efac,stroke-width:1.5px,color:#166534
-    style T1 fill:#ffffff,stroke:#f43f5e,stroke-width:1.5px,color:#9f1239
-    style T2 fill:#ffffff,stroke:#f43f5e,stroke-width:1.5px,color:#9f1239
-    style T3 fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#881337
-    style S1 fill:#ffffff,stroke:#22c55e,stroke-width:1.5px,color:#166534
-    style S2 fill:#ffffff,stroke:#22c55e,stroke-width:1.5px,color:#166534
-    style S3 fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d
+    style Trad fill:#F2F4F7,stroke:#CBD5E0,stroke-width:1.5px,color:#435266
+    style Sci fill:#E8F5F2,stroke:#A7D8CE,stroke-width:1.5px,color:#0B644F
+    style T1 fill:#FFFFFF,stroke:#94A3B8,stroke-width:1.5px,color:#435266
+    style T2 fill:#FFFFFF,stroke:#94A3B8,stroke-width:1.5px,color:#435266
+    style T3 fill:#E9ECF1,stroke:#6B7A8D,stroke-width:2px,color:#0E1A2B
+    style S1 fill:#FFFFFF,stroke:#0B8A78,stroke-width:1.5px,color:#0B644F
+    style S2 fill:#FFFFFF,stroke:#0B8A78,stroke-width:1.5px,color:#0B644F
+    style S3 fill:#E8F5F2,stroke:#0B8A78,stroke-width:2px,color:#0B644F
 ```
 
 ---
@@ -128,13 +130,13 @@ flowchart TD
     Save --> Purge(["✨ Physical Deep Clean<br/><i>Zero Residue: Clones & temp files deleted immediately</i>"])
     Purge --> Ready(["🎯 100% Offline Asset Ready<br/><i>Permanent, portable, zero runtime dependencies</i>"])
 
-    classDef input fill:#e0f2fe,stroke:#0284c7,stroke-width:1.5px,color:#0369a1;
-    classDef router fill:#f8fafc,stroke:#64748b,stroke-width:2px,color:#1e293b;
-    classDef route fill:#f1f5f9,stroke:#94a3b8,stroke-width:1.5px,color:#334155;
-    classDef synth fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#5b21b6;
-    classDef storage fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#1e40af;
-    classDef clean fill:#fef3c7,stroke:#d97706,stroke-width:1.5px,color:#92400e;
-    classDef done fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#166534;
+    classDef input fill:#EDF2FF,stroke:#1E4FD8,stroke-width:1.5px,color:#153DB0;
+    classDef router fill:#F7F8FA,stroke:#6B7A8D,stroke-width:2px,color:#0E1A2B;
+    classDef route fill:#F2F5F9,stroke:#94A3B8,stroke-width:1.5px,color:#435266;
+    classDef synth fill:#F2F5F9,stroke:#4C5FD0,stroke-width:2px,color:#153DB0;
+    classDef storage fill:#EDF2FF,stroke:#1E4FD8,stroke-width:2px,color:#153DB0;
+    classDef clean fill:#FDF3E4,stroke:#B4690E,stroke-width:1.5px,color:#8A5008;
+    classDef done fill:#E8F5F2,stroke:#0B8A78,stroke-width:2px,color:#0B644F;
 
     class User input;
     class Router router;
@@ -156,11 +158,11 @@ flowchart LR
     --> L4(["<b>🧪 Gate 4: Compliance Linter</b><br/>Automated Testing<br/><i>6 Test Suites · White Canvas · High Contrast</i>"]) 
     --> Output(["<b>🎯 Publication-Grade IR</b><br/>Ready for Cross-Platform Use"])
 
-    classDef g1 fill:#e0e7ff,stroke:#6366f1,stroke-width:1.5px,color:#3730a3;
-    classDef g2 fill:#e0f2fe,stroke:#0284c7,stroke-width:1.5px,color:#0369a1;
-    classDef g3 fill:#fef3c7,stroke:#d97706,stroke-width:1.5px,color:#92400e;
-    classDef g4 fill:#ede9fe,stroke:#8b5cf6,stroke-width:1.5px,color:#5b21b6;
-    classDef g5 fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d;
+    classDef g1 fill:#EDF2FF,stroke:#1E4FD8,stroke-width:1.5px,color:#153DB0;
+    classDef g2 fill:#EDF2FF,stroke:#1E4FD8,stroke-width:1.5px,color:#153DB0;
+    classDef g3 fill:#FDF3E4,stroke:#B4690E,stroke-width:1.5px,color:#8A5008;
+    classDef g4 fill:#F2F5F9,stroke:#6C7FE0,stroke-width:1.5px,color:#153DB0;
+    classDef g5 fill:#E8F5F2,stroke:#0B8A78,stroke-width:2px,color:#0B644F;
 
     class L1 g1;
     class L2 g2;
@@ -185,7 +187,7 @@ flowchart LR
 | **Skill Protocol** | Agent Skill Specification | Standard YAML frontmatter + 5-round deterministic pipeline (`SKILL.md`) |
 | **Engine & Scripts** | Python 3.10+ | Pure Standard Library (`urllib.request`, `json`, `ssl`, `base64`, `re`, `pathlib`) — **Zero External Dependencies** |
 | **Testing & Quality** | Python Automated Test Suite | `tests/run_all_tests.py`, pytest, ruff linter |
-| **Visual Assets** | Hand-Crafted Vector SVG & HTML | Modern dark-themed dashboard (`docs/project_overview/`), architecture SVG, banner SVG |
+| **Visual Assets** | Hand-Crafted Vector SVG & HTML | Editorial light-themed project overview (`docs/project_overview/`), publication-style architecture SVGs, brand banner |
 | **Consumption Targets** | Cross-Platform Prompts & Code | ChatGPT/DALL-E, Midjourney, Stable Diffusion, Doubao, Qwen, HTML/SVG, Matplotlib, Origin |
 
 ---
@@ -194,6 +196,7 @@ flowchart LR
 
 ```
 sci-plot/
+├── index.html                            # Root redirect to the documentation site
 ├── SKILL.md                              # AI Skill: 5-round standardized pipeline & isolation
 ├── README.md                             # User documentation (English)
 ├── README.zh-CN.md                       # User documentation (Chinese)
@@ -213,6 +216,9 @@ sci-plot/
 │   ├── architecture_cn.svg               # Chinese architecture SVG
 │   ├── assets/
 │   │   └── banner.svg                    # Brand banner SVG
+│   ├── scripts/                          # Display asset generators
+│   │   ├── generate_architecture.py      # EN/CN architecture SVG generator
+│   │   └── apply_brand_layer.py          # Archify brand layer injector
 │   ├── archify/                          # Interactive Archify diagrams & blueprint
 │   │   ├── diagram-input.md
 │   │   ├── core-architecture.html
@@ -220,17 +226,15 @@ sci-plot/
 │   │   ├── workflow-panorama.html
 │   │   ├── sequence-panorama.html
 │   │   └── dataflow-panorama.html
-│   └── project_overview/                 # Interactive dashboard & shareable card
+│   └── project_overview/                 # Editorial overview page & shareable card
 │       ├── index.html
-│       ├── style.css
-│       ├── script.js
 │       └── project_card.html
 ├── scripts/                              # Skill management & harvesting tools
 │   ├── universal_skill_harvester.py      # Heuristic radar scanner for external skills
 │   ├── fetch_external_skills.py          # Top 3 skills fetcher
 │   ├── sync_documentation_metrics.py     # Cross-document consistency & metrics auditor
 │   └── visualization/                    # Visual assets generation scripts
-│       └── generate_banner.py            # Banner generator script
+│       └── generate_banner.py            # Editorial banner SVG generator
 ├── tests/                                # Automated test suite (100% pass)
 │   ├── run_all_tests.py                  # Test suite runner
 │   ├── test_rules_pool_integrity.py
@@ -260,7 +264,7 @@ sci-plot/
 In any workspace containing sci-plot (Cursor, Claude Code, Windsurf, Copilot, Cline, Antigravity):
 
 ```text
-Follow the /sci-plot/SKILL.md skill to generate scientific figure prompts.
+Follow the /sci-plot/SKILL.md skill to compile portable prompt assets for my topic.
 Target: [optional — leave blank to auto-analyze project, or provide path / arXiv / text]
 ```
 
@@ -286,12 +290,12 @@ flowchart LR
     --> R4(["<b>Round 4</b><br/>⚡ Scope Isolation<br/><i>Compile prompt & purge noise</i>"]) 
     --> R5(["<b>Round 5</b><br/>📦 Deliver Asset<br/><i>Multi-platform prompt package</i>"])
 
-    classDef r0 fill:#f1f5f9,stroke:#64748b,stroke-width:1.5px,color:#1e293b;
-    classDef r1 fill:#e0f2fe,stroke:#0284c7,stroke-width:1.5px,color:#0369a1;
-    classDef r2 fill:#ede9fe,stroke:#7c3aed,stroke-width:1.5px,color:#5b21b6;
-    classDef r3 fill:#fef3c7,stroke:#d97706,stroke-width:1.5px,color:#92400e;
-    classDef r4 fill:#ffedd5,stroke:#ea580c,stroke-width:1.5px,color:#9a3412;
-    classDef r5 fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d;
+    classDef r0 fill:#F2F5F9,stroke:#6B7A8D,stroke-width:1.5px,color:#0E1A2B;
+    classDef r1 fill:#EDF2FF,stroke:#1E4FD8,stroke-width:1.5px,color:#153DB0;
+    classDef r2 fill:#F2F5F9,stroke:#4C5FD0,stroke-width:1.5px,color:#153DB0;
+    classDef r3 fill:#FDF3E4,stroke:#B4690E,stroke-width:1.5px,color:#8A5008;
+    classDef r4 fill:#FDF3E4,stroke:#B4690E,stroke-width:1.5px,color:#8A5008;
+    classDef r5 fill:#E8F5F2,stroke:#0B8A78,stroke-width:2px,color:#0B644F;
 
     class R0 r0;
     class R1 r1;

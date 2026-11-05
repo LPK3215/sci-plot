@@ -15,6 +15,16 @@ transformer-paper/
 └── README.md                # This file
 ```
 
+## Rendered Examples
+
+These prompts were rendered with a generative image tool using the `paper-figure` style (clean vector lines, white background, restrained blue accent):
+
+| Figure 1 · Architecture | Figure 2 · Attention | Figure 3 · Positional Encoding |
+| :---: | :---: | :---: |
+| <img src="prompts/01-overview.png" width="230" alt="Transformer architecture overview figure"> | <img src="prompts/02-attention-mechanism.png" width="230" alt="Multi-head attention mechanism figure"> | <img src="prompts/03-positional-encoding.png" width="230" alt="Positional encoding figure"> |
+
+> The `.md` prompt files are the durable, editable assets; the PNGs are optional previews.
+
 ## How This Was Generated
 
 **User input**:

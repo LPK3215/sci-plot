@@ -1,4 +1,4 @@
-# diagram-input — Sci-Plot 科学绘图提示词引擎
+# diagram-input — Sci-Plot 可移植提示词编译器
 
 对象与口径：工作根 `d:\Develop\SourceCode\skills\myskills\sci-plot`，材料类型 = AI Agent Skill + 科学论文插图提示词编译引擎。本蓝图专用于生成与本项目真实代码、规范和运行机制 100% 对应的架构与流向图。
 

@@ -1,6 +1,6 @@
 # Contributing to Sci-Plot
 
-Thank you for your interest in sci-plot! This project is a cross-platform AI skill engine for generating scientific figure prompts.
+Thank you for your interest in Sci-Plot! This project is a zero-dependency prompt compiler that turns any skill repository plus a topic into portable Markdown prompt assets.
 
 [中文贡献指南](CONTRIBUTING.zh-CN.md)
 

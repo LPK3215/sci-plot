@@ -1,584 +1,301 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sci-Plot — Project Card</title>
-  <meta name="description" content="Publication-grade scientific figure prompt compiler. Shareable project card.">
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1/dist/html2canvas.min.js"></script>
-  <style>
-    /* ============================================================
-       Sci-Plot Project Card — Optimized for PNG Export
-       Fixed 800px width, high-contrast, system font stack.
-       ============================================================ */
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sci-Plot — Project Card</title>
+<meta name="theme-color" content="#F7F8FA">
+<meta name="description" content="Shareable Sci-Plot project card — a zero-dependency compiler turning any AI skill plus a topic into portable Markdown prompt assets.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231E4FD8'/%3E%3Cpath d='M6 23l6-7 5 3 9-10' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='26' cy='9' r='2' fill='%23fff'/%3E%3C/svg%3E">
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1/dist/html2canvas.min.js"></script>
+<style>
+:root{
+  --paper:#F7F8FA;--surface:#FFFFFF;--surface-2:#F2F5F9;--ink:#0E1A2B;--ink-2:#1E2D42;
+  --body:#435266;--muted:#6B7A8D;--line:#E1E7EE;--line-2:#CBD5E0;
+  --accent:#1E4FD8;--accent-soft:#EDF2FF;--teal:#0B8A78;--green:#16A34A;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Arial,sans-serif;
+  --serif:"Cambria","Iowan Old Style",Georgia,"Times New Roman",serif;
+  --mono:Consolas,"SFMono-Regular",Menlo,monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--body);font-family:var(--sans);font-size:14px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;padding:40px 20px 72px;display:flex;flex-direction:column;align-items:center}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+.wrapper{width:800px;max-width:100%}
+.card{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:40px 44px 30px;
+  box-shadow:0 22px 60px rgba(14,26,43,.09)}
 
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+/* Header */
+.head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:14px}
+.mark{width:46px;height:46px;border-radius:10px;background:var(--accent);display:grid;place-items:center;flex:none}
+.brand h1{font-family:var(--serif);font-size:2.15rem;font-weight:600;letter-spacing:-.025em;line-height:1.1;color:var(--ink);margin:0}
+.tagline{font-size:12.5px;color:var(--muted);margin-top:3px}
+.version{font-family:var(--mono);font-size:11px;color:var(--accent);background:var(--accent-soft);border:1px solid #D9E3FF;border-radius:5px;padding:5px 10px;white-space:nowrap}
+.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin:22px 0 10px}
+.pills{display:flex;flex-wrap:wrap;gap:7px}
+.pill{font-family:var(--mono);font-size:10px;letter-spacing:.02em;color:var(--ink-2);background:var(--surface-2);
+  border:1px solid var(--line);border-radius:5px;padding:5px 9px}
+.pill::before{content:"";display:inline-block;width:5px;height:5px;border-radius:1px;background:var(--accent);margin-right:7px;vertical-align:2px}
+.pill:nth-child(2)::before{background:var(--teal)}
+.pill:nth-child(4)::before{background:#B4690E}
 
-    body {
-      background-color: #0b1120;
-      color: #f8fafc;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.5;
-      padding: 40px 0 80px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-    }
+/* Lead */
+.lead{margin-top:20px;background:var(--accent-soft);border:1px solid #DCE6FF;border-left:2px solid var(--accent);
+  border-radius:0 7px 7px 0;padding:16px 20px;font-size:13.5px;line-height:1.75;color:var(--ink-2)}
 
-    /* Fixed 800px width container for export */
-    .card-wrapper {
-      width: 800px;
-      margin: 0 auto;
-    }
+/* Metrics */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);margin:26px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.metric{padding:18px 16px;border-right:1px solid var(--line)}
+.metric:first-child{padding-left:0}
+.metric:last-child{border-right:0}
+.metric b{display:block;font-size:2.1rem;line-height:1;font-weight:650;letter-spacing:-.05em;color:var(--ink);font-variant-numeric:tabular-nums}
+.metric b .pre{font-size:1.2rem;color:var(--accent);font-weight:500}
+.metric span{display:block;font-size:11.5px;font-weight:600;color:var(--ink-2);margin-top:8px}
+.metric small{display:block;font-family:var(--mono);font-size:9.5px;color:var(--muted);margin-top:2px}
 
-    .card-container {
-      width: 800px;
-      background-color: #0f172a;
-      border: 1px solid #334155;
-      border-radius: 16px;
-      padding: 40px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-    }
+/* Blocks */
+.block{margin-top:26px}
+.block h2{font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);
+  font-weight:500;margin:0 0 14px;padding-bottom:10px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
+.block h2::before{content:"";width:4px;height:12px;background:var(--accent);border-radius:2px}
+.figure{border:1px solid var(--line);border-radius:8px;background:#FCFDFE;padding:8px 10px 4px}
+.figure svg{width:100%;height:auto;display:block}
+.caption{font-family:var(--serif);font-style:italic;font-size:11px;color:var(--muted);padding:8px 4px 6px}
+.caps{display:grid;grid-template-columns:1fr 1fr;gap:12px 26px}
+.cap{display:flex;gap:10px;font-size:12.5px;line-height:1.65}
+.cap .n{font-family:var(--mono);font-size:10px;color:var(--accent);padding-top:3px;flex:none}
+.cap strong{color:var(--ink);font-weight:650}
+.tech{display:flex;flex-wrap:wrap;gap:7px}
+.tech span{font-family:var(--mono);font-size:10.5px;color:var(--ink-2);background:var(--surface-2);
+  border:1px solid var(--line);border-radius:5px;padding:6px 10px}
+.code{background:#0B1728;border:1px solid #20364F;border-radius:7px;padding:13px 16px;
+  font-family:var(--mono);font-size:11.5px;line-height:1.85;color:#D9E5F2;
+  white-space:pre-wrap;word-break:break-word;overflow-x:auto}
+.code .c{color:#7F96B0}
+.tip{font-size:11.5px;color:var(--muted);margin-top:10px}
+.tip code{font-family:var(--mono);font-size:10.5px;background:var(--surface-2);border:1px solid var(--line);border-radius:4px;padding:2px 5px;color:var(--ink-2)}
+.foot{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:28px;padding-top:18px;
+  border-top:1px solid var(--line);font-family:var(--mono);font-size:10.5px;color:var(--muted)}
+.foot .ok{display:inline-flex;align-items:center;gap:6px}
+.foot .ok::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green)}
 
-    /* Header */
-    .header {
-      border-bottom: 1px solid #334155;
-      padding-bottom: 24px;
-      margin-bottom: 24px;
-    }
-
-    .brand-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 16px;
-    }
-
-    .brand-left {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .brand-logo {
-      width: 52px;
-      height: 52px;
-      background: linear-gradient(135deg, #818cf8 0%, #a855f7 100%);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
-    }
-
-    .project-title {
-      font-size: 2.2rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      color: #ffffff;
-      line-height: 1.1;
-    }
-
-    .tagline {
-      font-size: 1rem;
-      color: #94a3b8;
-      font-weight: 500;
-      margin-top: 4px;
-    }
-
-    .version-badge {
-      font-family: Consolas, "JetBrains Mono", monospace;
-      font-size: 0.85rem;
-      font-weight: 700;
-      padding: 4px 12px;
-      border-radius: 999px;
-      background-color: #1e293b;
-      color: #818cf8;
-      border: 1px solid #475569;
-    }
-
-    .pills-row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .pill {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 4px 12px;
-      border-radius: 6px;
-    }
-
-    .pill-indigo { background: #312e81; color: #a5b4fc; border: 1px solid #4338ca; }
-    .pill-cyan   { background: #164e63; color: #67e8f9; border: 1px solid #0891b2; }
-    .pill-emerald{ background: #064e3b; color: #6ee7b7; border: 1px solid #059669; }
-    .pill-pink   { background: #831843; color: #f9a8d4; border: 1px solid #db2777; }
-
-    /* Value proposition box */
-    .lead-box {
-      background-color: #1e293b;
-      border: 1px solid #334155;
-      border-radius: 10px;
-      padding: 18px 22px;
-      margin-bottom: 24px;
-    }
-
-    .lead-text {
-      font-size: 1.05rem;
-      color: #e2e8f0;
-      line-height: 1.6;
-    }
-
-    /* Key stats grid */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      margin-bottom: 24px;
-    }
-
-    .stat-card {
-      background-color: #1e293b;
-      border: 1px solid #334155;
-      border-radius: 10px;
-      padding: 16px;
-      text-align: center;
-    }
-
-    .stat-number {
-      font-family: Consolas, "JetBrains Mono", monospace;
-      font-size: 2.2rem;
-      font-weight: 800;
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-
-    .c-indigo { color: #818cf8; }
-    .c-cyan   { color: #22d3ee; }
-    .c-pink   { color: #f472b6; }
-    .c-emerald{ color: #34d399; }
-
-    .stat-label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: #94a3b8;
-    }
-
-    /* Section blocks */
-    .section-block {
-      background-color: #1e293b;
-      border: 1px solid #334155;
-      border-radius: 10px;
-      padding: 20px 24px;
-      margin-bottom: 20px;
-    }
-
-    .block-title {
-      font-size: 0.82rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #94a3b8;
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .block-title::before {
-      content: "";
-      display: inline-block;
-      width: 4px;
-      height: 14px;
-      background: #818cf8;
-      border-radius: 2px;
-    }
-
-    /* Simplified Architecture SVG */
-    .arch-svg-container {
-      width: 100%;
-      margin: 4px 0 2px;
-    }
-
-    /* Highlights list */
-    .highlights-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .highlight-item {
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
-      font-size: 0.92rem;
-      color: #e2e8f0;
-      line-height: 1.5;
-    }
-
-    .highlight-item strong {
-      color: #ffffff;
-      font-weight: 600;
-    }
-
-    .bullet {
-      color: #38bdf8;
-      font-size: 1.1rem;
-      line-height: 1;
-    }
-
-    /* Tech pills */
-    .tech-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .tech-item {
-      background-color: #0f172a;
-      border: 1px solid #475569;
-      color: #cbd5e1;
-      font-size: 0.82rem;
-      font-weight: 600;
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-family: Consolas, "JetBrains Mono", monospace;
-    }
-
-    /* Quick Start */
-    .cmd-box {
-      background-color: #090d16;
-      border: 1px solid #334155;
-      border-radius: 6px;
-      padding: 10px 14px;
-      font-family: Consolas, "JetBrains Mono", monospace;
-      font-size: 0.88rem;
-      color: #38bdf8;
-      margin-bottom: 8px;
-    }
-
-    .cmd-tip {
-      font-size: 0.82rem;
-      color: #94a3b8;
-    }
-
-    /* Footer */
-    .card-footer {
-      border-top: 1px solid #334155;
-      padding-top: 18px;
-      margin-top: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 0.82rem;
-      color: #64748b;
-    }
-
-    .card-footer a {
-      color: #818cf8;
-      text-decoration: none;
-    }
-
-    /* Action bar (Excluded from export) */
-    .action-bar {
-      margin-top: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 22px;
-      border-radius: 8px;
-      font-size: 0.92rem;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      transition: opacity 0.2s;
-      border: none;
-    }
-
-    .btn:hover {
-      opacity: 0.9;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
-      color: #ffffff;
-      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
-    }
-
-    .btn-secondary {
-      background-color: #1e293b;
-      color: #f8fafc;
-      border: 1px solid #475569;
-    }
-
-    /* Toast Notification */
-    .toast {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background-color: #059669;
-      color: #ffffff;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-      display: none;
-      z-index: 1000;
-    }
-  </style>
+/* Action bar (excluded from PNG) */
+.actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:24px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;padding:11px 18px;border-radius:7px;
+  border:1px solid transparent;cursor:pointer;transition:transform .2s,background .2s,border-color .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:#153DB0}
+.btn-outline{background:var(--surface);color:var(--ink-2);border-color:var(--line-2)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+.btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.toast{position:fixed;bottom:24px;right:24px;background:var(--ink);color:#fff;padding:12px 20px;border-radius:7px;
+  font-size:12.5px;font-weight:600;box-shadow:0 12px 30px rgba(14,26,43,.2);display:none;z-index:1000}
+@media(max-width:840px){body{padding:24px 14px 56px}.card{padding:28px 22px 24px}.caps{grid-template-columns:1fr}.brand h1{font-size:1.8rem}}
+@media(max-width:520px){.metrics{grid-template-columns:repeat(2,1fr)}.metric:nth-child(2){border-right:0}.metric:nth-child(3),.metric:nth-child(4){border-top:1px solid var(--line)}.metric:nth-child(3){padding-left:0}.head{flex-direction:column}}
+</style>
 </head>
 <body>
 
-  <div class="card-wrapper">
-    <!-- Card Content to be Rendered into PNG -->
-    <div id="card-content" class="card-container">
-      
-      <!-- 1. Header / Hero -->
-      <div class="header">
-        <div class="brand-row">
-          <div class="brand-left">
-            <div class="brand-logo">📊</div>
-            <div>
-              <h1 class="project-title">Sci-Plot</h1>
-              <div class="tagline">Scientific Figure Prompt Engine</div>
-            </div>
-          </div>
-          <span class="version-badge">v1.2.0</span>
-        </div>
-        <div class="pills-row">
-          <span class="pill pill-indigo">Deterministic Pipeline</span>
-          <span class="pill pill-cyan">Scope Isolation</span>
-          <span class="pill pill-emerald">Publication Grade</span>
-          <span class="pill pill-pink">Multi-Platform</span>
-        </div>
-      </div>
+<div class="wrapper">
+  <!-- ===== Card content (rendered into PNG) ===== -->
+  <div id="card-content" class="card">
 
-      <!-- 2. Value Proposition -->
-      <div class="lead-box">
-        <p class="lead-text">
-          Transforms academic research papers and mathematical workflows into publication-grade scientific figures. Eliminates hallucinated visual drift through strict scope isolation, and compiles native prompt blueprints for Midjourney, Doubao, and executable Python Matplotlib scripts.
-        </p>
-      </div>
-
-      <!-- 3. Key Stat Counters -->
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-number c-indigo">5</div>
-          <div class="stat-label">Visual Styles</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number c-cyan">5</div>
-          <div class="stat-label">Pipeline Rounds</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number c-pink">10</div>
-          <div class="stat-label">Max Pages / Batch</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number c-emerald">6</div>
-          <div class="stat-label">Render Backends</div>
-        </div>
-      </div>
-
-      <!-- 4. Simplified Architecture SVG Diagram -->
-      <div class="section-block">
-        <div class="block-title">Core Architecture & 5-Round Pipeline</div>
-        <div class="arch-svg-container">
-          <svg viewBox="0 0 720 120" width="100%" height="120" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                <path d="M 0 1 L 10 5 L 0 9 z" fill="#64748b"/>
-              </marker>
-            </defs>
-
-            <!-- Node 1: Paper Input -->
-            <rect x="8" y="24" width="115" height="72" rx="8" fill="#1e293b" stroke="#818cf8" stroke-width="1.5"/>
-            <text x="65" y="52" fill="#ffffff" font-size="12" font-weight="700" text-anchor="middle">Paper Input</text>
-            <text x="65" y="70" fill="#94a3b8" font-size="10" text-anchor="middle">PDF / LaTeX / MD</text>
-            <rect x="22" y="78" width="86" height="12" rx="3" fill="#312e81"/>
-            <text x="65" y="87" fill="#a5b4fc" font-size="8" font-weight="700" text-anchor="middle">CLIENT</text>
-
-            <line x1="123" y1="60" x2="151" y2="60" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-            <!-- Node 2: Scope Isolation -->
-            <rect x="153" y="24" width="115" height="72" rx="8" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
-            <text x="210" y="52" fill="#ffffff" font-size="12" font-weight="700" text-anchor="middle">Scope Isolation</text>
-            <text x="210" y="70" fill="#94a3b8" font-size="10" text-anchor="middle">≤10p / 15k Tokens</text>
-            <rect x="167" y="78" width="86" height="12" rx="3" fill="#164e63"/>
-            <text x="210" y="87" fill="#67e8f9" font-size="8" font-weight="700" text-anchor="middle">ROUND 1</text>
-
-            <line x1="268" y1="60" x2="296" y2="60" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-            <!-- Node 3: Concept & Layout -->
-            <rect x="298" y="24" width="115" height="72" rx="8" fill="#1e293b" stroke="#f472b6" stroke-width="1.5"/>
-            <text x="355" y="52" fill="#ffffff" font-size="12" font-weight="700" text-anchor="middle">Figure Planner</text>
-            <text x="355" y="70" fill="#94a3b8" font-size="10" text-anchor="middle">Hierarchy & Rules</text>
-            <rect x="312" y="78" width="86" height="12" rx="3" fill="#831843"/>
-            <text x="355" y="87" fill="#f9a8d4" font-size="8" font-weight="700" text-anchor="middle">ROUND 2-3</text>
-
-            <line x1="413" y1="60" x2="441" y2="60" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-            <!-- Node 4: Dialect Compiler -->
-            <rect x="443" y="24" width="115" height="72" rx="8" fill="#1e293b" stroke="#fb923c" stroke-width="1.5"/>
-            <text x="500" y="52" fill="#ffffff" font-size="12" font-weight="700" text-anchor="middle">Dialect Compiler</text>
-            <text x="500" y="70" fill="#94a3b8" font-size="10" text-anchor="middle">Midjourney & Code</text>
-            <rect x="457" y="78" width="86" height="12" rx="3" fill="#7c2d12"/>
-            <text x="500" y="87" fill="#fdba74" font-size="8" font-weight="700" text-anchor="middle">ROUND 4</text>
-
-            <line x1="558" y1="60" x2="586" y2="60" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-            <!-- Node 5: Output & QA -->
-            <rect x="588" y="24" width="124" height="72" rx="8" fill="#1e293b" stroke="#34d399" stroke-width="1.5"/>
-            <text x="650" y="52" fill="#ffffff" font-size="12" font-weight="700" text-anchor="middle">Verified Delivery</text>
-            <text x="650" y="70" fill="#94a3b8" font-size="10" text-anchor="middle">6/6 Tests Passed</text>
-            <rect x="607" y="78" width="86" height="12" rx="3" fill="#064e3b"/>
-            <text x="650" y="87" fill="#6ee7b7" font-size="8" font-weight="700" text-anchor="middle">ROUND 5</text>
+    <div class="head">
+      <div class="brand">
+        <span class="mark">
+          <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
+            <path d="M6 23l6-7 5 3 9-10" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="26" cy="9" r="2.2" fill="#fff"/>
           </svg>
+        </span>
+        <div>
+          <h1>Sci-Plot</h1>
+          <div class="tagline">Portable Prompt Compiler for AI Skills</div>
         </div>
       </div>
-
-      <!-- 5. Core Feature Highlights -->
-      <div class="section-block">
-        <div class="block-title">Key Capabilities</div>
-        <div class="highlights-list">
-          <div class="highlight-item">
-            <span class="bullet">▸</span>
-            <div><strong>Deterministic 5-Round Pipeline:</strong> Strictly ordered phases from paper ingestion to QA verification with zero drift.</div>
-          </div>
-          <div class="highlight-item">
-            <span class="bullet">▸</span>
-            <div><strong>Strict Scope Isolation:</strong> Enforces a ≤10 page / ≤15k token ceiling, stripping references to prevent hallucinations.</div>
-          </div>
-          <div class="highlight-item">
-            <span class="bullet">▸</span>
-            <div><strong>Universal Harvester & Radar:</strong> Dynamically scans and synchronizes domain visualization rules from community repositories.</div>
-          </div>
-          <div class="highlight-item">
-            <span class="bullet">▸</span>
-            <div><strong>Multi-Platform Prompt Compiler:</strong> Compiles native parameters for Midjourney v6.1, Doubao, and executable Python Matplotlib scripts.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 6. Technology Stack -->
-      <div class="section-block">
-        <div class="block-title">Technology Stack</div>
-        <div class="tech-list">
-          <span class="tech-item">Python 3.10+</span>
-          <span class="tech-item">Antigravity / Claude Skill</span>
-          <span class="tech-item">Midjourney v6.1</span>
-          <span class="tech-item">Matplotlib & Seaborn</span>
-          <span class="tech-item">Vector SVG</span>
-          <span class="tech-item">Archify Static Schemas</span>
-        </div>
-      </div>
-
-      <!-- 7. Quick Start -->
-      <div class="section-block">
-        <div class="block-title">Quick Start Verification</div>
-        <div class="cmd-box">python tests/run_all_tests.py</div>
-        <div class="cmd-tip">Prompt: "Please use sci-plot to transform ./paper.pdf into publication-grade figures."</div>
-      </div>
-
-      <!-- 8. Footer -->
-      <div class="card-footer">
-        <span>MIT License © 2026 LPK3215</span>
-        <span>github.com/LPK3215/sci-plot</span>
-      </div>
-
+      <span class="version">v1.2.0 &#183; MIT</span>
     </div>
 
-    <!-- 9. Floating / Bottom Action Bar (Excluded from Image Export) -->
-    <div class="action-bar" id="action-bar">
-      <button id="btn-export" class="btn btn-primary" onclick="exportCard()">
-        <span>📸</span> Export as PNG
-      </button>
-      <a href="./index.html" class="btn btn-secondary">
-        <span>🌐</span> Open Full Overview
-      </a>
-      <a href="../archify/core-architecture.html" target="_blank" class="btn btn-secondary">
-        <span>⚡</span> Interactive Architecture
-      </a>
+    <div class="eyebrow">Zero-dependency &#183; Auditable &#183; Domain-agnostic</div>
+    <div class="pills">
+      <span class="pill">Deterministic Pipeline</span>
+      <span class="pill">Scope Isolation</span>
+      <span class="pill">Portable IR</span>
+      <span class="pill">Multi-Platform</span>
     </div>
 
-    <div id="toast" class="toast">✓ Card saved to Downloads!</div>
+    <div class="lead">
+      Turns any skill repository plus a business topic into structured, auditable Markdown prompt assets. Strict scope isolation keeps the context clean; the output is plain text, so it runs in any chat client, any coding agent, or fully offline — no paid subscription, no API keys, no special CLI.
+    </div>
+
+    <div class="metrics">
+      <div class="metric"><b>5</b><span>Visual Styles</span><small>curated presets</small></div>
+      <div class="metric"><b>5</b><span>Pipeline Rounds</span><small>ordered phases</small></div>
+      <div class="metric"><b><span class="pre">&#8804;</span>10</b><span>Max Pages / Batch</span><small>hard scope ceiling</small></div>
+      <div class="metric"><b>6</b><span>Render Backends</span><small>AI + Python</small></div>
+    </div>
+
+    <div class="block">
+      <h2>Core Architecture &amp; 5-Round Pipeline</h2>
+      <div class="figure">
+        <svg viewBox="0 0 720 118" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Five-stage pipeline from paper input to verified delivery">
+          <defs>
+            <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M0,1 L10,5 L0,9 Z" fill="#94A3B8"/>
+            </marker>
+          </defs>
+          <g font-family="Consolas, Menlo, monospace">
+            <!-- 1 -->
+            <rect x="4" y="14" width="126" height="88" rx="7" fill="#FFFFFF" stroke="#E1E7EE"/>
+            <rect x="4" y="14" width="3" height="88" rx="1.5" fill="#1E4FD8"/>
+            <text x="16" y="34" font-size="8.5" fill="#1E4FD8" letter-spacing="0.5">ROUND 0-1</text>
+            <text x="16" y="58" font-size="11.5" fill="#0E1A2B" font-family="Cambria, Georgia, serif" font-weight="600">Paper Input</text>
+            <text x="16" y="76" font-size="9" fill="#6B7A8D">PDF / LaTeX / MD</text>
+            <text x="16" y="92" font-size="8" fill="#6B7A8D">Scope &#8804;10p / 15k tok</text>
+            <!-- 2 -->
+            <rect x="148" y="14" width="126" height="88" rx="7" fill="#FDF3E4" stroke="#E8C79B"/>
+            <rect x="148" y="14" width="3" height="88" rx="1.5" fill="#B4690E"/>
+            <text x="160" y="34" font-size="8.5" fill="#B4690E" letter-spacing="0.5">ISOLATION</text>
+            <text x="160" y="58" font-size="11.5" fill="#0E1A2B" font-family="Cambria, Georgia, serif" font-weight="600">Rule Lock</text>
+            <text x="160" y="76" font-size="9" fill="#6B7A8D">Dual-track pool</text>
+            <text x="160" y="92" font-size="8" fill="#6B7A8D">One spec only</text>
+            <!-- 3 -->
+            <rect x="292" y="14" width="126" height="88" rx="7" fill="#FFFFFF" stroke="#E1E7EE"/>
+            <rect x="292" y="14" width="3" height="88" rx="1.5" fill="#1E4FD8"/>
+            <text x="304" y="34" font-size="8.5" fill="#1E4FD8" letter-spacing="0.5">ROUND 2-3</text>
+            <text x="304" y="58" font-size="11.5" fill="#0E1A2B" font-family="Cambria, Georgia, serif" font-weight="600">Figure Planner</text>
+            <text x="304" y="76" font-size="9" fill="#6B7A8D">Hierarchy &amp; rules</text>
+            <text x="304" y="92" font-size="8" fill="#6B7A8D">Figure 1A / 1B / 1C</text>
+            <!-- 4 -->
+            <rect x="436" y="14" width="126" height="88" rx="7" fill="#EDF2FF" stroke="#C9D8FA"/>
+            <rect x="436" y="14" width="3" height="88" rx="1.5" fill="#1E4FD8"/>
+            <text x="448" y="34" font-size="8.5" fill="#1E4FD8" letter-spacing="0.5">ROUND 4</text>
+            <text x="448" y="58" font-size="11.5" fill="#0E1A2B" font-family="Cambria, Georgia, serif" font-weight="600">Dialect Compiler</text>
+            <text x="448" y="76" font-size="9" fill="#6B7A8D">MJ / Doubao / Python</text>
+            <text x="448" y="92" font-size="8" fill="#6B7A8D">Prompt IR persisted</text>
+            <!-- 5 -->
+            <rect x="580" y="14" width="136" height="88" rx="7" fill="#E8F5F2" stroke="#CBE9E1"/>
+            <rect x="580" y="14" width="3" height="88" rx="1.5" fill="#0B8A78"/>
+            <text x="592" y="34" font-size="8.5" fill="#0B8A78" letter-spacing="0.5">ROUND 5</text>
+            <text x="592" y="58" font-size="11.5" fill="#0E1A2B" font-family="Cambria, Georgia, serif" font-weight="600">Verified Delivery</text>
+            <text x="592" y="76" font-size="9" fill="#6B7A8D">prompts/*.md</text>
+            <text x="592" y="92" font-size="8" fill="#6B7A8D">6/6 QA gates passed</text>
+            <!-- arrows -->
+            <g stroke="#94A3B8" stroke-width="1.3" marker-end="url(#a)">
+              <path d="M132 58 H144"/><path d="M276 58 H288"/><path d="M420 58 H432"/><path d="M564 58 H576"/>
+            </g>
+          </g>
+        </svg>
+        <div class="caption">Figure 1. Deterministic compilation path from source paper to auditable prompt assets.</div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2>Key Capabilities</h2>
+      <div class="caps">
+        <div class="cap"><span class="n">01</span><div><strong>Deterministic 5-Round Pipeline:</strong> Strictly ordered phases from paper ingestion to QA verification with zero drift.</div></div>
+        <div class="cap"><span class="n">02</span><div><strong>Strict Scope Isolation:</strong> Enforces a &#8804;10 page / &#8804;15k token ceiling, stripping references to prevent hallucinations.</div></div>
+        <div class="cap"><span class="n">03</span><div><strong>Universal Harvester &amp; Radar:</strong> Dynamically scans and synchronizes domain visualization rules from community repositories.</div></div>
+        <div class="cap"><span class="n">04</span><div><strong>Multi-Platform Prompt Compiler:</strong> Compiles native parameters for Midjourney v6.1, Doubao, and executable Python Matplotlib scripts.</div></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2>Technology Stack</h2>
+      <div class="tech">
+        <span>Python 3.10+</span><span>Antigravity / Claude Skill</span><span>Midjourney v6.1</span>
+        <span>Matplotlib &amp; Seaborn</span><span>Vector SVG</span><span>Archify Static Schemas</span>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2>Quick Start Verification</h2>
+      <div class="code"><span class="c"># Run full regression test suite</span>
+python tests/run_all_tests.py</div>
+      <div class="tip">Invoke with: <code>"Please use sci-plot to compile ./skills/ into prompt assets for my topic."</code></div>
+    </div>
+
+    <div class="foot">
+      <span class="ok">6/6 tests passing &#183; MIT License &#169; 2026 LPK3215</span>
+      <span>github.com/LPK3215/sci-plot</span>
+    </div>
   </div>
 
-  <script>
-    // Warm up html2canvas
-    window.addEventListener('load', function() {
-      if (typeof html2canvas !== 'undefined') {
-        const dummy = document.createElement('div');
-        dummy.style.display = 'none';
-        document.body.appendChild(dummy);
-        html2canvas(dummy).then(function() {
-          document.body.removeChild(dummy);
-        }).catch(function() {});
-      }
-    });
+  <!-- ===== Action bar (excluded from PNG) ===== -->
+  <div class="actions" id="action-bar">
+    <button id="btn-export" class="btn btn-primary" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>
+      Export as PNG
+    </button>
+    <a href="./index.html" class="btn btn-outline">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
+      Open Full Overview
+    </a>
+    <a href="../archify/core-architecture.html" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+      Interactive Architecture
+    </a>
+  </div>
 
-    function exportCard() {
-      const cardEl = document.getElementById('card-content');
-      const exportBtn = document.getElementById('btn-export');
-      const toast = document.getElementById('toast');
+  <div id="toast" class="toast">Card saved to Downloads</div>
+</div>
 
-      if (typeof html2canvas === 'undefined') {
-        alert('html2canvas could not be loaded from CDN. Please use browser screenshot (e.g. Win+Shift+S or Cmd+Shift+4).');
-        return;
-      }
+<script>
+(function(){
+  'use strict';
+  var btn = document.getElementById('btn-export');
+  var toast = document.getElementById('toast');
 
-      const origText = exportBtn.innerHTML;
-      exportBtn.innerHTML = '<span>⏳</span> Rendering...';
-      exportBtn.disabled = true;
-
-      // Render with 2x scale for crisp retina output
-      html2canvas(cardEl, {
-        scale: 2,
-        useCORS: true,
-        scrollY: -window.scrollY,
-        backgroundColor: '#0f172a'
-      }).then(function(canvas) {
-        const dateStr = new Date().toISOString().split('T')[0];
-        const fileName = `sci-plot_card_${dateStr}.png`;
-
-        const link = document.createElement('a');
-        link.download = fileName;
-        link.href = canvas.toDataURL('image/png');
-        link.click();
-
-        exportBtn.innerHTML = origText;
-        exportBtn.disabled = false;
-
-        // Show success toast
-        toast.style.display = 'block';
-        setTimeout(function() {
-          toast.style.display = 'none';
-        }, 2500);
-      }).catch(function(err) {
-        console.error('Export error:', err);
-        exportBtn.innerHTML = origText;
-        exportBtn.disabled = false;
-        alert('Rendering failed. Please use browser screenshot tool.');
-      });
+  window.addEventListener('load', function () {
+    if (typeof html2canvas !== 'undefined') {
+      var dummy = document.createElement('div');
+      dummy.style.display = 'none';
+      document.body.appendChild(dummy);
+      html2canvas(dummy).then(function () { document.body.removeChild(dummy); }).catch(function () {});
     }
-  </script>
+  });
 
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.style.display = 'block';
+    setTimeout(function () { toast.style.display = 'none'; }, 2500);
+  }
+
+  btn.addEventListener('click', function () {
+    var card = document.getElementById('card-content');
+    if (typeof html2canvas === 'undefined') {
+      alert('html2canvas could not be loaded from the CDN. Please use a browser screenshot instead.');
+      return;
+    }
+    var original = btn.innerHTML;
+    btn.innerHTML = 'Rendering&#8230;';
+    btn.disabled = true;
+
+    html2canvas(card, {
+      scale: 2,
+      useCORS: true,
+      scrollY: -window.scrollY,
+      backgroundColor: '#FFFFFF'
+    }).then(function (canvas) {
+      var date = new Date().toISOString().split('T')[0];
+      var link = document.createElement('a');
+      link.download = 'sci-plot_card_' + date + '.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      btn.innerHTML = original;
+      btn.disabled = false;
+      showToast('Card saved to Downloads');
+    }).catch(function (err) {
+      console.error('Export error:', err);
+      btn.innerHTML = original;
+      btn.disabled = false;
+      alert('Rendering failed. Please use a browser screenshot tool.');
+    });
+  });
+})();
+</script>
 </body>
 </html>
-

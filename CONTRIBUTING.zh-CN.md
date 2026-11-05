@@ -1,6 +1,6 @@
 # Sci-Plot 贡献指南
 
-感谢你对 sci-plot 的关注！本项目是一个生成科研绘图提示词的跨平台 AI 技能引擎。
+感谢你对 Sci-Plot 的关注！本项目是一个零依赖的提示词编译器：输入任意 Skill 仓库与业务主题，输出可移植的 Markdown 提示词资产。
 
 [English Contribution Guide](CONTRIBUTING.md)
 

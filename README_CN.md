@@ -1,25 +1,27 @@
 <div align="center">
 
 <p align="center">
-  <img src="https://cdn.jsdelivr.net/gh/LPK3215/sci-plot@main/docs/assets/banner.svg" alt="Sci-Plot — 科研绘图提示词引擎" width="100%"/>
+  <img src="https://cdn.jsdelivr.net/gh/LPK3215/sci-plot@main/docs/assets/banner.svg" alt="Sci-Plot — 可移植 Skill 提示词编译器" width="100%"/>
 </p>
 
 # Sci-Plot
 
-[![Version](https://img.shields.io/badge/version-1.2.0-brightgreen.svg)](CHANGELOG.zh-CN.md)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/python-3.10+-3776AB.svg?logo=python&logoColor=white)](pyproject.toml)
-[![AI Skill](https://img.shields.io/badge/AI-skill-6366F1.svg)](SKILL.md)
-[![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)](tests/run_all_tests.py)
-[![Dependencies](https://img.shields.io/badge/dependencies-zero-success.svg)](requirements.txt)
+[![Version](https://img.shields.io/badge/version-1.2.0-1E4FD8.svg)](CHANGELOG.zh-CN.md)
+[![License](https://img.shields.io/badge/license-MIT-0E1A2B.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.10+-435266.svg?logo=python&logoColor=white)](pyproject.toml)
+[![AI Skill](https://img.shields.io/badge/AI-skill-0B8A78.svg)](SKILL.md)
+[![Tests](https://img.shields.io/badge/tests-passing-0B8A78.svg)](tests/run_all_tests.py)
+[![Dependencies](https://img.shields.io/badge/dependencies-zero-435266.svg)](requirements.txt)
 
-**科研绘图，从论文到插图的一站式提示词引擎。**
+**把任意 Skill 变成可移植的 Markdown 提示词资产——不买付费智能体，不绑运行环境。**
 
-Sci-Plot 不在智能体环境中直接调用生图 API，而是产出工业级跨平台提示词。  
-用户可将提示词复制到 **ChatGPT/DALL-E、豆包、通义万相、Midjourney、Stable Diffusion** 立即出图，  
-也可作为精确规范指导生成 **HTML、SVG、Matplotlib、Origin** 学术图表。
+给它任意 Skill 仓库（GitHub 地址、本地目录或你自己的规范）加上一个业务主题。  
+它把规范萃取为结构化的 **`.md` 提示词文件**——一份可审计的中间表示（IR）——  
+然后你可以粘贴到 **ChatGPT、Claude、豆包、Midjourney**、本地脚本或任意渲染器里消费。
 
-**兼容所有主流 AI 编程助手** — Claude Code、Codex、Cursor、Windsurf、GitHub Copilot、Cline、Antigravity 或任何支持智能体技能的 AI。
+**零运行时依赖，零厂商锁定。** 产物是纯 Markdown，任何聊天客户端、任何编程智能体、甚至完全离线都能用——不需要 Codex 订阅、不需要 API Key、不需要特定 CLI。
+
+仓库内置**科研绘图规范包**作为参考领域，编译器本身与领域无关。
 
 [功能亮点](#-核心功能亮点) · [架构图](#-可视化架构全景) · [工作流](#-标准-5-轮工作流) · [快速上手](#-快速上手) · [常见问答](FAQ.md) · [🌐 在线全景观览](https://lpk3215.github.io/sci-plot/)
 
@@ -33,20 +35,20 @@ Sci-Plot 不在智能体环境中直接调用生图 API，而是产出工业级�
 
 - **仓库地址**: [https://github.com/LPK3215/sci-plot](https://github.com/LPK3215/sci-plot)
 - **在线全景观览看板**: [https://lpk3215.github.io/sci-plot/](https://lpk3215.github.io/sci-plot/)
-- **核心哲学**: **“坚持以提示词作为中间表示（IR），绝不在沙箱内直接生成位图”**
+- **核心哲学**: **“只萃取规范，不绑定运行时——提示词即是可移植的中间表示”**
 
-许多科研绘图工具选择在智能体环境内直接调用生图 API 输出 PNG/JPG，但这带来了三个致命工程痛点：
-1. **环境绑架与极度脆弱**：直接生图强依赖本地运行环境、特定 CLI 或 API 密钥。一旦换了一个 AI 客户端或网络受限，工具直接崩溃报废；Sci-Plot 拥有**零外部运行时依赖**。
-2. **黑盒输出，无法微调**：生成的位图一旦出现字母乱码或连线反向，整张图彻底作废，无法做局部手术级修改。
-3. **不可持久化**：位图无法作为可审计、可代码审查（PR）、可版本控制的工程资产沉淀在 Git 仓库中。
+大多数 AI Skill 都是为某一个特定智能体写的：预设了专用 CLI、付费编程助手、本地依赖包和 API 凭证。换个客户端、断网、或者没买订阅，这个 Skill 就直接失效。由此带来三个结构性问题：
+1. **环境绑架**：绑定智能体的 Skill 依赖特定运行时、CLI 与凭证，网络或订阅一变就失效。本项目**零外部运行时依赖**，产物就是纯文本。
+2. **黑盒输出**：直接生成的位图无法局部修改，一个标签出错整张作废；Markdown 资产可以秒级微调。
+3. **资产不可沉淀**：一次性生成结果无法审查、版本化、Git 差分；`.md` 提示词包可以。
 
-| 评估维度 | ❌ 传统直接出图模式（黑盒盲盒） | ✅ Sci-Plot 提示词引擎（白盒 IR 规范） |
+| 评估维度 | ❌ 绑定环境的 Skill（黑盒） | ✅ 可移植提示词编译器（白盒 IR） |
 | :--- | :--- | :--- |
-| **执行模式** | 在智能体环境内强行调用外接生图 API | 纯净提示词架构与结构化 IR 规范合成 |
-| **交付产物** | 不可分割的死位图（PNG/JPEG） | 工业级提示词资产包（`.md` 纯文本 IR） |
-| **修改容错** | 字母乱码或箭头反向导致整图报废 | **1 秒外科手术级微调**（改色号/改标签极简） |
-| **跨端消费** | 被单一 API 密钥与模型环境死死绑架 | 自由复制至 **ChatGPT、Midjourney、豆包** 或编译为 **HTML/SVG** |
-| **环境健壮性** | 极度脆弱：依赖外部 Python 包、断网/欠费即崩溃 | **零外部运行时依赖**，永远不崩溃 |
+| **执行模式** | 在某一个智能体内跑脆弱工具链 | 萃取规范，编译结构化 Markdown IR |
+| **交付产物** | 一次性位图或一次性对话回复 | 可移植、可审计的 `.md` 提示词包 |
+| **修改容错** | 只能整份重来 | **1 秒外科手术级微调**（术语/标签/色号） |
+| **跨端消费** | 被写它时假定的那个智能体锁死 | 任意大模型、任意生图工具、任意离线渲染器 |
+| **环境健壮性** | 需要对应智能体、依赖包、Token 与网络 | **零运行时依赖，无需付费智能体** |
 | **版本化管理** | 二进制死图片，无法进行 Git PR 审计与协同 | 纯文本规范，100% 支持 Git 差分比对与长期归档 |
 
 ```mermaid
@@ -61,14 +63,14 @@ flowchart TD
         S1(["双轨萃取规范<br/><i>物理红线 + 学术级风格</i>"]) --> S2(["落盘标准 IR<br/><i>结构化提示词资产</i>"]) --> S3{{"✨ 自由掌控<br/><i>1秒外科级微调 · 零依赖全平台消费</i>"}}
     end
 
-    style Trad fill:#fff1f2,stroke:#fda4af,stroke-width:1.5px,color:#9f1239
-    style Sci fill:#f0fdf4,stroke:#86efac,stroke-width:1.5px,color:#166534
-    style T1 fill:#ffffff,stroke:#f43f5e,stroke-width:1.5px,color:#9f1239
-    style T2 fill:#ffffff,stroke:#f43f5e,stroke-width:1.5px,color:#9f1239
-    style T3 fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#881337
-    style S1 fill:#ffffff,stroke:#22c55e,stroke-width:1.5px,color:#166534
-    style S2 fill:#ffffff,stroke:#22c55e,stroke-width:1.5px,color:#166534
-    style S3 fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d
+    style Trad fill:#F2F4F7,stroke:#CBD5E0,stroke-width:1.5px,color:#435266
+    style Sci fill:#E8F5F2,stroke:#A7D8CE,stroke-width:1.5px,color:#0B644F
+    style T1 fill:#FFFFFF,stroke:#94A3B8,stroke-width:1.5px,color:#435266
+    style T2 fill:#FFFFFF,stroke:#94A3B8,stroke-width:1.5px,color:#435266
+    style T3 fill:#E9ECF1,stroke:#6B7A8D,stroke-width:2px,color:#0E1A2B
+    style S1 fill:#FFFFFF,stroke:#0B8A78,stroke-width:1.5px,color:#0B644F
+    style S2 fill:#FFFFFF,stroke:#0B8A78,stroke-width:1.5px,color:#0B644F
+    style S3 fill:#E8F5F2,stroke:#0B8A78,stroke-width:2px,color:#0B644F
 ```
 
 ---
@@ -128,13 +130,13 @@ flowchart TD
     Save --> Purge(["✨ 物理级彻底清理<br/><i>临时仓库与代码杂质物理级删除，零残留</i>"])
     Purge --> Ready(["🎯 一劳永逸资产化<br/><i>100% 离线可用、防丢失、可自由修改</i>"])
 
-    classDef input fill:#e0f2fe,stroke:#0284c7,stroke-width:1.5px,color:#0369a1;
-    classDef router fill:#f8fafc,stroke:#64748b,stroke-width:2px,color:#1e293b;
-    classDef route fill:#f1f5f9,stroke:#94a3b8,stroke-width:1.5px,color:#334155;
-    classDef synth fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#5b21b6;
-    classDef storage fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#1e40af;
-    classDef clean fill:#fef3c7,stroke:#d97706,stroke-width:1.5px,color:#92400e;
-    classDef done fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#166534;
+    classDef input fill:#EDF2FF,stroke:#1E4FD8,stroke-width:1.5px,color:#153DB0;
+    classDef router fill:#F7F8FA,stroke:#6B7A8D,stroke-width:2px,color:#0E1A2B;
+    classDef route fill:#F2F5F9,stroke:#94A3B8,stroke-width:1.5px,color:#435266;
+    classDef synth fill:#F2F5F9,stroke:#4C5FD0,stroke-width:2px,color:#153DB0;
+    classDef storage fill:#EDF2FF,stroke:#1E4FD8,stroke-width:2px,color:#153DB0;
+    classDef clean fill:#FDF3E4,stroke:#B4690E,stroke-width:1.5px,color:#8A5008;
+    classDef done fill:#E8F5F2,stroke:#0B8A78,stroke-width:2px,color:#0B644F;
 
     class User input;
     class Router router;
@@ -156,11 +158,11 @@ flowchart LR
     --> L4(["<b>🧪 第四道防线: 自动化质检校验</b><br/>Compliance Linter<br/><i>6大套件自动化扫描 · 纯白底色 · 格式守门</i>"]) 
     --> Output(["<b>🎯 工业级提示词资产 (IR)</b><br/>多平台自由消费无缝交付"])
 
-    classDef g1 fill:#e0e7ff,stroke:#6366f1,stroke-width:1.5px,color:#3730a3;
-    classDef g2 fill:#e0f2fe,stroke:#0284c7,stroke-width:1.5px,color:#0369a1;
-    classDef g3 fill:#fef3c7,stroke:#d97706,stroke-width:1.5px,color:#92400e;
-    classDef g4 fill:#ede9fe,stroke:#8b5cf6,stroke-width:1.5px,color:#5b21b6;
-    classDef g5 fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d;
+    classDef g1 fill:#EDF2FF,stroke:#1E4FD8,stroke-width:1.5px,color:#153DB0;
+    classDef g2 fill:#EDF2FF,stroke:#1E4FD8,stroke-width:1.5px,color:#153DB0;
+    classDef g3 fill:#FDF3E4,stroke:#B4690E,stroke-width:1.5px,color:#8A5008;
+    classDef g4 fill:#F2F5F9,stroke:#6C7FE0,stroke-width:1.5px,color:#153DB0;
+    classDef g5 fill:#E8F5F2,stroke:#0B8A78,stroke-width:2px,color:#0B644F;
 
     class L1 g1;
     class L2 g2;
@@ -185,7 +187,7 @@ flowchart LR
 | **技能契约** | Agent Skill 标准规范 | 标准化 YAML Frontmatter + 5 轮确定性工作流 (`SKILL.md`) |
 | **运行时与引擎** | Python 3.10+ | 纯原生标准库 (`urllib.request`, `json`, `ssl`, `base64`, `re`, `pathlib`) — **零外部依赖** |
 | **测试与质量保证**| Python 自动化测试套件 | `tests/run_all_tests.py`、pytest、ruff 静态检查 |
-| **可视化与展台** | 矢量 SVG 与 HTML5/CSS3 | 现代深色模式仪表盘 (`docs/project_overview/`)、架构图 SVG、品牌横幅 SVG |
+| **可视化与展台** | 矢量 SVG 与 HTML5/CSS3 | 学术出版风格的浅色项目概览页 (`docs/project_overview/`)、架构图 SVG、品牌横幅 SVG |
 | **多端消费载体** | 跨平台提示词与矢量代码 | ChatGPT/DALL-E、Midjourney、SD/Flux、豆包、通义万相、HTML/SVG、Matplotlib、Origin |
 
 ---
@@ -194,6 +196,7 @@ flowchart LR
 
 ```
 sci-plot/
+├── index.html                            # 仓库根跳转入口
 ├── SKILL.md                              # AI 指令：5 轮标准化工作流与隔离调度
 ├── README.md                             # 用户说明文档（英文）
 ├── README.zh-CN.md                       # 用户说明文档（中文）
@@ -213,6 +216,9 @@ sci-plot/
 │   ├── architecture_cn.svg               # 中文架构全景图
 │   ├── assets/
 │   │   └── banner.svg                    # 品牌专属横幅 SVG
+│   ├── scripts/                          # 展示资产生成脚本
+│   │   ├── generate_architecture.py      # 中英文架构图 SVG 生成器
+│   │   └── apply_brand_layer.py          # Archify 品牌层注入脚本
 │   ├── archify/                          # Archify 可交互架构图集与蓝图
 │   │   ├── diagram-input.md
 │   │   ├── core-architecture.html
@@ -220,17 +226,15 @@ sci-plot/
 │   │   ├── workflow-panorama.html
 │   │   ├── sequence-panorama.html
 │   │   └── dataflow-panorama.html
-│   └── project_overview/                 # 交互式全景观览页与精简名片
+│   └── project_overview/                 # 学术出版风格概览页与精简名片
 │       ├── index.html
-│       ├── style.css
-│       ├── script.js
 │       └── project_card.html
 ├── scripts/                              # 规范沉淀与雷达检索脚本
 │   ├── universal_skill_harvester.py      # 自适应语义雷达扫描引擎
 │   ├── fetch_external_skills.py          # 外部技能拉取工具
 │   ├── sync_documentation_metrics.py     # 文档一致性与真实指标校验脚本
 │   └── visualization/                    # 可视化图表生成脚本
-│       └── generate_banner.py            # 横幅 SVG 生成脚本
+│       └── generate_banner.py            # 学术出版风格横幅 SVG 生成器
 ├── tests/                                # 自动化测试套件 (100% 通过)
 │   ├── run_all_tests.py                  # 测试套件统一运行入口
 │   ├── test_rules_pool_integrity.py
@@ -260,7 +264,7 @@ sci-plot/
 在任何包含 sci-plot 的开发环境（Cursor、Claude Code、Windsurf、Copilot、Cline、Antigravity）中直接向 AI 发送：
 
 ```text
-按照 /sci-plot/SKILL.md 技能的要求输出科研绘图提示词。
+按照 /sci-plot/SKILL.md 技能，为我的主题编译可移植的提示词资产。
 目标：[可选，不填则自动分析当前项目，也可填路径/arxiv链接/直接粘贴文本]
 ```
 
@@ -286,12 +290,12 @@ flowchart LR
     --> R4(["<b>Round 4</b><br/>⚡ 烟消云散单向生成<br/><i>清退噪音上下文，严谨编译提示词</i>"]) 
     --> R5(["<b>Round 5</b><br/>📦 结构化交付落盘<br/><i>输出跨平台工业级提示词资产包</i>"])
 
-    classDef r0 fill:#f1f5f9,stroke:#64748b,stroke-width:1.5px,color:#1e293b;
-    classDef r1 fill:#e0f2fe,stroke:#0284c7,stroke-width:1.5px,color:#0369a1;
-    classDef r2 fill:#ede9fe,stroke:#7c3aed,stroke-width:1.5px,color:#5b21b6;
-    classDef r3 fill:#fef3c7,stroke:#d97706,stroke-width:1.5px,color:#92400e;
-    classDef r4 fill:#ffedd5,stroke:#ea580c,stroke-width:1.5px,color:#9a3412;
-    classDef r5 fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d;
+    classDef r0 fill:#F2F5F9,stroke:#6B7A8D,stroke-width:1.5px,color:#0E1A2B;
+    classDef r1 fill:#EDF2FF,stroke:#1E4FD8,stroke-width:1.5px,color:#153DB0;
+    classDef r2 fill:#F2F5F9,stroke:#4C5FD0,stroke-width:1.5px,color:#153DB0;
+    classDef r3 fill:#FDF3E4,stroke:#B4690E,stroke-width:1.5px,color:#8A5008;
+    classDef r4 fill:#FDF3E4,stroke:#B4690E,stroke-width:1.5px,color:#8A5008;
+    classDef r5 fill:#E8F5F2,stroke:#0B8A78,stroke-width:2px,color:#0B644F;
 
     class R0 r0;
     class R1 r1;

@@ -1,655 +1,1164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sci-Plot — Scientific Figure Prompt Engine | Interactive Project Overview</title>
-  <meta name="description" content="Publication-grade scientific figure prompt compiler. Deterministic 5-round pipeline, dual-track rules pool, scope isolation, and multi-platform synthesis for Midjourney, DALL-E, Doubao, Stable Diffusion, and Matplotlib.">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E📊%3C/text%3E%3C/svg%3E">
-  <link rel="stylesheet" href="./style.css">
-  <script src="./script.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sci-Plot — Portable Prompt Compiler for AI Skills</title>
+<meta name="description" content="Sci-Plot turns any AI skill repository plus a business topic into portable, auditable Markdown prompt assets. Zero runtime dependencies, no paid agent required, consumable on any platform.">
+<meta name="theme-color" content="#F7F8FA">
+<meta name="color-scheme" content="light">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sci-Plot — Portable Prompt Compiler for AI Skills">
+<meta property="og:description" content="From any skill repository to portable Markdown prompt assets. Zero runtime dependencies, no vendor lock-in.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231E4FD8'/%3E%3Cpath d='M6 23l6-7 5 3 9-10' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='26' cy='9' r='2' fill='%23fff'/%3E%3C/svg%3E">
+<style>
+/* ============================================================
+   Sci-Plot — Project Overview
+   Design system: editorial / publication-grade, single-file build
+   ============================================================ */
+:root{
+  --paper:#F7F8FA;
+  --surface:#FFFFFF;
+  --surface-2:#F2F5F9;
+  --ink:#0E1A2B;
+  --ink-2:#1E2D42;
+  --body:#435266;
+  --muted:#6B7A8D;
+  --line:#E1E7EE;
+  --line-2:#CBD5E0;
+  --accent:#1E4FD8;
+  --accent-deep:#153DB0;
+  --accent-soft:#EDF2FF;
+  --teal:#0B8A78;
+  --green:#16A34A;
+  --dark:#0B1728;
+  --dark-2:#10243B;
+  --dark-line:#20364F;
+  --dark-text:#E9F0F8;
+  --dark-muted:#9BB0C6;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
+  --serif:"Cambria","Iowan Old Style",Georgia,"Times New Roman",serif;
+  --mono:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+  --radius:10px;
+  --container:1160px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:86px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--body);font-family:var(--sans);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+h1,h2,h3,h4,p,figure,pre{margin:0}
+ul{margin:0;padding:0;list-style:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+::selection{background:#CFDDFF;color:var(--ink)}
+.container{width:100%;max-width:var(--container);margin:0 auto;padding:0 32px}
+.skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:var(--accent);color:#fff;padding:10px 16px;border-radius:0 0 6px 0}
+.skip-link:focus{left:0}
+.sprite{position:absolute;width:0;height:0;overflow:hidden}
+.icon{width:20px;height:20px;flex:none;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------------- Navigation ---------------- */
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.9);backdrop-filter:saturate(180%) blur(16px);-webkit-backdrop-filter:saturate(180%) blur(16px);border-bottom:1px solid var(--line);transition:box-shadow .25s ease,border-color .25s ease}
+.nav.scrolled{box-shadow:0 4px 24px rgba(14,26,43,.07);border-bottom-color:var(--line-2)}
+.nav-inner{height:68px;display:flex;align-items:center;gap:32px}
+.brand{display:inline-flex;align-items:center;gap:10px;flex:none;color:var(--ink)}
+.brand-mark{width:30px;height:30px;border-radius:8px;background:var(--accent);display:grid;place-items:center;box-shadow:0 2px 8px rgba(30,79,216,.22)}
+.brand-mark svg{width:19px;height:19px}
+.brand-name{font-size:16px;font-weight:700;letter-spacing:-.025em}
+.brand-ver{font-family:var(--mono);font-size:10px;color:var(--accent);background:var(--accent-soft);border:1px solid #D7E2FF;padding:2px 7px;border-radius:4px;letter-spacing:.02em}
+.nav-links{display:flex;align-items:center;gap:22px;margin-left:auto}
+.nav-links a{font-size:12.5px;font-weight:550;color:var(--muted);white-space:nowrap;padding:6px 0;position:relative;transition:color .2s ease}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a.active{color:var(--accent)}
+.nav-links a.active::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:2px;background:var(--accent);border-radius:2px}
+.nav-actions{display:flex;align-items:center;gap:10px;flex:none}
+.btn-github{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);font-size:12.5px;font-weight:600;padding:8px 13px;border-radius:7px;transition:border-color .2s,background .2s,transform .2s}
+.btn-github:hover{border-color:var(--accent);background:var(--accent-soft);transform:translateY(-1px)}
+.btn-github svg{width:15px;height:15px;fill:currentColor;stroke:none}
+.nav-toggle{display:none;width:38px;height:38px;align-items:center;justify-content:center;background:var(--surface);border:1px solid var(--line-2);border-radius:7px;color:var(--ink)}
+.nav-toggle .icon{width:19px;height:19px}
+.nav-toggle .i-close{display:none}
+.nav-open .nav-toggle .i-menu{display:none}
+.nav-open .nav-toggle .i-close{display:block}
+
+/* ---------------- Shared type / layout ---------------- */
+.section{padding:100px 0;scroll-margin-top:86px}
+.section--tint{background:var(--surface-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.section--dark{background:var(--dark);color:var(--dark-muted);border-top:1px solid var(--dark-line);border-bottom:1px solid var(--dark-line)}
+.section-head{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:end;padding-bottom:38px;margin-bottom:48px;border-bottom:1px solid var(--line)}
+.section-dark .section-head,.section--dark .section-head{border-bottom-color:var(--dark-line)}
+.kicker{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+.kicker .kicker-num{color:var(--muted);border-right:1px solid var(--line-2);padding-right:12px}
+.section--dark .kicker{color:#8FB2FF}
+.section--dark .kicker .kicker-num{color:var(--dark-muted);border-right-color:var(--dark-line)}
+.section-title{font-family:var(--serif);font-size:clamp(2rem,3.4vw,2.9rem);line-height:1.15;letter-spacing:-.02em;color:var(--ink);font-weight:600}
+.section--dark .section-title{color:var(--dark-text)}
+.section-sub{font-size:15px;line-height:1.75;color:var(--muted);max-width:430px}
+.section--dark .section-sub{color:var(--dark-muted)}
+.section-sub a{color:var(--accent);border-bottom:1px solid #B9C9F5;white-space:nowrap}
+.section--dark .section-sub a{color:#8FB2FF;border-bottom-color:#3A5A8C}
+.eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.mono{font-family:var(--mono)}
+
+/* ---------------- Hero ---------------- */
+.hero{position:relative;overflow:hidden;padding:88px 0 0;scroll-margin-top:86px}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(to right,rgba(30,79,216,.055) 1px,transparent 1px),linear-gradient(to bottom,rgba(30,79,216,.055) 1px,transparent 1px);background-size:40px 40px;-webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.85),transparent 78%);mask-image:linear-gradient(to bottom,rgba(0,0,0,.85),transparent 78%)}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.hero-pill{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:7px 14px 7px 10px;margin-bottom:28px}
+.hero-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(22,163,74,.14);flex:none}
+.hero-pill .sep{color:var(--line-2)}
+.hero-title{font-family:var(--serif);font-size:clamp(2.3rem,3.3vw,3rem);line-height:1.12;letter-spacing:-.028em;color:var(--ink);font-weight:600;margin-bottom:24px}
+.hero-title .line{display:block}
+.hero-title .accent{color:var(--accent)}
+.hero-lede{font-size:16.5px;line-height:1.78;color:var(--body);max-width:590px;margin-bottom:32px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:11px;margin-bottom:16px}
+.hero-text-link{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--accent);border-bottom:1px solid transparent;padding:2px 0;margin-bottom:28px;transition:border-color .2s,gap .2s}
+.hero-text-link:hover{border-bottom-color:var(--accent);gap:11px}
+.hero-text-link .icon{width:14px;height:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-size:13.5px;font-weight:600;padding:12px 20px;border-radius:7px;border:1px solid transparent;transition:background .2s,border-color .2s,color .2s,transform .2s,box-shadow .2s;white-space:nowrap}
+.btn .icon{width:16px;height:16px}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 4px 14px rgba(30,79,216,.2)}
+.btn-primary:hover{background:var(--accent-deep);transform:translateY(-2px);box-shadow:0 8px 20px rgba(30,79,216,.26)}
+.btn-outline{background:transparent;border-color:var(--line-2);color:var(--ink-2)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft);transform:translateY(-2px)}
+.btn-light{background:#fff;color:var(--ink);border-color:#fff}
+.btn-light:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.btn-ghost-light{background:transparent;color:#fff;border-color:rgba(255,255,255,.3)}
+.btn-ghost-light:hover{background:rgba(255,255,255,.1);border-color:#fff;transform:translateY(-2px)}
+.trust-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.trust-chip{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;color:var(--muted);border:1px solid var(--line);background:rgba(255,255,255,.7);border-radius:5px;padding:5px 9px}
+.trust-chip .ok{width:6px;height:6px;border-radius:50%;background:var(--green)}
+.trust-chip b{color:var(--ink-2);font-weight:600}
+
+/* Figure plate (hero visual) */
+.plate{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 22px 60px rgba(14,26,43,.11),0 2px 8px rgba(14,26,43,.04);overflow:hidden;transform:rotate(.35deg)}
+.plate-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 16px;border-bottom:1px solid var(--line);background:#FCFDFE}
+.plate-file{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.01em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.plate-tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);border:1px solid #D9E3FF;border-radius:4px;padding:3px 7px;white-space:nowrap}
+.plate-svg{padding:6px 10px 0}
+.plate-caption{display:block;padding:12px 18px 16px;border-top:1px solid var(--line);font-family:var(--serif);font-size:12.5px;line-height:1.6;color:var(--muted);font-style:italic}
+.plate-caption strong{color:var(--ink-2);font-style:normal;font-weight:600}
+
+/* Metrics */
+.metrics{margin-top:86px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface)}
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.metric{padding:30px 26px;border-right:1px solid var(--line)}
+.metric:first-child{padding-left:0}
+.metric:last-child{border-right:0;padding-right:0}
+.metric-num{display:flex;align-items:baseline;gap:1px;font-size:2.5rem;line-height:1;font-weight:650;letter-spacing:-.055em;color:var(--ink);font-variant-numeric:tabular-nums;margin-bottom:10px}
+.metric-num .pre{font-size:1.4rem;color:var(--accent);font-weight:500;letter-spacing:0}
+.metric-label{font-size:12.5px;font-weight:600;color:var(--ink-2);margin-bottom:3px}
+.metric-note{font-family:var(--mono);font-size:10px;letter-spacing:.02em;color:var(--muted)}
+
+/* ---------------- Capability cards ---------------- */
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.cap-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px 26px 24px;display:flex;flex-direction:column;transition:border-color .25s,box-shadow .25s,transform .25s}
+.cap-card:hover{border-color:#B9C9F5;box-shadow:0 12px 32px rgba(14,26,43,.07);transform:translateY(-3px)}
+.cap-icon{width:42px;height:42px;display:grid;place-items:center;border-radius:8px;background:var(--accent-soft);border:1px solid #DCE6FF;color:var(--accent);margin-bottom:22px}
+.cap-icon .icon{width:21px;height:21px}
+.cap-title{font-size:15.5px;font-weight:650;letter-spacing:-.01em;color:var(--ink);line-height:1.4;margin-bottom:10px}
+.cap-desc{font-size:13.5px;line-height:1.72;color:var(--body);flex:1}
+.cap-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
+.tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.03em;color:var(--muted);background:var(--surface-2);border:1px solid var(--line);border-radius:4px;padding:4px 7px}
+
+/* ---------------- Pipeline ---------------- */
+.flow-layout{display:grid;grid-template-columns:270px 1fr;gap:64px}
+.flow-aside{position:sticky;top:110px;align-self:start}
+.flow-aside .eyebrow{margin-bottom:16px}
+.flow-aside p{font-size:14px;line-height:1.75;color:var(--muted);margin-bottom:24px}
+.flow-io{border-top:1px solid var(--line);padding-top:18px}
+.flow-io div{display:flex;justify-content:space-between;gap:12px;font-family:var(--mono);font-size:10.5px;padding:7px 0;color:var(--muted)}
+.flow-io div span:last-child{color:var(--ink-2);text-align:right}
+.flow-steps{position:relative}
+.flow-steps::before{content:"";position:absolute;left:31px;top:22px;bottom:22px;width:1px;background:linear-gradient(to bottom,var(--accent),var(--line-2))}
+.flow-step{position:relative;display:grid;grid-template-columns:64px 1fr;gap:26px;padding:0 0 30px}
+.flow-step:last-child{padding-bottom:0}
+.step-index{position:relative;z-index:1;width:64px;height:64px;border-radius:50%;background:var(--surface);border:1px solid var(--line-2);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--accent);box-shadow:0 0 0 6px var(--surface-2)}
+.step-index b{font-family:var(--mono);font-size:17px;font-weight:600;line-height:1;letter-spacing:-.04em}
+.step-index small{font-family:var(--mono);font-size:7.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.step-body{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px 26px;transition:border-color .25s,box-shadow .25s}
+.step-body:hover{border-color:#C8D5F2;box-shadow:0 10px 28px rgba(14,26,43,.055)}
+.step-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:9px}
+.step-title{font-size:16px;font-weight:650;color:var(--ink);letter-spacing:-.01em}
+.step-verb{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
+.step-body p{font-size:13.5px;line-height:1.75;color:var(--body)}
+.step-meta{display:inline-flex;align-items:center;gap:7px;margin-top:16px;font-family:var(--mono);font-size:10.5px;color:var(--muted);background:var(--surface-2);border:1px solid var(--line);border-radius:5px;padding:6px 10px;word-break:break-all}
+.step-meta .icon{width:13px;height:13px;color:var(--accent)}
+
+/* ---------------- Architecture viewer ---------------- */
+.viewer{background:var(--dark-2);border:1px solid var(--dark-line);border-radius:12px;overflow:hidden;box-shadow:0 24px 60px rgba(4,12,24,.3)}
+.viewer-tabs{display:flex;gap:2px;padding:10px 10px 0;overflow-x:auto;scrollbar-width:thin;border-bottom:1px solid var(--dark-line)}
+.viewer-tab{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;background:transparent;border:1px solid transparent;border-bottom:0;color:var(--dark-muted);font-size:12px;font-weight:550;padding:10px 14px;border-radius:7px 7px 0 0;transition:background .2s,color .2s}
+.viewer-tab:hover{color:var(--dark-text);background:rgba(255,255,255,.05)}
+.viewer-tab.active{background:var(--dark);color:#fff;border-color:var(--dark-line);border-bottom:1px solid var(--dark);margin-bottom:-1px;position:relative}
+.viewer-tab .vnum{font-family:var(--mono);font-size:9px;opacity:.65}
+.viewer-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:14px 18px;border-bottom:1px solid var(--dark-line);background:var(--dark)}
+.viewer-meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;min-width:0}
+.viewer-title{font-size:13px;font-weight:600;color:var(--dark-text)}
+.viewer-file{font-family:var(--mono);font-size:10px;color:var(--dark-muted);border:1px solid var(--dark-line);border-radius:4px;padding:3px 7px}
+.viewer-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tool{display:inline-flex;align-items:center;gap:6px;background:transparent;border:1px solid var(--dark-line);color:var(--dark-muted);font-size:11.5px;font-weight:550;padding:7px 11px;border-radius:6px;transition:background .2s,color .2s,border-color .2s;white-space:nowrap}
+.tool:hover{background:rgba(255,255,255,.07);color:#fff;border-color:#42607F}
+.tool .icon{width:14px;height:14px}
+.viewer-canvas{position:relative;background:#08121F;height:540px}
+.viewer-canvas iframe{width:100%;height:100%;border:0;display:block;background:#08121F}
+.viewer-canvas:fullscreen{height:100vh;width:100vw;background:#08121F}
+.viewer-canvas:fullscreen iframe{height:100%}
+.viewer-note{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:12px 18px;border-top:1px solid var(--dark-line);font-size:11.5px;color:var(--dark-muted);background:var(--dark)}
+.viewer-note strong{color:#B9D0FF;font-weight:600}
+.viewer-note code{font-family:var(--mono);font-size:10.5px;color:#9FB6D4}
+.static-figure{margin-top:34px;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 18px 44px rgba(4,12,24,.28)}
+.static-figure figcaption{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 20px;border-bottom:1px solid var(--line);font-size:13px;font-weight:600;color:var(--ink)}
+.static-figure figcaption span{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:400}
+.static-figure .img-wrap{padding:20px;background:#FFFFFF}
+.static-figure img{width:100%;height:auto;margin:0 auto;border-radius:8px}
+.static-figure p{padding:14px 20px 18px;font-size:12.5px;color:var(--muted);border-top:1px solid var(--line)}
+
+/* ---------------- Style presets ---------------- */
+.styles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.style-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:border-color .25s,box-shadow .25s,transform .25s}
+.style-card:hover{border-color:#B9C9F5;box-shadow:0 12px 32px rgba(14,26,43,.07);transform:translateY(-3px)}
+.style-swatches{display:flex;height:7px}
+.style-swatches span{flex:1}
+.style-inner{padding:24px 24px 22px;display:flex;flex-direction:column;flex:1}
+.style-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+.style-name{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+.style-idx{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.style-desc{font-size:13.5px;line-height:1.72;color:var(--body);flex:1}
+.style-prompt{margin-top:20px;padding:12px 13px;background:var(--surface-2);border:1px solid var(--line);border-left:2px solid var(--accent);border-radius:0 5px 5px 0;font-family:var(--mono);font-size:10.5px;line-height:1.65;color:var(--muted);word-break:break-word}
+
+/* ---------------- Code panels ---------------- */
+.code-stack{display:grid;gap:18px;max-width:920px}
+.code-box{background:var(--dark);border:1px solid var(--dark-line);border-radius:var(--radius);overflow:hidden;box-shadow:0 12px 32px rgba(4,12,24,.12)}
+.code-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 18px;border-bottom:1px solid var(--dark-line);background:#0E2035}
+.code-head .code-label{display:flex;align-items:center;gap:9px;font-size:12.5px;font-weight:600;color:var(--dark-text)}
+.code-head .code-label .icon{width:15px;height:15px;color:#8FB2FF}
+.btn-copy{display:inline-flex;align-items:center;gap:6px;background:transparent;border:1px solid var(--dark-line);color:var(--dark-muted);font-size:11px;font-weight:550;padding:6px 10px;border-radius:5px;transition:background .2s,color .2s,border-color .2s;white-space:nowrap}
+.btn-copy:hover{background:rgba(255,255,255,.07);color:#fff;border-color:#42607F}
+.btn-copy.copied{color:#7FE0B5;border-color:#2E7F62}
+.btn-copy .icon{width:13px;height:13px}
+.code-box pre{padding:20px 22px;overflow-x:auto;font-family:var(--mono);font-size:12px;line-height:1.9;color:#D9E5F2;white-space:pre;tab-size:2}
+.code-box .c-comment{color:#7F96B0}
+.code-box .c-string{color:#8FD9BC}
+.code-box .c-cmd{color:#A8C7FF}
+.code-box .c-flag{color:#E5C07B}
+
+/* Repository tree */
+.tree-layout{display:grid;grid-template-columns:1fr 280px;gap:28px;align-items:start}
+.tree-box{background:var(--dark);border:1px solid var(--dark-line);border-radius:var(--radius);overflow:hidden}
+.tree-head{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-bottom:1px solid var(--dark-line);background:#0E2035;font-family:var(--mono);font-size:11px;color:var(--dark-muted)}
+.tree-box pre{padding:20px 22px;overflow-x:auto;font-family:var(--mono);font-size:11.5px;line-height:1.85;color:#B9C9DC;white-space:pre;tab-size:2}
+.tree-box .t-folder{color:#8FB2FF}
+.tree-box .t-file{color:#E1EAF5}
+.tree-box .t-comment{color:#6C829B}
+.tree-aside{border:1px solid var(--line);background:var(--surface);border-radius:var(--radius);padding:24px}
+.tree-aside h3{font-size:14px;font-weight:650;color:var(--ink);margin-bottom:12px}
+.tree-aside p{font-size:13px;line-height:1.75;color:var(--body);margin-bottom:16px}
+.tree-aside ul li{display:flex;gap:9px;font-size:12.5px;color:var(--body);padding:8px 0;border-top:1px solid var(--line)}
+.tree-aside ul li .icon{width:14px;height:14px;color:var(--accent);margin-top:3px}
+
+/* ---------------- Docs hub ---------------- */
+.docs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.doc-card{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px 20px 18px;transition:border-color .25s,background .25s,transform .25s,box-shadow .25s}
+.doc-card:hover{border-color:#B9C9F5;background:#FCFDFF;transform:translateY(-2px);box-shadow:0 10px 26px rgba(14,26,43,.055)}
+.doc-cat{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:9px;display:block}
+.doc-name{font-size:13.5px;font-weight:600;color:var(--ink);line-height:1.5}
+.doc-card .icon{width:15px;height:15px;color:var(--muted);margin-top:2px;transition:transform .2s,color .2s}
+.doc-card:hover .icon{color:var(--accent);transform:translate(2px,-2px)}
+
+/* ---------------- FAQ ---------------- */
+.faq-list{max-width:900px;border-top:1px solid var(--line)}
+.faq-item{border-bottom:1px solid var(--line);background:transparent}
+.faq-item summary{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 4px;cursor:pointer;list-style:none;font-size:15.5px;font-weight:600;color:var(--ink);line-height:1.5;transition:color .2s}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary:hover{color:var(--accent)}
+.faq-item summary .faq-sign{position:relative;width:20px;height:20px;flex:none}
+.faq-item summary .faq-sign::before,.faq-item summary .faq-sign::after{content:"";position:absolute;background:var(--accent);border-radius:2px;transition:transform .25s,opacity .25s}
+.faq-item summary .faq-sign::before{left:0;top:9px;width:20px;height:1.6px}
+.faq-item summary .faq-sign::after{left:9px;top:0;width:1.6px;height:20px}
+.faq-item[open] summary .faq-sign::after{transform:rotate(90deg);opacity:0}
+.faq-item[open] summary{color:var(--accent)}
+.faq-a{padding:0 60px 24px 4px;font-size:14px;line-height:1.8;color:var(--body);max-width:820px}
+.faq-a code{font-family:var(--mono);font-size:11.5px;background:#E7ECF3;border:1px solid var(--line);border-radius:4px;padding:2px 5px;color:var(--ink-2)}
+
+/* ---------------- Closing CTA + footer ---------------- */
+.cta-band{background:var(--dark);color:var(--dark-text);padding:78px 0}
+.cta-inner{display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.cta-copy{max-width:620px}
+.cta-copy .eyebrow{color:#8FB2FF;margin-bottom:16px}
+.cta-copy h2{font-family:var(--serif);font-size:clamp(1.9rem,3.2vw,2.7rem);line-height:1.2;letter-spacing:-.02em;font-weight:600;margin-bottom:12px}
+.cta-copy p{font-size:14.5px;color:var(--dark-muted);line-height:1.75}
+.cta-actions{display:flex;gap:11px;flex-wrap:wrap}
+.footer{background:var(--surface);border-top:1px solid var(--line);padding:56px 0 26px}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid var(--line)}
+.footer-brand .brand{margin-bottom:14px}
+.footer-brand p{font-size:13px;line-height:1.75;color:var(--muted);max-width:330px}
+.footer-col h4{font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;font-weight:500}
+.footer-col li{margin-bottom:10px}
+.footer-col a{font-size:13px;color:var(--body);transition:color .2s}
+.footer-col a:hover{color:var(--accent)}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:22px;font-family:var(--mono);font-size:10.5px;color:var(--muted)}
+.footer-bottom code{font-family:var(--mono);color:var(--ink-2);background:var(--surface-2);padding:2px 5px;border-radius:3px}
+
+/* ---------------- Reveal animation ---------------- */
+.reveal-ready [data-reveal]{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.reveal-ready [data-reveal].is-visible{opacity:1;transform:none}
+
+/* ---------------- Responsive ---------------- */
+@media (max-width:1180px){
+  .nav-links{gap:16px}
+  .nav-links a{font-size:12px}
+  .hero-grid{gap:44px}
+  .section-head{gap:36px}
+}
+@media (max-width:1040px){
+  .nav-links .nav-optional{display:none}
+  .card-grid,.styles-grid,.docs-grid{grid-template-columns:repeat(2,1fr)}
+  .flow-layout{grid-template-columns:1fr;gap:36px}
+  .flow-aside{position:static;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+  .flow-aside .eyebrow{grid-column:1/-1;margin-bottom:0}
+  .flow-io{border-top:0;border-left:1px solid var(--line);padding:0 0 0 24px}
+  .tree-layout{grid-template-columns:1fr}
+  .tree-aside{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+  .tree-aside h3{grid-column:1/-1;margin-bottom:0}
+}
+@media (max-width:900px){
+  .nav-inner{gap:16px}
+  .nav-toggle{display:inline-flex}
+  .nav-links{position:absolute;top:100%;left:0;right:0;display:none;flex-direction:column;align-items:stretch;gap:0;background:var(--surface);border-bottom:1px solid var(--line-2);box-shadow:0 16px 30px rgba(14,26,43,.1);padding:10px 24px 18px;margin:0}
+  .nav-open .nav-links{display:flex}
+  .nav-links a{font-size:14px;padding:11px 0;border-bottom:1px solid var(--line)}
+  .nav-links a.active::after{display:none}
+  .nav-links .nav-optional{display:block}
+  .section{padding:76px 0}
+  .section-head{grid-template-columns:1fr;gap:18px;padding-bottom:30px;margin-bottom:36px}
+  .section-sub{max-width:640px}
+  .hero{padding:64px 0 0}
+  .hero-grid{grid-template-columns:1fr;gap:48px}
+  .hero-lede{font-size:15.5px}
+  .plate{max-width:560px;transform:none}
+  .metrics{margin-top:60px}
+  .metrics-grid{grid-template-columns:repeat(2,1fr)}
+  .metric{padding:24px 20px;border-bottom:1px solid var(--line)}
+  .metric:nth-child(2){border-right:0}
+  .metric:nth-child(3),.metric:nth-child(4){border-bottom:0}
+  .metric:first-child{padding-left:20px}
+  .metric:last-child{padding-right:20px}
+  .viewer-canvas{height:460px}
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+  .footer-brand{grid-column:1/-1}
+}
+@media (max-width:620px){
+  .container{padding:0 20px}
+  .brand-ver{display:none}
+  .btn-github span{display:none}
+  .btn-github{padding:8px 10px}
+  .section{padding:64px 0}
+  .section-title{font-size:1.85rem}
+  .hero{padding:48px 0 0}
+  .hero-pill{font-size:9px;letter-spacing:.06em;padding:6px 11px 6px 8px}
+  .hero-title{font-size:2.35rem;line-height:1.13}
+  .hero-actions{flex-direction:column;align-items:stretch}
+  .btn{width:100%}
+  .trust-row{gap:7px}
+  .trust-chip{font-size:9.5px}
+  .card-grid,.styles-grid,.docs-grid{grid-template-columns:1fr}
+  .flow-aside{grid-template-columns:1fr;gap:14px}
+  .flow-io{border-left:0;border-top:1px solid var(--line);padding:14px 0 0}
+  .flow-step{grid-template-columns:48px 1fr;gap:16px;padding-bottom:22px}
+  .flow-steps::before{left:23px}
+  .step-index{width:48px;height:48px;box-shadow:0 0 0 4px var(--surface-2)}
+  .step-index b{font-size:14px}
+  .step-index small{font-size:6.5px}
+  .step-body{padding:20px 18px}
+  .step-head{flex-direction:column;gap:4px}
+  .viewer-tabs{padding:8px 8px 0}
+  .viewer-tab{padding:9px 11px;font-size:11px}
+  .viewer-bar{padding:12px 14px}
+  .viewer-actions{width:100%}
+  .viewer-canvas{height:380px}
+  .viewer-note{font-size:11px}
+  .static-figure .img-wrap{padding:12px}
+  .code-box pre{font-size:10.5px;padding:16px}
+  .tree-box pre{font-size:10px;padding:16px}
+  .tree-aside{grid-template-columns:1fr;gap:12px}
+  .faq-item summary{font-size:14.5px;padding:18px 2px}
+  .faq-a{padding:0 20px 20px 2px;font-size:13.5px}
+  .cta-band{padding:60px 0}
+  .cta-inner{gap:28px}
+  .cta-actions .btn{width:auto;flex:1}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .footer-bottom{font-size:9.5px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+  .reveal-ready [data-reveal]{opacity:1;transform:none}
+}
+@media print{
+  .nav,.viewer-actions,.btn-copy,.cta-band{display:none}
+  body{background:#fff}
+  .section--dark{background:#fff;color:#333;border-color:#ddd}
+}
+</style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Ambient Animated Particle Background -->
-  <div class="bg-particles" aria-hidden="true">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
+<!-- Inline icon sprite -->
+<svg class="sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-cycle" viewBox="0 0 24 24"><path d="M20.5 11a8.5 8.5 0 0 0-15.2-5.1L3 8"/><path d="M3 3.5V8h4.5"/><path d="M3.5 13a8.5 8.5 0 0 0 15.2 5.1L21 16"/><path d="M21 20.5V16h-4.5"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4.5 6v6c0 4.5 3.1 8 7.5 9 4.4-1 7.5-4.5 7.5-9V6L12 3Z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5c2.4 2.3 3.7 5.2 3.7 8.5S14.4 18.2 12 20.5c-2.4-2.3-3.7-5.2-3.7-8.5S9.6 5.8 12 3.5Z"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-type" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M7 9h6M7 12.5h10M7 16h7"/></symbol>
+  <symbol id="i-flask" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6L5.6 17.4A2 2 0 0 0 7.3 20h9.4a2 2 0 0 0 1.7-2.6L14 9V3"/><path d="M7.8 15h8.4"/></symbol>
+  <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></symbol>
+  <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 4v16M6 14l6 6 6-6"/></symbol>
+  <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+  <symbol id="i-expand" viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4.5 4.5L19 7"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-mark" viewBox="0 0 32 32"><path d="M6 23l6-7 5 3 9-10" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="26" cy="9" r="2.2" fill="currentColor"/></symbol>
+  <symbol id="i-github" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol>
+</svg>
+
+<!-- ===================== Navigation ===================== -->
+<header class="nav" id="siteNav">
+  <div class="container nav-inner">
+    <a href="#overview" class="brand" aria-label="Sci-Plot home">
+      <span class="brand-mark"><svg aria-hidden="true" style="color:#fff"><use href="#i-mark"/></svg></span>
+      <span class="brand-name">Sci-Plot</span>
+      <span class="brand-ver">v1.2.0</span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Primary navigation">
+      <a href="#overview">Overview</a>
+      <a href="#features">Engine</a>
+      <a href="#workflow">Pipeline</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#styles">Styles</a>
+      <a href="#structure" class="nav-optional">Structure</a>
+      <a href="#quickstart" class="nav-optional">Quickstart</a>
+      <a href="#docs">Docs</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="https://github.com/LPK3215/sci-plot" target="_blank" rel="noopener noreferrer" class="btn-github">
+        <svg aria-hidden="true"><use href="#i-github"/></svg><span>GitHub</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Open navigation menu">
+        <svg class="icon i-menu" aria-hidden="true"><use href="#i-menu"/></svg>
+        <svg class="icon i-close" aria-hidden="true"><use href="#i-close"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ===================== Hero ===================== -->
+<section id="overview" class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="hero-pill"><span class="dot"></span>Any Skill to Portable Prompts<span class="sep">·</span>Zero Runtime Dependencies</div>
+        <h1 class="hero-title">
+          <span class="line">From Any Skill Repository to</span>
+          <span class="line accent">Portable Prompt Assets</span>
+        </h1>
+        <p class="hero-lede">Sci-Plot is a zero-dependency prompt compiler. Feed it any skill repository plus a business topic, and it distills the rules into structured <span class="mono">.md</span> prompt assets — auditable, editable, and consumable on any platform without a runtime, an API key, or a paid coding agent.</p>
+        <div class="hero-actions">
+          <a href="#architecture" class="btn btn-primary">Explore Architecture <svg class="icon" aria-hidden="true"><use href="#i-arrow-down"/></svg></a>
+          <a href="./project_card.html" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Shareable Project Card <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+        </div>
+        <a href="../archify/core-architecture.html" target="_blank" rel="noopener noreferrer" class="hero-text-link">Interactive Diagram Center <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+        <div class="trust-row">
+          <span class="trust-chip"><b>v1.2.0</b> current release</span>
+          <span class="trust-chip">MIT License</span>
+          <span class="trust-chip"><span class="ok"></span><b>6/6</b> tests passing</span>
+        </div>
+      </div>
+
+      <!-- Publication-style figure plate -->
+      <figure class="plate" data-reveal>
+        <div class="plate-bar">
+          <span class="plate-file">sci-plot-output / figure-01.svg</span>
+          <span class="plate-tag">paper-figure</span>
+        </div>
+        <div class="plate-svg">
+          <svg viewBox="0 0 560 280" role="img" aria-label="Sample publication-grade figure generated by Sci-Plot: a benchmark line chart and a compilation flow diagram" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#1E4FD8"/></marker>
+              <clipPath id="plotClip"><rect x="46" y="52" width="212" height="158"/></clipPath>
+            </defs>
+            <!-- Panel A -->
+            <text x="30" y="30" font-family="Cambria, Georgia, serif" font-size="12" font-weight="bold" fill="#0E1A2B">(a)</text>
+            <text x="52" y="30" font-family="Cambria, Georgia, serif" font-size="11" fill="#435266">Method accuracy</text>
+            <g stroke="#E9EDF3" stroke-width="1">
+              <path d="M46 52h212M46 84h212M46 116h212M46 148h212M46 180h212M46 210h212"/>
+              <path d="M46 52v158M99 52v158M151 52v158M204 52v158M258 52v158"/>
+            </g>
+            <g clip-path="url(#plotClip)">
+              <path d="M46 194 L72 180 L99 152 L125 137 L151 119 L178 105 L204 91 L231 80 L258 71 L258 210 L46 210 Z" fill="#1E4FD8" opacity=".07"/>
+              <polyline points="46,194 72,180 99,152 125,137 151,119 178,105 204,91 231,80 258,71" fill="none" stroke="#1E4FD8" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+              <polyline points="46,199 72,191 99,177 125,162 151,149 178,139 204,127 231,117 258,108" fill="none" stroke="#0B8A78" stroke-width="2" stroke-dasharray="5 4" stroke-linejoin="round" stroke-linecap="round"/>
+              <g fill="#fff" stroke="#1E4FD8" stroke-width="1.6"><circle cx="99" cy="152" r="2.8"/><circle cx="151" cy="119" r="2.8"/><circle cx="204" cy="91" r="2.8"/><circle cx="258" cy="71" r="2.8"/></g>
+            </g>
+            <path d="M46 52v158h212" fill="none" stroke="#94A3B8" stroke-width="1.2"/>
+            <g font-family="Consolas, monospace" font-size="7.5" fill="#7A8899" text-anchor="end">
+              <text x="40" y="55">1.0</text><text x="40" y="87">0.8</text><text x="40" y="119">0.6</text><text x="40" y="151">0.4</text><text x="40" y="183">0.2</text><text x="40" y="213">0</text>
+            </g>
+            <g font-family="Consolas, monospace" font-size="7.5" fill="#7A8899" text-anchor="middle">
+              <text x="46" y="224">0</text><text x="99" y="224">25</text><text x="151" y="224">50</text><text x="204" y="224">75</text><text x="258" y="224">100</text>
+            </g>
+            <text x="152" y="240" font-family="Cambria, Georgia, serif" font-size="9.5" fill="#435266" text-anchor="middle">Epoch</text>
+            <g font-family="Consolas, monospace" font-size="7.5" fill="#435266">
+              <path d="M160 60h14" stroke="#1E4FD8" stroke-width="2"/><text x="178" y="63">Sci-Plot</text>
+              <path d="M160 72h14" stroke="#0B8A78" stroke-width="2" stroke-dasharray="4 3"/><text x="178" y="75">Baseline</text>
+            </g>
+            <!-- Divider -->
+            <path d="M286 20v220" stroke="#E1E7EE" stroke-width="1"/>
+            <!-- Panel B -->
+            <text x="306" y="30" font-family="Cambria, Georgia, serif" font-size="12" font-weight="bold" fill="#0E1A2B">(b)</text>
+            <text x="328" y="30" font-family="Cambria, Georgia, serif" font-size="11" fill="#435266">Compilation flow</text>
+            <g>
+              <rect x="306" y="52" width="224" height="38" rx="5" fill="#F4F7FF" stroke="#C9D8FA"/>
+              <text x="320" y="76" font-family="Consolas, monospace" font-size="9" fill="#1E2D42">Paper / LaTeX / Markdown</text>
+              <path d="M418 92v18" stroke="#1E4FD8" stroke-width="1.4" marker-end="url(#arr)"/>
+              <rect x="306" y="112" width="224" height="38" rx="5" fill="#F4F7FF" stroke="#C9D8FA"/>
+              <text x="320" y="136" font-family="Consolas, monospace" font-size="9" fill="#1E2D42">Scope isolation + rule match</text>
+              <path d="M418 152v18" stroke="#1E4FD8" stroke-width="1.4" marker-end="url(#arr)"/>
+              <rect x="306" y="172" width="224" height="38" rx="5" fill="#EDF2FF" stroke="#AFC5F5"/>
+              <text x="320" y="190" font-family="Consolas, monospace" font-size="9" fill="#153DB0">Prompt IR  (auditable asset)</text>
+              <text x="320" y="202" font-family="Consolas, monospace" font-size="8" fill="#435266">MJ / DALL-E / Doubao / Matplotlib</text>
+            </g>
+            <g font-family="Consolas, monospace" font-size="8" fill="#6B7A8D">
+              <path d="M306 228h6" stroke="#0B8A78" stroke-width="1.6"/><text x="318" y="231">6/6 QA gates passed</text>
+              <text x="306" y="252">out/prompts/01-overview.md</text>
+            </g>
+          </svg>
+        </div>
+        <figcaption class="plate-caption"><strong>Figure 1.</strong>&nbsp; Method overview and benchmark comparison, compiled from <span class="mono">./paper.pdf</span> with the <span class="mono">paper-figure</span> preset.</figcaption>
+      </figure>
+    </div>
   </div>
 
-  <!-- Sticky Blurred Navigation Bar -->
-  <header class="nav">
-    <div class="container">
-      <a href="#overview" class="nav-brand">
-        <div class="brand-logo">📊</div>
-        <span>Sci-Plot</span>
-        <span class="nav-badge">v1.2.0</span>
-      </a>
+  <div class="metrics">
+    <div class="container metrics-grid">
+      <div class="metric"><div class="metric-num"><span class="count-up" data-target="5">5</span></div><div class="metric-label">Visual Style Presets</div><div class="metric-note">curated aesthetic grammars</div></div>
+      <div class="metric"><div class="metric-num"><span class="count-up" data-target="5">5</span></div><div class="metric-label">Deterministic Pipeline Rounds</div><div class="metric-note">ordered, zero-drift execution</div></div>
+      <div class="metric"><div class="metric-num"><span class="pre">≤</span><span class="count-up" data-target="10">10</span></div><div class="metric-label">Max Pages per Batch</div><div class="metric-note">hard scope ceiling</div></div>
+      <div class="metric"><div class="metric-num"><span class="count-up" data-target="6">6</span></div><div class="metric-label">Compatible Rendering Backends</div><div class="metric-note">AI generators + Python</div></div>
+    </div>
+  </div>
+</section>
 
-      <ul class="nav-links">
-        <li><a href="#overview">Overview</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#architecture">Architecture</a></li>
-        <li><a href="#workflow">Pipeline</a></li>
-        <li><a href="#styles">Styles</a></li>
-        <li><a href="#structure">Structure</a></li>
-        <li><a href="#quickstart">Quickstart</a></li>
-        <li><a href="#docs">Docs</a></li>
-      </ul>
+<!-- ===================== Core engine ===================== -->
+<section id="features" class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="kicker"><span class="kicker-num">01</span> Core Engine</div>
+        <h2 class="section-title">Architected for Portable Output</h2>
+      </div>
+      <p class="section-sub">Instead of binding rules to a single agent runtime, Sci-Plot extracts them through a deterministic compiler with strict isolation boundaries and automated quality gates.</p>
+    </div>
 
-      <div class="nav-cta">
-        <a href="https://github.com/LPK3215/sci-plot" target="_blank" rel="noopener noreferrer" class="btn-github">
-          <svg height="18" width="18" viewBox="0 0 16 16" fill="currentColor">
-            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
-          </svg>
-          <span>GitHub</span>
-        </a>
+    <div class="card-grid">
+      <article class="cap-card" data-reveal>
+        <div class="cap-icon"><svg class="icon" aria-hidden="true"><use href="#i-cycle"/></svg></div>
+        <h3 class="cap-title">5-Round Deterministic Pipeline</h3>
+        <p class="cap-desc">Executes paper ingestion, concept extraction, layout structuring, multi-platform synthesis, and QA gate verification in strictly ordered phases.</p>
+        <div class="cap-tags"><span class="tag">Deterministic</span><span class="tag">Zero Drift</span><span class="tag">Reproducible</span></div>
+      </article>
+      <article class="cap-card" data-reveal>
+        <div class="cap-icon"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></div>
+        <h3 class="cap-title">Strict Scope Isolation</h3>
+        <p class="cap-desc">Imposes hard caps (≤10 pages / ≤15k tokens) to prevent context saturation. Isolates appendices, proofs, and references from diluting key figures.</p>
+        <div class="cap-tags"><span class="tag">Token Bounded</span><span class="tag">Anti-Hallucination</span><span class="tag">Focus Guard</span></div>
+      </article>
+      <article class="cap-card" data-reveal>
+        <div class="cap-icon"><svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg></div>
+        <h3 class="cap-title">Universal Harvester &amp; Radar</h3>
+        <p class="cap-desc">Automatically harvests top-ranked scientific prompt styles and layout taxonomies from leading open-source repositories and cloud catalogs.</p>
+        <div class="cap-tags"><span class="tag">Auto-Sync</span><span class="tag">Community Rules</span><span class="tag">Dynamic Ingestion</span></div>
+      </article>
+      <article class="cap-card" data-reveal>
+        <div class="cap-icon"><svg class="icon" aria-hidden="true"><use href="#i-target"/></svg></div>
+        <h3 class="cap-title">Multi-Platform Prompt Compiler</h3>
+        <p class="cap-desc">Transforms semantic scene graphs into native parameters for Midjourney v6.1, DALL-E 3, Doubao, Stable Diffusion, and executable Python Matplotlib scripts.</p>
+        <div class="cap-tags"><span class="tag">Midjourney</span><span class="tag">Doubao</span><span class="tag">Matplotlib</span></div>
+      </article>
+      <article class="cap-card" data-reveal>
+        <div class="cap-icon"><svg class="icon" aria-hidden="true"><use href="#i-type"/></svg></div>
+        <h3 class="cap-title">Publication Typography &amp; Palettes</h3>
+        <p class="cap-desc">Adheres to Nature, Science, and IEEE typography standards with accessible color-blind safe palettes (Viridis, ColorBrewer, Tol bright).</p>
+        <div class="cap-tags"><span class="tag">Nature Style</span><span class="tag">Color-Blind Safe</span><span class="tag">Vector Clean</span></div>
+      </article>
+      <article class="cap-card" data-reveal>
+        <div class="cap-icon"><svg class="icon" aria-hidden="true"><use href="#i-flask"/></svg></div>
+        <h3 class="cap-title">4-Tier Automated Quality Gate</h3>
+        <p class="cap-desc">Comprehensive test suite verifies prompt token limits, cloud downloader integrity, end-to-end simulations, and radar scanners before distribution.</p>
+        <div class="cap-tags"><span class="tag">Unit Tested</span><span class="tag">E2E Verification</span><span class="tag">CI/CD Ready</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== Pipeline ===================== -->
+<section id="workflow" class="section section--tint">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="kicker"><span class="kicker-num">02</span> Execution Flow</div>
+        <h2 class="section-title">The 5-Round Deterministic Pipeline</h2>
+      </div>
+      <p class="section-sub">Every compilation passes through 5 strictly structured rounds. The bundled reference domain targets scientific figures; the pipeline itself is domain-agnostic.</p>
+    </div>
+
+    <div class="flow-layout">
+      <aside class="flow-aside">
+        <div>
+          <div class="eyebrow">Input / output contract</div>
+          <p>Each round produces a persistent, auditable artifact. Nothing is regenerated from memory, so results stay reproducible across runs.</p>
+        </div>
+        <div class="flow-io">
+          <div><span>INPUT</span><span>.pdf / .tex / .md</span></div>
+          <div><span>SCOPE</span><span>≤10 pages · ≤15k tokens</span></div>
+          <div><span>OUTPUT</span><span>prompts/*.md + README</span></div>
+          <div><span>GATE</span><span>6/6 tests pass</span></div>
+        </div>
+      </aside>
+
+      <div class="flow-steps">
+        <article class="flow-step" data-reveal>
+          <div class="step-index"><b>01</b><small>Ingest</small></div>
+          <div class="step-body">
+            <div class="step-head"><h3 class="step-title">Paper Ingestion &amp; Scope Isolation</h3><span class="step-verb">Read &amp; bound</span></div>
+            <p>Loads source PDF, LaTeX, or Markdown. Enforces a strict ceiling of ≤10 pages and ≤15,000 tokens. Strips bibliographies, boilerplate references, and secondary appendices to prevent cognitive drift.</p>
+            <div class="step-meta"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg>Artifact: sci-plot-output/analysis.md · Scope Filter Pass</div>
+          </div>
+        </article>
+        <article class="flow-step" data-reveal>
+          <div class="step-index"><b>02</b><small>Analyze</small></div>
+          <div class="step-body">
+            <div class="step-head"><h3 class="step-title">Concept Extraction &amp; Dual-Track Pool Matching</h3><span class="step-verb">Extract</span></div>
+            <p>Identifies core hypotheses, algorithmic workflows, neural architectures, or experimental comparisons. Matches domain characteristics against the curated Rules Pool (Core + Community tracks).</p>
+            <div class="step-meta"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg>Matching: references/rules-pool/ · Domain Taxonomy</div>
+          </div>
+        </article>
+        <article class="flow-step" data-reveal>
+          <div class="step-index"><b>03</b><small>Plan</small></div>
+          <div class="step-body">
+            <div class="step-head"><h3 class="step-title">Figure Planning &amp; Visual Hierarchy</h3><span class="step-verb">Structure</span></div>
+            <p>Structures visual hierarchy, sub-figure arrangements (Figure 1A, 1B, 1C), visual focal points, flow directions, and color harmony matrices following Nature/Science publication criteria.</p>
+            <div class="step-meta"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg>Artifact: sci-plot-output/figure-plan.md</div>
+          </div>
+        </article>
+        <article class="flow-step" data-reveal>
+          <div class="step-index"><b>04</b><small>Synthesize</small></div>
+          <div class="step-body">
+            <div class="step-head"><h3 class="step-title">Multi-Platform Prompt Compilation</h3><span class="step-verb">Compile</span></div>
+            <p>Compiles the abstract figure plan into native dialect prompts: Midjourney (parameters, lighting, camera angle), Doubao/DALL-E 3 (compositional narrative), and Matplotlib (reproducible Python code).</p>
+            <div class="step-meta"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg>Artifacts: sci-plot-output/prompts/prompt-*.md</div>
+          </div>
+        </article>
+        <article class="flow-step" data-reveal>
+          <div class="step-index"><b>05</b><small>Verify</small></div>
+          <div class="step-body">
+            <div class="step-head"><h3 class="step-title">4-Tier QA Verification &amp; Delivery</h3><span class="step-verb">Validate</span></div>
+            <p>Validates compliance: zero hallucinated terms, correct aspect ratios, palette accessibility, text legibility, and executable renderer scripts.</p>
+            <div class="step-meta"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Artifact: sci-plot-output/README.md · 6/6 Test Pass</div>
+          </div>
+        </article>
       </div>
     </div>
-  </header>
+  </div>
+</section>
 
-  <main>
-    <!-- Hero Section -->
-    <section id="overview" class="hero">
-      <div class="container">
-        <div class="hero-pill">
-          <span class="dot"></span>
-          <span>Scientific Paper to Visual Figures · Production Ready</span>
+<!-- ===================== Architecture ===================== -->
+<section id="architecture" class="section section--dark">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="kicker"><span class="kicker-num">03</span> Interactive Architecture</div>
+        <h2 class="section-title">System Panorama &amp; Structural Views</h2>
+      </div>
+      <p class="section-sub">Explore the live, interactive architecture generated via <a href="https://github.com/tt-a1i/archify" target="_blank" rel="noopener noreferrer">tt-a1i/archify</a>. Switch between views to inspect components, execution sequence, and data flow.</p>
+    </div>
+
+    <div class="viewer" data-reveal>
+      <div class="viewer-tabs" role="tablist" aria-label="Architecture diagram views">
+        <button class="viewer-tab active" type="button" role="tab" aria-selected="true" data-diagram="core"><span class="vnum">01</span> Core Architecture</button>
+        <button class="viewer-tab" type="button" role="tab" aria-selected="false" data-diagram="arch"><span class="vnum">02</span> System Panorama</button>
+        <button class="viewer-tab" type="button" role="tab" aria-selected="false" data-diagram="workflow"><span class="vnum">03</span> Workflow Pipeline</button>
+        <button class="viewer-tab" type="button" role="tab" aria-selected="false" data-diagram="sequence"><span class="vnum">04</span> Sequence Chain</button>
+        <button class="viewer-tab" type="button" role="tab" aria-selected="false" data-diagram="dataflow"><span class="vnum">05</span> Data Flow Graph</button>
+      </div>
+
+      <div class="viewer-bar">
+        <div class="viewer-meta">
+          <span class="viewer-title" id="viewer-title">Core Architecture (10-Min Fast-Track)</span>
+          <span class="viewer-file" id="viewer-file">core-architecture.html</span>
         </div>
-
-        <h1 class="hero-title">
-          From Academic Papers to <br><span class="gradient-text">Publication-Grade Figures</span>
-        </h1>
-
-        <p class="hero-subtitle">
-          Sci-Plot is an agentic scientific illustration engine. It systematically ingests complex research papers, enforces mathematical scope isolation, matches domain-specific aesthetic rules, and compiles cross-platform prompt blueprints for AI generators and Python renderers.
-        </p>
-
-        <div class="hero-actions">
-          <a href="#architecture" class="btn-primary">
-            <span>Explore Architecture</span>
-            <span>↓</span>
-          </a>
-          <a href="./project_card.html" target="_blank" class="btn-secondary">
-            <span>Shareable Project Card 📸</span>
-          </a>
-          <a href="../archify/core-architecture.html" target="_blank" class="btn-secondary">
-            <span>Interactive Diagram Center ⤤</span>
-          </a>
-        </div>
-
-        <!-- Hero Stat Counters -->
-        <div class="stats-grid">
-          <div class="stat-card">
-            <div class="stat-num c-indigo count-up" data-target="5">0</div>
-            <div class="stat-label">Visual Style Presets</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-num c-cyan count-up" data-target="5">0</div>
-            <div class="stat-label">Deterministic Pipeline Rounds</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-num c-pink count-up" data-target="10">0</div>
-            <div class="stat-label">Max Pages per Batch</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-num c-emerald count-up" data-target="6">0</div>
-            <div class="stat-label">Compatible Rendering Backends</div>
-          </div>
+        <div class="viewer-actions">
+          <a href="../archify/core-architecture.html" target="_blank" rel="noopener noreferrer" class="tool" id="btn-open-external"><svg class="icon" aria-hidden="true"><use href="#i-external"/></svg> Open in New Tab</a>
+          <button type="button" class="tool" id="btn-fullscreen"><svg class="icon" aria-hidden="true"><use href="#i-expand"/></svg><span id="fullscreen-label">Fullscreen</span></button>
+          <a href="../archify/diagram-input.md" target="_blank" rel="noopener noreferrer" class="tool"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg> Blueprint Input</a>
         </div>
       </div>
-    </section>
 
-    <!-- Core Features Section -->
-    <section id="features" class="section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Core Engine</span>
-          <h2 class="section-title">Architected for Academic Rigor</h2>
-          <p class="section-subtitle">
-            Unlike superficial image prompts, Sci-Plot implements systematic compiler guarantees, strict isolation boundaries, and automated quality gates.
-          </p>
-        </div>
-
-        <div class="features-grid">
-          <div class="feature-card f-indigo">
-            <div class="feature-icon">🔄</div>
-            <h3 class="feature-title">5-Round Deterministic Pipeline</h3>
-            <p class="feature-desc">
-              Executes paper ingestion, concept extraction, layout structuring, multi-platform synthesis, and QA gate verification in strictly ordered phases.
-            </p>
-            <div class="feature-tags">
-              <span class="feature-tag">Deterministic</span>
-              <span class="feature-tag">Zero Drift</span>
-              <span class="feature-tag">Reproducible</span>
-            </div>
-          </div>
-
-          <div class="feature-card f-cyan">
-            <div class="feature-icon">🛡️</div>
-            <h3 class="feature-title">Strict Scope Isolation</h3>
-            <p class="feature-desc">
-              Imposes hard caps (≤10 pages / ≤15k tokens) to prevent context saturation. Isolates appendices, proofs, and references from diluting key figures.
-            </p>
-            <div class="feature-tags">
-              <span class="feature-tag">Token Bounded</span>
-              <span class="feature-tag">Anti-Hallucination</span>
-              <span class="feature-tag">Focus Guard</span>
-            </div>
-          </div>
-
-          <div class="feature-card f-pink">
-            <div class="feature-icon">🌐</div>
-            <h3 class="feature-title">Universal Harvester & Radar</h3>
-            <p class="feature-desc">
-              Automatically harvests top-ranked scientific prompt styles and layout taxonomies from leading open-source repositories and cloud catalogs.
-            </p>
-            <div class="feature-tags">
-              <span class="feature-tag">Auto-Sync</span>
-              <span class="feature-tag">Community Rules</span>
-              <span class="feature-tag">Dynamic Ingestion</span>
-            </div>
-          </div>
-
-          <div class="feature-card f-emerald">
-            <div class="feature-icon">🎯</div>
-            <h3 class="feature-title">Multi-Platform Prompt Compiler</h3>
-            <p class="feature-desc">
-              Transforms semantic scene graphs into native parameters for Midjourney v6.1, DALL-E 3, Doubao, Stable Diffusion, and executable Python Matplotlib scripts.
-            </p>
-            <div class="feature-tags">
-              <span class="feature-tag">Midjourney</span>
-              <span class="feature-tag">Doubao</span>
-              <span class="feature-tag">Matplotlib</span>
-            </div>
-          </div>
-
-          <div class="feature-card f-orange">
-            <div class="feature-icon">📐</div>
-            <h3 class="feature-title">Publication Typography & Palettes</h3>
-            <p class="feature-desc">
-              Adheres to Nature, Science, and IEEE typography standards with accessible color-blind safe palettes (Viridis, ColorBrewer, Tol bright).
-            </p>
-            <div class="feature-tags">
-              <span class="feature-tag">Nature Style</span>
-              <span class="feature-tag">Color-Blind Safe</span>
-              <span class="feature-tag">Vector Clean</span>
-            </div>
-          </div>
-
-          <div class="feature-card f-indigo">
-            <div class="feature-icon">🧪</div>
-            <h3 class="feature-title">4-Tier Automated Quality Gate</h3>
-            <p class="feature-desc">
-              Comprehensive test suite verifies prompt token limits, cloud downloader integrity, end-to-end simulations, and radar scanners before distribution.
-            </p>
-            <div class="feature-tags">
-              <span class="feature-tag">Unit Tested</span>
-              <span class="feature-tag">E2E Verification</span>
-              <span class="feature-tag">CI/CD Ready</span>
-            </div>
-          </div>
-        </div>
+      <div class="viewer-canvas" id="viewer-canvas">
+        <iframe id="archify-frame" src="../archify/core-architecture.html?theme=dark&amp;embed=1" title="Archify interactive architecture diagram" loading="lazy" allowfullscreen></iframe>
       </div>
-    </section>
 
-    <!-- Archify Interactive Architecture Center -->
-    <section id="architecture" class="section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Interactive Architecture</span>
-          <h2 class="section-title">System Panorama & Structural Views</h2>
-          <p class="section-subtitle">
-            Explore the live, interactive architecture generated via <a href="https://github.com/tt-a1i/archify" target="_blank" rel="noopener">tt-a1i/archify</a>. Switch between views to inspect components, execution sequence, and data flow.
-          </p>
-        </div>
-
-        <div class="archify-wrapper">
-          <!-- View Switcher Tabs -->
-          <div class="archify-tabs">
-            <button class="archify-tab active" data-diagram="core">
-              <span>⚡</span> Core Architecture
-            </button>
-            <button class="archify-tab" data-diagram="arch">
-              <span>🏛️</span> System Panorama
-            </button>
-            <button class="archify-tab" data-diagram="workflow">
-              <span>🔄</span> Workflow Pipeline
-            </button>
-            <button class="archify-tab" data-diagram="sequence">
-              <span>⏱️</span> Sequence Chain
-            </button>
-            <button class="archify-tab" data-diagram="dataflow">
-              <span>🌊</span> Data Flow Graph
-            </button>
-          </div>
-
-          <!-- Dynamic Toolbar -->
-          <div class="archify-toolbar">
-            <div class="diagram-meta">
-              <span class="diagram-title" id="archify-current-title">Core Architecture (10-Min Fast-Track)</span>
-              <span class="diagram-badge" id="archify-current-badge">core-architecture.html</span>
-            </div>
-            <div class="archify-actions">
-              <a href="../archify/core-architecture.html" target="_blank" class="btn-tool" id="btn-open-external">
-                <span>↗</span> Open in New Tab
-              </a>
-              <button class="btn-tool" id="btn-fullscreen">
-                <span>⤢</span> Fullscreen
-              </button>
-              <a href="../archify/diagram-input.md" target="_blank" class="btn-tool">
-                <span>📄</span> Blueprint Input
-              </a>
-            </div>
-          </div>
-
-          <!-- Live Embedded Archify Iframe -->
-          <div class="archify-viewport" id="archify-viewport">
-            <iframe id="archify-frame" src="../archify/core-architecture.html" title="Archify Interactive Architecture Diagram"></iframe>
-          </div>
-
-          <div class="archify-note">
-            <span>💡 <strong>Tip:</strong> Click any component inside the diagram to trace upstream/downstream connections or zoom using mouse wheel.</span>
-            <span>Direct asset path: <code>docs/archify/*.html</code></span>
-          </div>
-        </div>
-
-        <!-- Static High-Res Architecture Diagram -->
-        <div class="arch-card">
-          <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 20px; color: var(--text-primary);">
-            Static System Architecture Overview
-          </h3>
-          <img src="../architecture.svg" alt="Sci-Plot System Architecture Diagram" loading="lazy">
-          <p style="margin-top: 16px; font-size: 0.88rem; color: var(--text-secondary);">
-            Standard vector architecture diagram linking Core Pipeline, Dual-Track Pool, Harvester, and Platform Renderers.
-          </p>
-        </div>
+      <div class="viewer-note">
+        <span><strong>Tip:</strong> Click any component inside the diagram to trace upstream/downstream connections, or zoom with the mouse wheel.</span>
+        <span>Direct asset path: <code>docs/archify/*.html</code></span>
       </div>
-    </section>
+    </div>
 
-    <!-- 5-Round Workflow Pipeline -->
-    <section id="workflow" class="section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Execution Flow</span>
-          <h2 class="section-title">The 5-Round Deterministic Pipeline</h2>
-          <p class="section-subtitle">
-            Every figure generation passes through 5 strictly structured rounds to ensure complete scientific fidelity.
-          </p>
-        </div>
+    <figure class="static-figure" data-reveal>
+      <figcaption>Static System Architecture Overview <span>Vector · SVG</span></figcaption>
+      <div class="img-wrap"><img src="../architecture.svg" alt="Sci-Plot system architecture diagram linking Core Pipeline, Dual-Track Pool, Harvester, and Platform Renderers" loading="lazy"></div>
+      <p>Standard vector architecture diagram linking Core Pipeline, Dual-Track Pool, Harvester, and Platform Renderers.</p>
+    </figure>
+  </div>
+</section>
 
-        <div class="workflow-timeline">
-          <div class="workflow-step">
-            <div class="step-badge">
-              <span class="step-num">01</span>
-              <span class="step-label">Ingest</span>
-            </div>
-            <div class="step-content">
-              <h3>Paper Ingestion & Scope Isolation</h3>
-              <p>
-                Loads source PDF, LaTeX, or Markdown. Enforces a strict ceiling of ≤10 pages and ≤15,000 tokens. Strips bibliographies, boilerplate references, and secondary appendices to prevent cognitive drift.
-              </p>
-              <div class="step-meta">Artifact: sci-plot-output/analysis.md · Scope Filter Pass</div>
-            </div>
-          </div>
-
-          <div class="workflow-step">
-            <div class="step-badge">
-              <span class="step-num">02</span>
-              <span class="step-label">Analyze</span>
-            </div>
-            <div class="step-content">
-              <h3>Concept Extraction & Dual-Track Pool Matching</h3>
-              <p>
-                Identifies core hypotheses, algorithmic workflows, neural architectures, or experimental comparisons. Matches domain characteristics against the curated Rules Pool (Core + Community tracks).
-              </p>
-              <div class="step-meta">Matching: references/rules-pool/ · Domain Taxonomy</div>
-            </div>
-          </div>
-
-          <div class="workflow-step">
-            <div class="step-badge">
-              <span class="step-num">03</span>
-              <span class="step-label">Plan</span>
-            </div>
-            <div class="step-content">
-              <h3>Figure Planning & Visual Hierarchy</h3>
-              <p>
-                Structures visual hierarchy, sub-figure arrangements (Figure 1A, 1B, 1C), visual focal points, flow directions, and color harmony matrices following Nature/Science publication criteria.
-              </p>
-              <div class="step-meta">Artifact: sci-plot-output/figure-plan.md</div>
-            </div>
-          </div>
-
-          <div class="workflow-step">
-            <div class="step-badge">
-              <span class="step-num">04</span>
-              <span class="step-label">Synthesize</span>
-            </div>
-            <div class="step-content">
-              <h3>Multi-Platform Prompt Compilation</h3>
-              <p>
-                Compiles the abstract figure plan into native dialect prompts: Midjourney (parameters, lighting, camera angle), Doubao/DALL-E 3 (compositional narrative), and Matplotlib (reproducible Python code).
-              </p>
-              <div class="step-meta">Artifacts: sci-plot-output/prompts/prompt-*.md</div>
-            </div>
-          </div>
-
-          <div class="workflow-step">
-            <div class="step-badge">
-              <span class="step-num">05</span>
-              <span class="step-label">Verify</span>
-            </div>
-            <div class="step-content">
-              <h3>4-Tier QA Verification & Delivery</h3>
-              <p>
-                Validates compliance: zero hallucinated terms, correct aspect ratios, palette accessibility, text legibility, and executable renderer scripts.
-              </p>
-              <div class="step-meta">Artifact: sci-plot-output/README.md · 6/6 Test Pass</div>
-            </div>
-          </div>
-        </div>
+<!-- ===================== Visual styles ===================== -->
+<section id="styles" class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="kicker"><span class="kicker-num">04</span> Visual Styles</div>
+        <h2 class="section-title">5 Built-in Aesthetic Presets</h2>
       </div>
-    </section>
+      <p class="section-sub">The built-in preset pack ships five visual grammars. Drop your own <span class="mono">.md</span> rules into the pool and they are discovered automatically — no hardcoded list.</p>
+    </div>
 
-    <!-- Visual Styles Section -->
-    <section id="styles" class="section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Visual Styles</span>
-          <h2 class="section-title">5 Built-in Aesthetic Presets</h2>
-          <p class="section-subtitle">
-            Tailored visual grammars for academic papers, thesis defenses, conference slides, and research monographs.
-          </p>
+    <div class="styles-grid">
+      <article class="style-card" data-reveal>
+        <div class="style-swatches"><span style="background:#2563eb"></span><span style="background:#0d9488"></span><span style="background:#e2e8f0"></span></div>
+        <div class="style-inner">
+          <div class="style-top"><span class="style-name">paper-figure</span><span class="style-idx">01 / 05</span></div>
+          <p class="style-desc">Standard academic publication style. Crisp vector lines, high-contrast typography, formal layout, minimal ornamentation.</p>
+          <div class="style-prompt">scientific illustration, vector diagram, Nature journal style, high contrast, white background</div>
         </div>
-
-        <div class="styles-grid">
-          <div class="style-card">
-            <div class="style-header">
-              <span class="style-name">paper-figure</span>
-              <div class="style-palette">
-                <span class="palette-swatch" style="background: #2563eb;"></span>
-                <span class="palette-swatch" style="background: #0d9488;"></span>
-                <span class="palette-swatch" style="background: #e2e8f0;"></span>
-              </div>
-            </div>
-            <p class="style-desc">
-              Standard academic publication style. Crisp vector lines, high-contrast typography, formal layout, minimal ornamentation.
-            </p>
-            <div class="style-prompt">
-              scientific illustration, vector diagram, Nature journal style, high contrast, white background
-            </div>
-          </div>
-
-          <div class="style-card">
-            <div class="style-header">
-              <span class="style-name">journal-minimal</span>
-              <div class="style-palette">
-                <span class="palette-swatch" style="background: #0f172a;"></span>
-                <span class="palette-swatch" style="background: #475569;"></span>
-                <span class="palette-swatch" style="background: #3b82f6;"></span>
-              </div>
-            </div>
-            <p class="style-desc">
-              Refined minimalist aesthetic. Thin borders, generous whitespace, monochrome primary with subtle single-hue focal highlights.
-            </p>
-            <div class="style-prompt">
-              minimalist technical diagram, clean lines, single accent color, publication quality
-            </div>
-          </div>
-
-          <div class="style-card">
-            <div class="style-header">
-              <span class="style-name">sketchnote</span>
-              <div class="style-palette">
-                <span class="palette-swatch" style="background: #f59e0b;"></span>
-                <span class="palette-swatch" style="background: #10b981;"></span>
-                <span class="palette-swatch" style="background: #334155;"></span>
-              </div>
-            </div>
-            <p class="style-desc">
-              Hand-drawn cognitive visual note. Ideal for conference slides, overview posters, educational tutorials, and keynote presentations.
-            </p>
-            <div class="style-prompt">
-              sketchnote, hand-drawn infographic, visual summary, clean ink lines, marker highlights
-            </div>
-          </div>
-
-          <div class="style-card">
-            <div class="style-header">
-              <span class="style-name">warm-notes</span>
-              <div class="style-palette">
-                <span class="palette-swatch" style="background: #d97706;"></span>
-                <span class="palette-swatch" style="background: #ca8a04;"></span>
-                <span class="palette-swatch" style="background: #fef3c7;"></span>
-              </div>
-            </div>
-            <p class="style-desc">
-              Warm parchment aesthetic. Organic earth tones, gentle gradients, comfortable for deep reading and study guides.
-            </p>
-            <div class="style-prompt">
-              warm tone study notes, parchment texture, earth color palette, readable layout
-            </div>
-          </div>
-
-          <div class="style-card">
-            <div class="style-header">
-              <span class="style-name">business-research</span>
-              <div class="style-palette">
-                <span class="palette-swatch" style="background: #4338ca;"></span>
-                <span class="palette-swatch" style="background: #0284c7;"></span>
-                <span class="palette-swatch" style="background: #64748b;"></span>
-              </div>
-            </div>
-            <p class="style-desc">
-              Executive technology whitepaper style. Sophisticated dark/light corporate palettes, modular cards, high-density data layouts.
-            </p>
-            <div class="style-prompt">
-              Gartner/McKinsey whitepaper diagram, executive dashboard, modern tech briefing
-            </div>
-          </div>
+      </article>
+      <article class="style-card" data-reveal>
+        <div class="style-swatches"><span style="background:#0f172a"></span><span style="background:#475569"></span><span style="background:#3b82f6"></span></div>
+        <div class="style-inner">
+          <div class="style-top"><span class="style-name">journal-minimal</span><span class="style-idx">02 / 05</span></div>
+          <p class="style-desc">Refined minimalist aesthetic. Thin borders, generous whitespace, monochrome primary with subtle single-hue focal highlights.</p>
+          <div class="style-prompt">minimalist technical diagram, clean lines, single accent color, publication quality</div>
         </div>
+      </article>
+      <article class="style-card" data-reveal>
+        <div class="style-swatches"><span style="background:#f59e0b"></span><span style="background:#10b981"></span><span style="background:#334155"></span></div>
+        <div class="style-inner">
+          <div class="style-top"><span class="style-name">sketchnote</span><span class="style-idx">03 / 05</span></div>
+          <p class="style-desc">Hand-drawn cognitive visual note. Ideal for conference slides, overview posters, educational tutorials, and keynote presentations.</p>
+          <div class="style-prompt">sketchnote, hand-drawn infographic, visual summary, clean ink lines, marker highlights</div>
+        </div>
+      </article>
+      <article class="style-card" data-reveal>
+        <div class="style-swatches"><span style="background:#d97706"></span><span style="background:#ca8a04"></span><span style="background:#fef3c7"></span></div>
+        <div class="style-inner">
+          <div class="style-top"><span class="style-name">warm-notes</span><span class="style-idx">04 / 05</span></div>
+          <p class="style-desc">Warm parchment aesthetic. Organic earth tones, gentle gradients, comfortable for deep reading and study guides.</p>
+          <div class="style-prompt">warm tone study notes, parchment texture, earth color palette, readable layout</div>
+        </div>
+      </article>
+      <article class="style-card" data-reveal>
+        <div class="style-swatches"><span style="background:#4338ca"></span><span style="background:#0284c7"></span><span style="background:#64748b"></span></div>
+        <div class="style-inner">
+          <div class="style-top"><span class="style-name">business-research</span><span class="style-idx">05 / 05</span></div>
+          <p class="style-desc">Executive technology whitepaper style. Sophisticated dark/light corporate palettes, modular cards, high-density data layouts.</p>
+          <div class="style-prompt">Gartner/McKinsey whitepaper diagram, executive dashboard, modern tech briefing</div>
+        </div>
+      </article>
+      <article class="style-card" data-reveal style="border-style:dashed;background:transparent">
+        <div class="style-swatches"><span style="background:#E1E7EE"></span><span style="background:#CBD5E0"></span><span style="background:#E1E7EE"></span></div>
+        <div class="style-inner">
+          <div class="style-top"><span class="style-name" style="color:var(--muted)">your-own-preset.md</span><span class="style-idx">EXTENSIBLE</span></div>
+          <p class="style-desc">Drop a Markdown file into <span class="mono">references/rules-pool/local/</span> and the pipeline discovers it automatically — no hardcoded list, no rebuild.</p>
+          <div class="style-prompt">Dynamic local pool scan · optional cloud / GitHub rule harvesting</div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== Quick start ===================== -->
+<section id="quickstart" class="section section--tint">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="kicker"><span class="kicker-num">05</span> Quick Start</div>
+        <h2 class="section-title">Triggering Sci-Plot</h2>
       </div>
-    </section>
+      <p class="section-sub">Invoke the workflow from any AI assistant — no runtime install, no subscription, no API key.</p>
+    </div>
 
-    <!-- Project Structure Section -->
-    <section id="structure" class="section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Repository Structure</span>
-          <h2 class="section-title">Clean, Modular Codebase</h2>
-          <p class="section-subtitle">
-            An organized layout separating core agent skills, ingestion scripts, interactive Archify deliverables, and verification suites.
-          </p>
+    <div class="code-stack">
+      <div class="code-box" data-reveal>
+        <div class="code-head">
+          <span class="code-label"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg> Skill Invocation in Antigravity or Claude</span>
+          <button class="btn-copy" type="button"><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg><span>Copy Command</span></button>
         </div>
-
-        <div class="tree-wrapper">
-          <div class="tree-node"><span class="tree-folder">sci-plot/</span></div>
-          <div class="tree-node">&nbsp;&nbsp;├── <span class="tree-file">SKILL.md</span> <span class="tree-comment"># Antigravity / Claude skill specification</span></div>
-          <div class="tree-node">&nbsp;&nbsp;├── <span class="tree-folder">docs/</span> <span class="tree-comment"># GitHub Pages deployment root</span></div>
-          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="tree-file">index.html</span> <span class="tree-comment"># Pages entrance redirecting to overview</span></div>
-          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="tree-file">.nojekyll</span> <span class="tree-comment"># Disables Jekyll processing</span></div>
-          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="tree-file">architecture.svg</span> <span class="tree-comment"># Vector architecture chart</span></div>
-          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="tree-folder">archify/</span> <span class="tree-comment"># Archify interactive diagrams (5 views)</span></div>
-          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="tree-file">core-architecture.html</span></div>
-          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="tree-file">architecture-panorama.html</span></div>
-          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="tree-file">workflow-panorama.html</span></div>
-          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="tree-file">sequence-panorama.html</span></div>
-          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="tree-file">dataflow-panorama.html</span></div>
-          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── <span class="tree-file">diagram-input.md</span></div>
-          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── <span class="tree-folder">project_overview/</span> <span class="tree-comment"># Single source project overview page</span></div>
-          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── <span class="tree-file">index.html</span></div>
-          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── <span class="tree-file">style.css</span></div>
-          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <span class="tree-file">script.js</span></div>
-          <div class="tree-node">&nbsp;&nbsp;├── <span class="tree-folder">references/</span> <span class="tree-comment"># Domain prompt rules and taxonomies</span></div>
-          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="tree-folder">core/</span>, <span class="tree-folder">rules-pool/</span>, <span class="tree-folder">styles/</span>, <span class="tree-folder">renderers/</span></div>
-          <div class="tree-node">&nbsp;&nbsp;├── <span class="tree-folder">scripts/</span> <span class="tree-comment"># Tooling & Harvester utilities</span></div>
-          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="tree-file">universal_skill_harvester.py</span></div>
-          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="tree-file">fetch_external_skills.py</span></div>
-          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── <span class="tree-folder">visualization/</span> <span class="tree-comment"># Asset generation scripts</span></div>
-          <div class="tree-node">&nbsp;&nbsp;├── <span class="tree-folder">tests/</span> <span class="tree-comment"># 4-tier verification suite (6/6 pass)</span></div>
-          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── <span class="tree-file">run_all_tests.py</span></div>
-          <div class="tree-node">&nbsp;&nbsp;└── <span class="tree-file">README.md</span>, <span class="tree-file">README.zh-CN.md</span>, <span class="tree-file">pyproject.toml</span>, <span class="tree-file">LICENSE</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Quickstart Section -->
-    <section id="quickstart" class="section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Quick Start</span>
-          <h2 class="section-title">Triggering Sci-Plot</h2>
-          <p class="section-subtitle">
-            Seamlessly invoke the skill from Antigravity, Claude Code, or any LLM agent CLI.
-          </p>
-        </div>
-
-        <div class="code-box">
-          <div class="code-header">
-            <span>Skill Invocation in Antigravity or Claude</span>
-            <button class="btn-copy">Copy Command</button>
-          </div>
-          <pre><code># Natural language invocation with your target paper
-"Please use the sci-plot skill to parse my paper at ./paper.pdf,
+        <pre><code><span class="c-comment"># Natural language invocation with your target paper</span>
+<span class="c-string">"Please use the sci-plot skill to parse my paper at ./paper.pdf,
 generate publication-grade figures in 'paper-figure' style,
-and produce prompt files for both Midjourney and Matplotlib."</code></pre>
-        </div>
-
-        <div class="code-box">
-          <div class="code-header">
-            <span>Executing Harvester & Test Suite</span>
-            <button class="btn-copy">Copy Command</button>
-          </div>
-          <pre><code># Run full regression test suite
-python tests/run_all_tests.py
-
-# Ingest and update latest community scientific visualization rules
-python scripts/universal_skill_harvester.py https://github.com/Yuan1z0825/nature-skills</code></pre>
-        </div>
-      </div>
-    </section>
-
-    <!-- Documentation & Matrix -->
-    <section id="docs" class="section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Documentation</span>
-          <h2 class="section-title">Project Documentation Hub</h2>
-          <p class="section-subtitle">
-            Access complete project documentation, bilingual guides, contribution standards, and release logs.
-          </p>
-        </div>
-
-        <div class="docs-matrix">
-          <a href="./project_card.html" target="_blank" class="doc-link-card">
-            <span>📸 Shareable Project Card (PNG Export)</span>
-            <span class="arrow">↗</span>
-          </a>
-          <a href="../README.md" class="doc-link-card">
-            <span>📖 README (English)</span>
-            <span class="arrow">→</span>
-          </a>
-          <a href="../README.zh-CN.md" class="doc-link-card">
-            <span>🇨🇳 中文说明 (README.zh-CN)</span>
-            <span class="arrow">→</span>
-          </a>
-          <a href="../archify/core-architecture.html" target="_blank" class="doc-link-card">
-            <span>⚡ Interactive Core Architecture</span>
-            <span class="arrow">↗</span>
-          </a>
-          <a href="../archify/architecture-panorama.html" target="_blank" class="doc-link-card">
-            <span>🏛️ System Panorama (Archify)</span>
-            <span class="arrow">↗</span>
-          </a>
-          <a href="../FAQ.md" class="doc-link-card">
-            <span>❓ Frequently Asked Questions</span>
-            <span class="arrow">→</span>
-          </a>
-          <a href="../CONTRIBUTING.md" class="doc-link-card">
-            <span>🤝 Contributing Guidelines</span>
-            <span class="arrow">→</span>
-          </a>
-          <a href="../CHANGELOG.md" class="doc-link-card">
-            <span>📜 Release Changelog</span>
-            <span class="arrow">→</span>
-          </a>
-          <a href="../LICENSE" class="doc-link-card">
-            <span>⚖️ MIT License</span>
-            <span class="arrow">→</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq" class="section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">FAQ</span>
-          <h2 class="section-title">Frequently Asked Questions</h2>
-        </div>
-
-        <div class="faq-grid">
-          <div class="faq-card">
-            <h3 class="faq-q">What is the difference between Sci-Plot and generic image generators?</h3>
-            <p class="faq-a">
-              Generic generators invent pseudo-scientific gibberish labels and incorrect topologies. Sci-Plot extracts the real mathematical scene graph, enforces scope boundaries, and compiles tailored instructions that maintain factual fidelity.
-            </p>
-          </div>
-
-          <div class="faq-card">
-            <h3 class="faq-q">How does Scope Isolation protect my figure quality?</h3>
-            <p class="faq-a">
-              By enforcing a 10-page / 15k token ceiling and isolating secondary appendices, Sci-Plot prevents the LLM from becoming overwhelmed by tangential proofs and ensures attention is focused entirely on the core thesis.
-            </p>
-          </div>
-
-          <div class="faq-card">
-            <h3 class="faq-q">Can I run the generated figures locally without cloud AI?</h3>
-            <p class="faq-a">
-              Yes! Sci-Plot generates executable Python Matplotlib/Seaborn scripts alongside generative AI prompts, allowing 100% offline, reproducible vector PDF/SVG rendering.
-            </p>
-          </div>
-
-          <div class="faq-card">
-            <h3 class="faq-q">How do I deploy this overview page to GitHub Pages?</h3>
-            <p class="faq-a">
-              Simply go to repository Settings → Pages → Build and deployment → Source: Deploy from a branch → Branch: <code>main</code>, Folder: <code>/docs</code>. The included <code>docs/.nojekyll</code> and relative asset paths ensure instant, zero-configuration deployment.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-left">
-          <div class="footer-title">Sci-Plot — Scientific Figure Prompt Engine</div>
-          <p class="footer-desc">
-            Empowering researchers, educators, and developers to transform academic breakthroughs into stunning publication visuals.
-          </p>
-        </div>
-
-        <ul class="footer-links">
-          <li><a href="#overview">Overview</a></li>
-          <li><a href="#architecture">Architecture</a></li>
-          <li><a href="../archify/core-architecture.html" target="_blank">Archify</a></li>
-          <li><a href="https://github.com/LPK3215/sci-plot" target="_blank" rel="noopener">GitHub</a></li>
-          <li><a href="../LICENSE">MIT License</a></li>
-        </ul>
+and produce prompt files for both Midjourney and Matplotlib."</span></code></pre>
       </div>
 
-      <div class="footer-bottom">
-        <div>© 2026 LPK3215. All rights reserved. Powered by Antigravity & Archify.</div>
-        <div>Deployed on GitHub Pages (Classic <code>/docs</code> mode)</div>
+      <div class="code-box" data-reveal>
+        <div class="code-head">
+          <span class="code-label"><svg class="icon" aria-hidden="true"><use href="#i-cycle"/></svg> Executing Harvester &amp; Test Suite</span>
+          <button class="btn-copy" type="button"><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg><span>Copy Command</span></button>
+        </div>
+        <pre><code><span class="c-comment"># Run full regression test suite</span>
+<span class="c-cmd">python</span> tests/run_all_tests.py
+
+<span class="c-comment"># Ingest and update latest community scientific visualization rules</span>
+<span class="c-cmd">python</span> scripts/universal_skill_harvester.py https://github.com/Yuan1z0825/nature-skills</code></pre>
       </div>
     </div>
-  </footer>
+  </div>
+</section>
 
+<!-- ===================== Repository structure ===================== -->
+<section id="structure" class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="kicker"><span class="kicker-num">06</span> Repository Structure</div>
+        <h2 class="section-title">Clean, Modular Codebase</h2>
+      </div>
+      <p class="section-sub">An organized layout separating core agent skills, ingestion scripts, interactive Archify deliverables, and verification suites.</p>
+    </div>
+
+    <div class="tree-layout">
+      <div class="tree-box" data-reveal>
+        <div class="tree-head"><span>sci-plot/ — repository tree</span><span>24 entries</span></div>
+        <pre><code><span class="t-folder">sci-plot/</span>
+  ├── <span class="t-file">SKILL.md</span>                  <span class="t-comment"># Antigravity / Claude skill specification</span>
+  ├── <span class="t-folder">docs/</span>                     <span class="t-comment"># GitHub Pages deployment root</span>
+  │   ├── <span class="t-file">index.html</span>               <span class="t-comment"># Pages entrance redirecting to overview</span>
+  │   ├── <span class="t-file">.nojekyll</span>                <span class="t-comment"># Disables Jekyll processing</span>
+  │   ├── <span class="t-file">architecture.svg</span>         <span class="t-comment"># Vector architecture chart</span>
+  │   ├── <span class="t-folder">archify/</span>                <span class="t-comment"># Archify interactive diagrams (5 views)</span>
+  │   │   ├── <span class="t-file">core-architecture.html</span>
+  │   │   ├── <span class="t-file">architecture-panorama.html</span>
+  │   │   ├── <span class="t-file">workflow-panorama.html</span>
+  │   │   ├── <span class="t-file">sequence-panorama.html</span>
+  │   │   ├── <span class="t-file">dataflow-panorama.html</span>
+  │   │   └── <span class="t-file">diagram-input.md</span>
+  │   └── <span class="t-folder">project_overview/</span>       <span class="t-comment"># Single source project overview page</span>
+  │       └── <span class="t-file">index.html</span>            <span class="t-comment"># Self-contained: styles + behavior inlined</span>
+  ├── <span class="t-folder">references/</span>               <span class="t-comment"># Domain prompt rules and taxonomies</span>
+  │   └── <span class="t-folder">core/</span>, <span class="t-folder">rules-pool/</span>, <span class="t-folder">styles/</span>, <span class="t-folder">renderers/</span>
+  ├── <span class="t-folder">scripts/</span>                  <span class="t-comment"># Tooling &amp; Harvester utilities</span>
+  │   ├── <span class="t-file">universal_skill_harvester.py</span>
+  │   ├── <span class="t-file">fetch_external_skills.py</span>
+  │   └── <span class="t-folder">visualization/</span>           <span class="t-comment"># Asset generation scripts</span>
+  ├── <span class="t-folder">tests/</span>                    <span class="t-comment"># 4-tier verification suite (6/6 pass)</span>
+  │   └── <span class="t-file">run_all_tests.py</span>
+  └── <span class="t-file">README.md</span>, <span class="t-file">README.zh-CN.md</span>, <span class="t-file">pyproject.toml</span>, <span class="t-file">LICENSE</span></code></pre>
+      </div>
+      <aside class="tree-aside">
+        <h3>Designed for separation of concerns</h3>
+        <p>Four boundaries keep the generation path clean, auditable, and easy to extend.</p>
+        <ul>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Skill spec</strong> — agent instructions in <span class="mono">SKILL.md</span>.</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Rules pool</strong> — domain grammars, kept isolated from renderers.</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Docs</strong> — zero-config GitHub Pages deployment root.</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Tests</strong> — 4-tier gate before any distribution.</span></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== Documentation ===================== -->
+<section id="docs" class="section section--tint">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="kicker"><span class="kicker-num">07</span> Documentation</div>
+        <h2 class="section-title">Project Documentation Hub</h2>
+      </div>
+      <p class="section-sub">Access complete project documentation, bilingual guides, contribution standards, and release logs.</p>
+    </div>
+
+    <div class="docs-grid">
+      <a href="./project_card.html" target="_blank" rel="noopener noreferrer" class="doc-card" data-reveal><div><span class="doc-cat">Share</span><span class="doc-name">Shareable Project Card (PNG Export)</span></div><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+      <a href="https://github.com/LPK3215/sci-plot/blob/main/README.md" target="_blank" rel="noopener noreferrer" class="doc-card" data-reveal><div><span class="doc-cat">Guide</span><span class="doc-name">README (English)</span></div><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+      <a href="https://github.com/LPK3215/sci-plot/blob/main/README.zh-CN.md" target="_blank" rel="noopener noreferrer" class="doc-card" data-reveal><div><span class="doc-cat">中文指南</span><span class="doc-name">中文说明 (README.zh-CN)</span></div><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+      <a href="../archify/core-architecture.html" target="_blank" rel="noopener noreferrer" class="doc-card" data-reveal><div><span class="doc-cat">Interactive</span><span class="doc-name">Interactive Core Architecture</span></div><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+      <a href="../archify/architecture-panorama.html" target="_blank" rel="noopener noreferrer" class="doc-card" data-reveal><div><span class="doc-cat">Interactive</span><span class="doc-name">System Panorama (Archify)</span></div><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+      <a href="https://github.com/LPK3215/sci-plot/blob/main/FAQ.md" target="_blank" rel="noopener noreferrer" class="doc-card" data-reveal><div><span class="doc-cat">Reference</span><span class="doc-name">Frequently Asked Questions</span></div><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+      <a href="https://github.com/LPK3215/sci-plot/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" class="doc-card" data-reveal><div><span class="doc-cat">Community</span><span class="doc-name">Contributing Guidelines</span></div><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+      <a href="https://github.com/LPK3215/sci-plot/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer" class="doc-card" data-reveal><div><span class="doc-cat">Release</span><span class="doc-name">Release Changelog</span></div><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+      <a href="https://github.com/LPK3215/sci-plot/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="doc-card" data-reveal><div><span class="doc-cat">Legal</span><span class="doc-name">MIT License</span></div><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section id="faq" class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="kicker"><span class="kicker-num">08</span> FAQ</div>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+      </div>
+      <p class="section-sub">The four questions we hear most often from agent developers and skill authors.</p>
+    </div>
+
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary>What is the difference between Sci-Plot and generic image generators?<span class="faq-sign" aria-hidden="true"></span></summary>
+        <p class="faq-a">Generic generators invent pseudo-scientific gibberish labels and incorrect topologies. Sci-Plot extracts the real mathematical scene graph, enforces scope boundaries, and compiles tailored instructions that maintain factual fidelity.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How does Scope Isolation protect my figure quality?<span class="faq-sign" aria-hidden="true"></span></summary>
+        <p class="faq-a">By enforcing a 10-page / 15k token ceiling and isolating secondary appendices, Sci-Plot prevents the LLM from becoming overwhelmed by tangential proofs and ensures attention is focused entirely on the core thesis.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can I run the generated figures locally without cloud AI?<span class="faq-sign" aria-hidden="true"></span></summary>
+        <p class="faq-a">Yes! Sci-Plot generates executable Python Matplotlib/Seaborn scripts alongside generative AI prompts, allowing 100% offline, reproducible vector PDF/SVG rendering.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How do I deploy this overview page to GitHub Pages?<span class="faq-sign" aria-hidden="true"></span></summary>
+        <p class="faq-a">Simply go to repository Settings → Pages → Build and deployment → Source: Deploy from a branch → Branch: <code>main</code>, Folder: <code>/docs</code>. The included <code>docs/.nojekyll</code> and relative asset paths ensure instant, zero-configuration deployment.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== Closing CTA ===================== -->
+<section class="cta-band">
+  <div class="container cta-inner">
+    <div class="cta-copy">
+      <div class="eyebrow">Open source · MIT licensed</div>
+      <h2>Turn your next skill into a portable prompt package.</h2>
+      <p>One invocation takes you from a skill repository plus a topic to auditable Markdown prompt assets — ready for any LLM, any image tool, or a fully offline renderer.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="https://github.com/LPK3215/sci-plot" target="_blank" rel="noopener noreferrer" class="btn btn-light"><svg class="icon" aria-hidden="true" style="fill:currentColor;stroke:none"><use href="#i-github"/></svg> View on GitHub</a>
+      <a href="#quickstart" class="btn btn-ghost-light">Read the Quickstart <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== Footer ===================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#overview" class="brand"><span class="brand-mark"><svg aria-hidden="true" style="color:#fff"><use href="#i-mark"/></svg></span><span class="brand-name">Sci-Plot</span><span class="brand-ver">v1.2.0</span></a>
+        <p>Turn any AI skill and any topic into auditable Markdown prompt assets — no runtime, no vendor lock-in, no paid agent required.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul><li><a href="#overview">Overview</a></li><li><a href="#features">Core Engine</a></li><li><a href="#workflow">Pipeline</a></li><li><a href="#styles">Visual Styles</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul><li><a href="#architecture">Architecture</a></li><li><a href="#structure">Repository</a></li><li><a href="#quickstart">Quickstart</a></li><li><a href="#faq">FAQ</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Project</h4>
+        <ul><li><a href="https://github.com/LPK3215/sci-plot" target="_blank" rel="noopener noreferrer">GitHub</a></li><li><a href="../archify/core-architecture.html" target="_blank" rel="noopener noreferrer">Archify</a></li><li><a href="https://github.com/LPK3215/sci-plot/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a></li><li><a href="#docs">Documentation</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 LPK3215. All rights reserved. Powered by Antigravity &amp; Archify.</span>
+      <span>Deployed on GitHub Pages (Classic <code>/docs</code> mode)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Sticky nav elevation + mobile menu ---------- */
+  var nav = document.getElementById('siteNav');
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+
+  function onScroll() {
+    if (nav) nav.classList.toggle('scrolled', window.scrollY > 24);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  function closeMenu() {
+    if (!nav) return;
+    nav.classList.remove('nav-open');
+    if (toggle) {
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open navigation menu');
+    }
+  }
+  if (toggle && nav) {
+    toggle.addEventListener('click', function () {
+      var open = nav.classList.toggle('nav-open');
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+    });
+    links.addEventListener('click', function (e) {
+      if (e.target.closest('a')) closeMenu();
+    });
+    document.addEventListener('click', function (e) {
+      if (nav.classList.contains('nav-open') && !nav.contains(e.target)) closeMenu();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeMenu();
+    });
+  }
+
+  /* ---------- Active section highlighting ---------- */
+  var navAnchors = Array.prototype.slice.call(links.querySelectorAll('a[href^="#"]'));
+  var sections = navAnchors.map(function (a) { return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+  if ('IntersectionObserver' in window && sections.length) {
+    var sectionObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        navAnchors.forEach(function (a) {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
+        });
+      });
+    }, { rootMargin: '-25% 0px -65% 0px', threshold: 0 });
+    sections.forEach(function (s) { sectionObserver.observe(s); });
+  }
+
+  /* ---------- Archify diagram viewer ---------- */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.viewer-tab'));
+  var frame = document.getElementById('archify-frame');
+  var titleEl = document.getElementById('viewer-title');
+  var fileEl = document.getElementById('viewer-file');
+  var openExternal = document.getElementById('btn-open-external');
+  var canvas = document.getElementById('viewer-canvas');
+  var fullscreenBtn = document.getElementById('btn-fullscreen');
+  var fullscreenLabel = document.getElementById('fullscreen-label');
+
+  var diagrams = {
+    core:      { title: 'Core Architecture (10-Min Fast-Track)', file: 'core-architecture.html',       path: '../archify/core-architecture.html' },
+    arch:      { title: 'System Panorama Architecture',          file: 'architecture-panorama.html', path: '../archify/architecture-panorama.html' },
+    workflow:  { title: 'Workflow Execution Pipeline',           file: 'workflow-panorama.html',     path: '../archify/workflow-panorama.html' },
+    sequence:  { title: 'Invocation Sequence Chain',             file: 'sequence-panorama.html',     path: '../archify/sequence-panorama.html' },
+    dataflow:  { title: 'Data Flow & Storage Pipeline',          file: 'dataflow-panorama.html',     path: '../archify/dataflow-panorama.html' }
+  };
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      var data = diagrams[tab.getAttribute('data-diagram')];
+      if (!data || !frame) return;
+      tabs.forEach(function (t) {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      frame.src = data.path + '?theme=dark&embed=1';
+      titleEl.textContent = data.title;
+      fileEl.textContent = data.file;
+      if (openExternal) openExternal.href = data.path;
+    });
+  });
+
+  if (fullscreenBtn && canvas) {
+    fullscreenBtn.addEventListener('click', function () {
+      if (!document.fullscreenElement) {
+        var req = canvas.requestFullscreen || canvas.webkitRequestFullscreen || canvas.msRequestFullscreen;
+        if (req) req.call(canvas);
+      } else if (document.exitFullscreen) {
+        document.exitFullscreen();
+      }
+    });
+    document.addEventListener('fullscreenchange', function () {
+      fullscreenLabel.textContent = document.fullscreenElement ? 'Exit Fullscreen' : 'Fullscreen';
+    });
+  }
+
+  /* ---------- Copy to clipboard ---------- */
+  function fallbackCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+  document.querySelectorAll('.btn-copy').forEach(function (button) {
+    button.addEventListener('click', function () {
+      var code = button.closest('.code-box') && button.closest('.code-box').querySelector('pre code');
+      if (!code) return;
+      var text = code.textContent.trim();
+      var label = button.querySelector('span');
+      var done = function () {
+        button.classList.add('copied');
+        if (label) label.textContent = 'Copied';
+        setTimeout(function () {
+          button.classList.remove('copied');
+          if (label) label.textContent = 'Copy Command';
+        }, 1800);
+      };
+      var settled = false;
+      function finish() { if (!settled) { settled = true; done(); } }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(finish, function () { fallbackCopy(text); finish(); });
+        setTimeout(function () { if (!settled) { fallbackCopy(text); finish(); } }, 800);
+      } else {
+        fallbackCopy(text);
+        finish();
+      }
+    });
+  });
+
+  /* ---------- Scroll reveal ---------- */
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    document.body.classList.add('reveal-ready');
+    var revealItems = document.querySelectorAll('[data-reveal]');
+    var revealObserver = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        obs.unobserve(entry.target);
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    revealItems.forEach(function (el) { revealObserver.observe(el); });
+  }
+
+  /* ---------- Anchor offset for older browsers ---------- */
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = a.getAttribute('href');
+      if (!id || id === '#') return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+      if (history.pushState) history.pushState(null, '', id);
+    });
+  });
+})();
+</script>
 </body>
 </html>

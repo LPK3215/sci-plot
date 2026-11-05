@@ -4,6 +4,12 @@ Comprehensive answers to common questions about sci-plot's design philosophy, me
 
 ---
 
+### Q0: Is this still a scientific-figure tool?
+
+**A**: The bundled rules pool ships a **scientific-figure preset pack** as the reference domain, but the workflow itself is domain-agnostic: give it any skill repository plus a topic and it compiles portable `.md` prompt assets. The real point is to remove the runtime lock-in most agent skills assume — reusing someone else's rules should not require their paid coding agent, their CLI, or their API keys.
+
+---
+
 ### Q1: Why does sci-plot only generate prompts and never call image generation APIs directly?
 
 **A**: Directly invoking image generation models (e.g., calling OpenAI DALL-E, Midjourney, or Stable Diffusion APIs from inside an agent environment) introduces three critical failure modes:
