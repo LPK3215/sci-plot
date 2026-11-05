@@ -40,8 +40,11 @@ Security concerns typically relate to:
 
 ## Supported Versions
 
+Current stable release: **v1.2.0**
+
 | Version | Supported          |
 | ------- | ------------------ |
+| 1.2.x   | :white_check_mark: |
 | 1.1.x   | :white_check_mark: |
 | 1.0.x   | :white_check_mark: |
 | < 1.0   | :x:                |

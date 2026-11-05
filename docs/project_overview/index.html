@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sci-Plot — Scientific Figure Prompt Engine | Interactive Project Overview</title>
+  <meta name="description" content="Publication-grade scientific figure prompt compiler. Deterministic 5-round pipeline, dual-track rules pool, scope isolation, and multi-platform synthesis for Midjourney, DALL-E, Doubao, Stable Diffusion, and Matplotlib.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E📊%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+
+  <!-- Ambient Animated Particle Background -->
+  <div class="bg-particles" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- Sticky Blurred Navigation Bar -->
+  <header class="nav">
+    <div class="container">
+      <a href="#overview" class="nav-brand">
+        <div class="brand-logo">📊</div>
+        <span>Sci-Plot</span>
+        <span class="nav-badge">v1.2.0</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#architecture">Architecture</a></li>
+        <li><a href="#workflow">Pipeline</a></li>
+        <li><a href="#styles">Styles</a></li>
+        <li><a href="#structure">Structure</a></li>
+        <li><a href="#quickstart">Quickstart</a></li>
+        <li><a href="#docs">Docs</a></li>
+      </ul>
+
+      <div class="nav-cta">
+        <a href="https://github.com/LPK3215/sci-plot" target="_blank" rel="noopener noreferrer" class="btn-github">
+          <svg height="18" width="18" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+          <span>GitHub</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="overview" class="hero">
+      <div class="container">
+        <div class="hero-pill">
+          <span class="dot"></span>
+          <span>Scientific Paper to Visual Figures · Production Ready</span>
+        </div>
+
+        <h1 class="hero-title">
+          From Academic Papers to <br><span class="gradient-text">Publication-Grade Figures</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Sci-Plot is an agentic scientific illustration engine. It systematically ingests complex research papers, enforces mathematical scope isolation, matches domain-specific aesthetic rules, and compiles cross-platform prompt blueprints for AI generators and Python renderers.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#architecture" class="btn-primary">
+            <span>Explore Architecture</span>
+            <span>↓</span>
+          </a>
+          <a href="./project_card.html" target="_blank" class="btn-secondary">
+            <span>Shareable Project Card 📸</span>
+          </a>
+          <a href="../archify/core-architecture.html" target="_blank" class="btn-secondary">
+            <span>Interactive Diagram Center ⤤</span>
+          </a>
+        </div>
+
+        <!-- Hero Stat Counters -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-num c-indigo count-up" data-target="5">0</div>
+            <div class="stat-label">Visual Style Presets</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num c-cyan count-up" data-target="5">0</div>
+            <div class="stat-label">Deterministic Pipeline Rounds</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num c-pink count-up" data-target="10">0</div>
+            <div class="stat-label">Max Pages per Batch</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num c-emerald count-up" data-target="6">0</div>
+            <div class="stat-label">Compatible Rendering Backends</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Features Section -->
+    <section id="features" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Core Engine</span>
+          <h2 class="section-title">Architected for Academic Rigor</h2>
+          <p class="section-subtitle">
+            Unlike superficial image prompts, Sci-Plot implements systematic compiler guarantees, strict isolation boundaries, and automated quality gates.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card f-indigo">
+            <div class="feature-icon">🔄</div>
+            <h3 class="feature-title">5-Round Deterministic Pipeline</h3>
+            <p class="feature-desc">
+              Executes paper ingestion, concept extraction, layout structuring, multi-platform synthesis, and QA gate verification in strictly ordered phases.
+            </p>
+            <div class="feature-tags">
+              <span class="feature-tag">Deterministic</span>
+              <span class="feature-tag">Zero Drift</span>
+              <span class="feature-tag">Reproducible</span>
+            </div>
+          </div>
+
+          <div class="feature-card f-cyan">
+            <div class="feature-icon">🛡️</div>
+            <h3 class="feature-title">Strict Scope Isolation</h3>
+            <p class="feature-desc">
+              Imposes hard caps (≤10 pages / ≤15k tokens) to prevent context saturation. Isolates appendices, proofs, and references from diluting key figures.
+            </p>
+            <div class="feature-tags">
+              <span class="feature-tag">Token Bounded</span>
+              <span class="feature-tag">Anti-Hallucination</span>
+              <span class="feature-tag">Focus Guard</span>
+            </div>
+          </div>
+
+          <div class="feature-card f-pink">
+            <div class="feature-icon">🌐</div>
+            <h3 class="feature-title">Universal Harvester & Radar</h3>
+            <p class="feature-desc">
+              Automatically harvests top-ranked scientific prompt styles and layout taxonomies from leading open-source repositories and cloud catalogs.
+            </p>
+            <div class="feature-tags">
+              <span class="feature-tag">Auto-Sync</span>
+              <span class="feature-tag">Community Rules</span>
+              <span class="feature-tag">Dynamic Ingestion</span>
+            </div>
+          </div>
+
+          <div class="feature-card f-emerald">
+            <div class="feature-icon">🎯</div>
+            <h3 class="feature-title">Multi-Platform Prompt Compiler</h3>
+            <p class="feature-desc">
+              Transforms semantic scene graphs into native parameters for Midjourney v6.1, DALL-E 3, Doubao, Stable Diffusion, and executable Python Matplotlib scripts.
+            </p>
+            <div class="feature-tags">
+              <span class="feature-tag">Midjourney</span>
+              <span class="feature-tag">Doubao</span>
+              <span class="feature-tag">Matplotlib</span>
+            </div>
+          </div>
+
+          <div class="feature-card f-orange">
+            <div class="feature-icon">📐</div>
+            <h3 class="feature-title">Publication Typography & Palettes</h3>
+            <p class="feature-desc">
+              Adheres to Nature, Science, and IEEE typography standards with accessible color-blind safe palettes (Viridis, ColorBrewer, Tol bright).
+            </p>
+            <div class="feature-tags">
+              <span class="feature-tag">Nature Style</span>
+              <span class="feature-tag">Color-Blind Safe</span>
+              <span class="feature-tag">Vector Clean</span>
+            </div>
+          </div>
+
+          <div class="feature-card f-indigo">
+            <div class="feature-icon">🧪</div>
+            <h3 class="feature-title">4-Tier Automated Quality Gate</h3>
+            <p class="feature-desc">
+              Comprehensive test suite verifies prompt token limits, cloud downloader integrity, end-to-end simulations, and radar scanners before distribution.
+            </p>
+            <div class="feature-tags">
+              <span class="feature-tag">Unit Tested</span>
+              <span class="feature-tag">E2E Verification</span>
+              <span class="feature-tag">CI/CD Ready</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Archify Interactive Architecture Center -->
+    <section id="architecture" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Interactive Architecture</span>
+          <h2 class="section-title">System Panorama & Structural Views</h2>
+          <p class="section-subtitle">
+            Explore the live, interactive architecture generated via <a href="https://github.com/tt-a1i/archify" target="_blank" rel="noopener">tt-a1i/archify</a>. Switch between views to inspect components, execution sequence, and data flow.
+          </p>
+        </div>
+
+        <div class="archify-wrapper">
+          <!-- View Switcher Tabs -->
+          <div class="archify-tabs">
+            <button class="archify-tab active" data-diagram="core">
+              <span>⚡</span> Core Architecture
+            </button>
+            <button class="archify-tab" data-diagram="arch">
+              <span>🏛️</span> System Panorama
+            </button>
+            <button class="archify-tab" data-diagram="workflow">
+              <span>🔄</span> Workflow Pipeline
+            </button>
+            <button class="archify-tab" data-diagram="sequence">
+              <span>⏱️</span> Sequence Chain
+            </button>
+            <button class="archify-tab" data-diagram="dataflow">
+              <span>🌊</span> Data Flow Graph
+            </button>
+          </div>
+
+          <!-- Dynamic Toolbar -->
+          <div class="archify-toolbar">
+            <div class="diagram-meta">
+              <span class="diagram-title" id="archify-current-title">Core Architecture (10-Min Fast-Track)</span>
+              <span class="diagram-badge" id="archify-current-badge">core-architecture.html</span>
+            </div>
+            <div class="archify-actions">
+              <a href="../archify/core-architecture.html" target="_blank" class="btn-tool" id="btn-open-external">
+                <span>↗</span> Open in New Tab
+              </a>
+              <button class="btn-tool" id="btn-fullscreen">
+                <span>⤢</span> Fullscreen
+              </button>
+              <a href="../archify/diagram-input.md" target="_blank" class="btn-tool">
+                <span>📄</span> Blueprint Input
+              </a>
+            </div>
+          </div>
+
+          <!-- Live Embedded Archify Iframe -->
+          <div class="archify-viewport" id="archify-viewport">
+            <iframe id="archify-frame" src="../archify/core-architecture.html" title="Archify Interactive Architecture Diagram"></iframe>
+          </div>
+
+          <div class="archify-note">
+            <span>💡 <strong>Tip:</strong> Click any component inside the diagram to trace upstream/downstream connections or zoom using mouse wheel.</span>
+            <span>Direct asset path: <code>docs/archify/*.html</code></span>
+          </div>
+        </div>
+
+        <!-- Static High-Res Architecture Diagram -->
+        <div class="arch-card">
+          <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 20px; color: var(--text-primary);">
+            Static System Architecture Overview
+          </h3>
+          <img src="../architecture.svg" alt="Sci-Plot System Architecture Diagram" loading="lazy">
+          <p style="margin-top: 16px; font-size: 0.88rem; color: var(--text-secondary);">
+            Standard vector architecture diagram linking Core Pipeline, Dual-Track Pool, Harvester, and Platform Renderers.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5-Round Workflow Pipeline -->
+    <section id="workflow" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Execution Flow</span>
+          <h2 class="section-title">The 5-Round Deterministic Pipeline</h2>
+          <p class="section-subtitle">
+            Every figure generation passes through 5 strictly structured rounds to ensure complete scientific fidelity.
+          </p>
+        </div>
+
+        <div class="workflow-timeline">
+          <div class="workflow-step">
+            <div class="step-badge">
+              <span class="step-num">01</span>
+              <span class="step-label">Ingest</span>
+            </div>
+            <div class="step-content">
+              <h3>Paper Ingestion & Scope Isolation</h3>
+              <p>
+                Loads source PDF, LaTeX, or Markdown. Enforces a strict ceiling of ≤10 pages and ≤15,000 tokens. Strips bibliographies, boilerplate references, and secondary appendices to prevent cognitive drift.
+              </p>
+              <div class="step-meta">Artifact: sci-plot-output/analysis.md · Scope Filter Pass</div>
+            </div>
+          </div>
+
+          <div class="workflow-step">
+            <div class="step-badge">
+              <span class="step-num">02</span>
+              <span class="step-label">Analyze</span>
+            </div>
+            <div class="step-content">
+              <h3>Concept Extraction & Dual-Track Pool Matching</h3>
+              <p>
+                Identifies core hypotheses, algorithmic workflows, neural architectures, or experimental comparisons. Matches domain characteristics against the curated Rules Pool (Core + Community tracks).
+              </p>
+              <div class="step-meta">Matching: references/rules-pool/ · Domain Taxonomy</div>
+            </div>
+          </div>
+
+          <div class="workflow-step">
+            <div class="step-badge">
+              <span class="step-num">03</span>
+              <span class="step-label">Plan</span>
+            </div>
+            <div class="step-content">
+              <h3>Figure Planning & Visual Hierarchy</h3>
+              <p>
+                Structures visual hierarchy, sub-figure arrangements (Figure 1A, 1B, 1C), visual focal points, flow directions, and color harmony matrices following Nature/Science publication criteria.
+              </p>
+              <div class="step-meta">Artifact: sci-plot-output/figure-plan.md</div>
+            </div>
+          </div>
+
+          <div class="workflow-step">
+            <div class="step-badge">
+              <span class="step-num">04</span>
+              <span class="step-label">Synthesize</span>
+            </div>
+            <div class="step-content">
+              <h3>Multi-Platform Prompt Compilation</h3>
+              <p>
+                Compiles the abstract figure plan into native dialect prompts: Midjourney (parameters, lighting, camera angle), Doubao/DALL-E 3 (compositional narrative), and Matplotlib (reproducible Python code).
+              </p>
+              <div class="step-meta">Artifacts: sci-plot-output/prompts/prompt-*.md</div>
+            </div>
+          </div>
+
+          <div class="workflow-step">
+            <div class="step-badge">
+              <span class="step-num">05</span>
+              <span class="step-label">Verify</span>
+            </div>
+            <div class="step-content">
+              <h3>4-Tier QA Verification & Delivery</h3>
+              <p>
+                Validates compliance: zero hallucinated terms, correct aspect ratios, palette accessibility, text legibility, and executable renderer scripts.
+              </p>
+              <div class="step-meta">Artifact: sci-plot-output/README.md · 6/6 Test Pass</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visual Styles Section -->
+    <section id="styles" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Visual Styles</span>
+          <h2 class="section-title">5 Built-in Aesthetic Presets</h2>
+          <p class="section-subtitle">
+            Tailored visual grammars for academic papers, thesis defenses, conference slides, and research monographs.
+          </p>
+        </div>
+
+        <div class="styles-grid">
+          <div class="style-card">
+            <div class="style-header">
+              <span class="style-name">paper-figure</span>
+              <div class="style-palette">
+                <span class="palette-swatch" style="background: #2563eb;"></span>
+                <span class="palette-swatch" style="background: #0d9488;"></span>
+                <span class="palette-swatch" style="background: #e2e8f0;"></span>
+              </div>
+            </div>
+            <p class="style-desc">
+              Standard academic publication style. Crisp vector lines, high-contrast typography, formal layout, minimal ornamentation.
+            </p>
+            <div class="style-prompt">
+              scientific illustration, vector diagram, Nature journal style, high contrast, white background
+            </div>
+          </div>
+
+          <div class="style-card">
+            <div class="style-header">
+              <span class="style-name">journal-minimal</span>
+              <div class="style-palette">
+                <span class="palette-swatch" style="background: #0f172a;"></span>
+                <span class="palette-swatch" style="background: #475569;"></span>
+                <span class="palette-swatch" style="background: #3b82f6;"></span>
+              </div>
+            </div>
+            <p class="style-desc">
+              Refined minimalist aesthetic. Thin borders, generous whitespace, monochrome primary with subtle single-hue focal highlights.
+            </p>
+            <div class="style-prompt">
+              minimalist technical diagram, clean lines, single accent color, publication quality
+            </div>
+          </div>
+
+          <div class="style-card">
+            <div class="style-header">
+              <span class="style-name">sketchnote</span>
+              <div class="style-palette">
+                <span class="palette-swatch" style="background: #f59e0b;"></span>
+                <span class="palette-swatch" style="background: #10b981;"></span>
+                <span class="palette-swatch" style="background: #334155;"></span>
+              </div>
+            </div>
+            <p class="style-desc">
+              Hand-drawn cognitive visual note. Ideal for conference slides, overview posters, educational tutorials, and keynote presentations.
+            </p>
+            <div class="style-prompt">
+              sketchnote, hand-drawn infographic, visual summary, clean ink lines, marker highlights
+            </div>
+          </div>
+
+          <div class="style-card">
+            <div class="style-header">
+              <span class="style-name">warm-notes</span>
+              <div class="style-palette">
+                <span class="palette-swatch" style="background: #d97706;"></span>
+                <span class="palette-swatch" style="background: #ca8a04;"></span>
+                <span class="palette-swatch" style="background: #fef3c7;"></span>
+              </div>
+            </div>
+            <p class="style-desc">
+              Warm parchment aesthetic. Organic earth tones, gentle gradients, comfortable for deep reading and study guides.
+            </p>
+            <div class="style-prompt">
+              warm tone study notes, parchment texture, earth color palette, readable layout
+            </div>
+          </div>
+
+          <div class="style-card">
+            <div class="style-header">
+              <span class="style-name">business-research</span>
+              <div class="style-palette">
+                <span class="palette-swatch" style="background: #4338ca;"></span>
+                <span class="palette-swatch" style="background: #0284c7;"></span>
+                <span class="palette-swatch" style="background: #64748b;"></span>
+              </div>
+            </div>
+            <p class="style-desc">
+              Executive technology whitepaper style. Sophisticated dark/light corporate palettes, modular cards, high-density data layouts.
+            </p>
+            <div class="style-prompt">
+              Gartner/McKinsey whitepaper diagram, executive dashboard, modern tech briefing
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Structure Section -->
+    <section id="structure" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Repository Structure</span>
+          <h2 class="section-title">Clean, Modular Codebase</h2>
+          <p class="section-subtitle">
+            An organized layout separating core agent skills, ingestion scripts, interactive Archify deliverables, and verification suites.
+          </p>
+        </div>
+
+        <div class="tree-wrapper">
+          <div class="tree-node"><span class="tree-folder">sci-plot/</span></div>
+          <div class="tree-node">&nbsp;&nbsp;├── <span class="tree-file">SKILL.md</span> <span class="tree-comment"># Antigravity / Claude skill specification</span></div>
+          <div class="tree-node">&nbsp;&nbsp;├── <span class="tree-folder">docs/</span> <span class="tree-comment"># GitHub Pages deployment root</span></div>
+          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="tree-file">index.html</span> <span class="tree-comment"># Pages entrance redirecting to overview</span></div>
+          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="tree-file">.nojekyll</span> <span class="tree-comment"># Disables Jekyll processing</span></div>
+          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="tree-file">architecture.svg</span> <span class="tree-comment"># Vector architecture chart</span></div>
+          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="tree-folder">archify/</span> <span class="tree-comment"># Archify interactive diagrams (5 views)</span></div>
+          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="tree-file">core-architecture.html</span></div>
+          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="tree-file">architecture-panorama.html</span></div>
+          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="tree-file">workflow-panorama.html</span></div>
+          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="tree-file">sequence-panorama.html</span></div>
+          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="tree-file">dataflow-panorama.html</span></div>
+          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── <span class="tree-file">diagram-input.md</span></div>
+          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── <span class="tree-folder">project_overview/</span> <span class="tree-comment"># Single source project overview page</span></div>
+          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── <span class="tree-file">index.html</span></div>
+          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── <span class="tree-file">style.css</span></div>
+          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <span class="tree-file">script.js</span></div>
+          <div class="tree-node">&nbsp;&nbsp;├── <span class="tree-folder">references/</span> <span class="tree-comment"># Domain prompt rules and taxonomies</span></div>
+          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="tree-folder">core/</span>, <span class="tree-folder">rules-pool/</span>, <span class="tree-folder">styles/</span>, <span class="tree-folder">renderers/</span></div>
+          <div class="tree-node">&nbsp;&nbsp;├── <span class="tree-folder">scripts/</span> <span class="tree-comment"># Tooling & Harvester utilities</span></div>
+          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="tree-file">universal_skill_harvester.py</span></div>
+          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="tree-file">fetch_external_skills.py</span></div>
+          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── <span class="tree-folder">visualization/</span> <span class="tree-comment"># Asset generation scripts</span></div>
+          <div class="tree-node">&nbsp;&nbsp;├── <span class="tree-folder">tests/</span> <span class="tree-comment"># 4-tier verification suite (6/6 pass)</span></div>
+          <div class="tree-node">&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── <span class="tree-file">run_all_tests.py</span></div>
+          <div class="tree-node">&nbsp;&nbsp;└── <span class="tree-file">README.md</span>, <span class="tree-file">README.zh-CN.md</span>, <span class="tree-file">pyproject.toml</span>, <span class="tree-file">LICENSE</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quickstart Section -->
+    <section id="quickstart" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Quick Start</span>
+          <h2 class="section-title">Triggering Sci-Plot</h2>
+          <p class="section-subtitle">
+            Seamlessly invoke the skill from Antigravity, Claude Code, or any LLM agent CLI.
+          </p>
+        </div>
+
+        <div class="code-box">
+          <div class="code-header">
+            <span>Skill Invocation in Antigravity or Claude</span>
+            <button class="btn-copy">Copy Command</button>
+          </div>
+          <pre><code># Natural language invocation with your target paper
+"Please use the sci-plot skill to parse my paper at ./paper.pdf,
+generate publication-grade figures in 'paper-figure' style,
+and produce prompt files for both Midjourney and Matplotlib."</code></pre>
+        </div>
+
+        <div class="code-box">
+          <div class="code-header">
+            <span>Executing Harvester & Test Suite</span>
+            <button class="btn-copy">Copy Command</button>
+          </div>
+          <pre><code># Run full regression test suite
+python tests/run_all_tests.py
+
+# Ingest and update latest community scientific visualization rules
+python scripts/universal_skill_harvester.py https://github.com/Yuan1z0825/nature-skills</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Documentation & Matrix -->
+    <section id="docs" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Documentation</span>
+          <h2 class="section-title">Project Documentation Hub</h2>
+          <p class="section-subtitle">
+            Access complete project documentation, bilingual guides, contribution standards, and release logs.
+          </p>
+        </div>
+
+        <div class="docs-matrix">
+          <a href="./project_card.html" target="_blank" class="doc-link-card">
+            <span>📸 Shareable Project Card (PNG Export)</span>
+            <span class="arrow">↗</span>
+          </a>
+          <a href="../README.md" class="doc-link-card">
+            <span>📖 README (English)</span>
+            <span class="arrow">→</span>
+          </a>
+          <a href="../README.zh-CN.md" class="doc-link-card">
+            <span>🇨🇳 中文说明 (README.zh-CN)</span>
+            <span class="arrow">→</span>
+          </a>
+          <a href="../archify/core-architecture.html" target="_blank" class="doc-link-card">
+            <span>⚡ Interactive Core Architecture</span>
+            <span class="arrow">↗</span>
+          </a>
+          <a href="../archify/architecture-panorama.html" target="_blank" class="doc-link-card">
+            <span>🏛️ System Panorama (Archify)</span>
+            <span class="arrow">↗</span>
+          </a>
+          <a href="../FAQ.md" class="doc-link-card">
+            <span>❓ Frequently Asked Questions</span>
+            <span class="arrow">→</span>
+          </a>
+          <a href="../CONTRIBUTING.md" class="doc-link-card">
+            <span>🤝 Contributing Guidelines</span>
+            <span class="arrow">→</span>
+          </a>
+          <a href="../CHANGELOG.md" class="doc-link-card">
+            <span>📜 Release Changelog</span>
+            <span class="arrow">→</span>
+          </a>
+          <a href="../LICENSE" class="doc-link-card">
+            <span>⚖️ MIT License</span>
+            <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">FAQ</span>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="faq-grid">
+          <div class="faq-card">
+            <h3 class="faq-q">What is the difference between Sci-Plot and generic image generators?</h3>
+            <p class="faq-a">
+              Generic generators invent pseudo-scientific gibberish labels and incorrect topologies. Sci-Plot extracts the real mathematical scene graph, enforces scope boundaries, and compiles tailored instructions that maintain factual fidelity.
+            </p>
+          </div>
+
+          <div class="faq-card">
+            <h3 class="faq-q">How does Scope Isolation protect my figure quality?</h3>
+            <p class="faq-a">
+              By enforcing a 10-page / 15k token ceiling and isolating secondary appendices, Sci-Plot prevents the LLM from becoming overwhelmed by tangential proofs and ensures attention is focused entirely on the core thesis.
+            </p>
+          </div>
+
+          <div class="faq-card">
+            <h3 class="faq-q">Can I run the generated figures locally without cloud AI?</h3>
+            <p class="faq-a">
+              Yes! Sci-Plot generates executable Python Matplotlib/Seaborn scripts alongside generative AI prompts, allowing 100% offline, reproducible vector PDF/SVG rendering.
+            </p>
+          </div>
+
+          <div class="faq-card">
+            <h3 class="faq-q">How do I deploy this overview page to GitHub Pages?</h3>
+            <p class="faq-a">
+              Simply go to repository Settings → Pages → Build and deployment → Source: Deploy from a branch → Branch: <code>main</code>, Folder: <code>/docs</code>. The included <code>docs/.nojekyll</code> and relative asset paths ensure instant, zero-configuration deployment.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-left">
+          <div class="footer-title">Sci-Plot — Scientific Figure Prompt Engine</div>
+          <p class="footer-desc">
+            Empowering researchers, educators, and developers to transform academic breakthroughs into stunning publication visuals.
+          </p>
+        </div>
+
+        <ul class="footer-links">
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#architecture">Architecture</a></li>
+          <li><a href="../archify/core-architecture.html" target="_blank">Archify</a></li>
+          <li><a href="https://github.com/LPK3215/sci-plot" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="../LICENSE">MIT License</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 LPK3215. All rights reserved. Powered by Antigravity & Archify.</div>
+        <div>Deployed on GitHub Pages (Classic <code>/docs</code> mode)</div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

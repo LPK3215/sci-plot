@@ -1,0 +1,53 @@
+{
+  "Imbad0202/academic-research-skills": {
+    "branch": "main",
+    "target": "academic-paper/references/statistical_visualization_standards.md",
+    "score": 8
+  },
+  "Yuan1z0825/nature-skills": {
+    "branch": "main",
+    "target": "skills/nature-figure/references/vector-schematic-style-rules.md",
+    "score": 15
+  },
+  "K-Dense-AI/scientific-agent-skills": {
+    "branch": "main",
+    "target": "skills/scientific-schematics/references/best_practices.md",
+    "score": 8
+  },
+  "wanshuiyin/Auto-claude-code-research-in-sleep": {
+    "branch": "main",
+    "target": "skills/proof-orchestrator/references/dispatch-prompts.md",
+    "score": 5
+  },
+  "aiming-lab/AutoResearchClaw": {
+    "branch": "main",
+    "target": ".claude/skills/scientific-visualization/SKILL.md",
+    "score": 4
+  },
+  "wuyoscar/GPT-Image2-Skill": {
+    "branch": "main",
+    "target": "skills/gpt-image/references/gallery-data-visualization.md",
+    "score": 6
+  },
+  "jihe520/MathModelAgent": {
+    "branch": "main",
+    "target": "skills/mathmodel-figure-templates/references/plot-recipes.md",
+    "score": 8
+  },
+  "ChenLiu-1996/figures4papers": {
+    "branch": "main",
+    "target": "scientific-figure-making/references/api.md",
+    "score": 5
+  },
+  "zLanqing/codex-claude-academic-skills": {
+    "branch": "main",
+    "target": "scientific-toolkit-skill/references/scientific-skills/scientific-visualization/references/matplotlib_examples.md",
+    "score": 8
+  },
+  "HughYau/AcademicForge": {
+    "branch": "site-first",
+    "target": "skills/scientific-visualization/references/matplotlib_examples.md",
+    "score": 8
+  }
+}
+

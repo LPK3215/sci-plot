@@ -1,67 +1,78 @@
 # Contributing to Sci-Plot
 
-Thank you for your interest in contributing to sci-plot! This project is a cross-platform AI skill that generates scientific figure prompts.
+Thank you for your interest in sci-plot! This project is a cross-platform AI skill engine for generating scientific figure prompts.
 
-[中文贡献指南](CONTRIBUTING_CN.md)
+[中文贡献指南](CONTRIBUTING.zh-CN.md)
 
 ## How to Contribute
 
-### Adding a New Style
+### 1. Adding New Rules to the Local Pool
 
-1. Create a new `.md` file under `references/styles/`
-2. Follow the existing pattern in `paper-figure.md` or `sketchnote.md`
-3. Include: style description, color palette, annotation rules, layout preferences, and an English prompt snippet
-4. Add the style to the table in `SKILL.md` (Five Visual Styles section)
-5. Add the style to the table in `README.md` (Available Styles section)
-6. Add the reference entry at the bottom of `SKILL.md`
+Adding custom rules is now modular and plug-and-play:
+1. Create a new `.md` file in `references/rules-pool/local/` (e.g., `my-lab-style.md`).
+2. Follow the template of existing files (e.g., `paper-figure.md`): style atmosphere, canvas background, restrained color palette (≤3 colors), line/arrow rules, and core English prompt snippet.
+3. Once placed, AI can recognize and load it directly when specified by name in conversation without modifying core workflow code.
 
-### Improving Existing Rules
+### 2. Adding Channels to the Cloud Pool
 
-1. Edit the relevant file in `references/`
-2. Keep rules concrete and actionable — avoid vague statements
-3. If adding constraints, also update `Forbidden` or `Must-Have` checklists in `prompt-rules.md`
-4. Test the changes by running sci-plot against a real paper
+1. Edit `references/rules-pool/cloud/cloud-channels.md`.
+2. Add authoritative journal guideline links or open-source image generation skill mapping patterns.
+3. Adhere to the core principle: **"Borrow Prompts, Block Image APIs"** to eliminate heavy local dependencies.
 
-### Updating the Workflow
+### 3. Improving Base Guardrails & Core Workflow
 
-1. Edit `SKILL.md` — the workflow lives there
-2. All reference files must be listed at the bottom of `SKILL.md`
-3. Any new "Read first" instruction must have the corresponding reference file
-4. Maintain the mandatory 6-round workflow structure (Round 0-5)
+1. Base physical constraints reside in `references/core/base-rules.md` (label length limits, color limits, 80% visual gravity, anti-3D patterns).
+2. The orchestrator workflow resides in `SKILL.md`. Ensure the **Scope Isolation ("烟消云散")** rule is preserved to prevent context pollution and rule conflicts.
+3. Always verify changes using real academic papers.
 
-### Submitting Changes
+### 4. Submitting Changes
 
 1. Fork the repository
 2. Create a feature branch: `git checkout -b feature/your-feature`
-3. Make your changes
-4. Commit with a descriptive message
-5. Push to your fork
-6. Open a pull request
+3. Make changes and verify with the automated test suite: `python tests/run_all_tests.py`
+4. Verify document consistency: `python scripts/sync_documentation_metrics.py --check`
+5. Commit your changes with descriptive messages
+6. Push to your fork and submit a Pull Request
 
 ## Project Structure
 
 ```
 sci-plot/
-├── SKILL.md                  # AI instruction: 6-round workflow
-├── README.md                 # User-facing documentation (English)
-├── README_CN.md              # User-facing documentation (Chinese)
-├── LICENSE                   # MIT License
-├── CHANGELOG.md              # Version history (English)
-├── CHANGELOG_CN.md           # Version history (Chinese)
-├── CONTRIBUTING.md           # This file (English)
-├── CONTRIBUTING_CN.md        # This file (Chinese)
-├── .gitignore                # Version control exclusions
-├── .gitattributes            # Line ending normalization
-└── references/
-    ├── prompt-rules.md       # Core rules for prompt generation
-    ├── analysis-guide.md     # Content analysis checklists
-    ├── layout-rules.md       # Page roles and composition
-    └── styles/
-        ├── paper-figure.md
-        ├── sketchnote.md
-        ├── journal-minimal.md
-        ├── warm-notes.md
-        └── business-research.md
+├── SKILL.md                              # AI Skill: 5-round standardized pipeline & isolation
+├── README.md                             # User documentation (English)
+├── README.zh-CN.md                       # User documentation (Chinese)
+├── LICENSE                               # MIT License
+├── CHANGELOG.md                          # Version history (English)
+├── CHANGELOG.zh-CN.md                    # Version history (Chinese)
+├── CONTRIBUTING.md                       # This file (English)
+├── CONTRIBUTING.zh-CN.md                 # This file (Chinese)
+├── FAQ.md                                # Frequently Asked Questions
+├── AUTHORS                               # Authors and contributors
+├── pyproject.toml                        # Project metadata and tool configuration
+├── requirements.txt                      # Python runtime and development dependencies
+├── docs/                                 # GitHub Pages root & documentation assets
+│   ├── index.html                        # Pages root redirect
+│   ├── .nojekyll                         # Disables Jekyll processing
+│   ├── architecture.svg                  # English architecture SVG
+│   ├── architecture_cn.svg               # Chinese architecture SVG
+│   ├── assets/
+│   │   └── banner.svg                    # Brand banner SVG
+│   ├── archify/                          # Interactive Archify diagrams
+│   └── project_overview/                 # Interactive dashboard & shareable card
+├── scripts/                              # Skill harvesting & management scripts
+│   ├── universal_skill_harvester.py      # Adaptive heuristic radar scanner
+│   └── fetch_external_skills.py          # External skills fetcher
+├── tests/                                # Automated test suite
+│   ├── run_all_tests.py                  # Test suite runner
+│   └── test_*.py                         # Test modules
+└── references/                           # Reference guides & rules
+    ├── core/                             # Foundational core
+    │   └── base-rules.md                 # Base physical guardrails
+    ├── analysis-guide.md                 # Content analysis checklists
+    ├── layout-rules.md                   # Page roles & composition
+    └── rules-pool/                       # Dual-Track Rules Pool
+        ├── local/                        # Local Pool (presets & custom user .md)
+        └── cloud/                        # Cloud Pool (channels & adapter protocols)
 ```
 
 ## Questions?

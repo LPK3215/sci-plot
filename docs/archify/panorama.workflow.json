@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Sci-Plot · 5-Round Workflow Execution Pipeline",
+    "animation": "trace",
+    "visual_preset": "signal-flow",
+    "quality_profile": "showcase",
+    "output": "docs/archify/workflow-panorama.html"
+  },
+  "lanes": [
+    { "id": "user_lane", "label": "Academic Client" },
+    { "id": "agent_lane", "label": "Sci-Plot Orchestrator" },
+    { "id": "compiler_lane", "label": "Extraction & Compilation" },
+    { "id": "quality_lane", "label": "Quality Gate & Deliverables" }
+  ],
+  "phases": [
+    { "id": "intake_phase", "label": "Round 1: Intake & Scope", "fromCol": 0, "toCol": 1 },
+    { "id": "plan_phase", "label": "Round 2-3: Analysis & Plan", "fromCol": 2, "toCol": 3, "variant": "emphasis" },
+    { "id": "synth_phase", "label": "Round 4: Dialect Synthesis", "fromCol": 4, "toCol": 4, "variant": "emphasis" },
+    { "id": "delivery_phase", "label": "Round 5: 4-Tier QA & Output", "fromCol": 5, "toCol": 5, "variant": "dashed" }
+  ],
+  "groups": [
+    { "id": "group_isolation", "label": "Scope Isolation Hard Filter", "lane": "compiler_lane", "fromCol": 1, "toCol": 2, "variant": "security" },
+    { "id": "group_verification", "label": "4-Tier Quality Verification", "lane": "quality_lane", "fromCol": 4, "toCol": 5, "variant": "emphasis" }
+  ],
+  "mainPath": ["user_input", "skill_init", "isolation_gate", "scene_extract", "layout_plan", "prompt_compiler", "test_gate", "final_artifact"],
+  "nodes": [
+    { "id": "user_input", "lane": "user_lane", "col": 0, "type": "external", "label": "Research Paper", "sublabel": "PDF / LaTeX / MD", "width": 136 },
+    { "id": "skill_init", "lane": "agent_lane", "col": 0, "type": "frontend", "label": "Skill Init", "sublabel": "Parse style & goals", "tag": "SKILL.md", "width": 136 },
+    { "id": "isolation_gate", "lane": "compiler_lane", "col": 1, "type": "security", "label": "Scope Filter", "sublabel": "≤10p / 15k tokens", "tag": "Hard Bound", "width": 136 },
+    { "id": "scene_extract", "lane": "compiler_lane", "col": 2, "type": "backend", "label": "Concept Extract", "sublabel": "Core hypotheses", "width": 136 },
+    { "id": "rules_match", "lane": "agent_lane", "col": 2, "type": "database", "label": "Rules Pool", "sublabel": "Match taxonomy", "width": 136 },
+    { "id": "layout_plan", "lane": "compiler_lane", "col": 3, "type": "backend", "label": "Figure Planner", "sublabel": "figure-plan.md", "tag": "Sub-figures", "width": 136 },
+    { "id": "styles_palette", "lane": "agent_lane", "col": 3, "type": "database", "label": "5 Visual Styles", "sublabel": "Inject color & typography", "width": 136 },
+    { "id": "prompt_compiler", "lane": "compiler_lane", "col": 4, "type": "backend", "label": "Prompt Synthesis", "sublabel": "Midjourney / Matplotlib", "width": 136 },
+    { "id": "test_gate", "lane": "quality_lane", "col": 4, "type": "security", "label": "QA Verification", "sublabel": "tests/run_all_tests.py", "tag": "6/6 Pass", "width": 136 },
+    { "id": "final_artifact", "lane": "quality_lane", "col": 5, "type": "database", "label": "Output Directory", "sublabel": "sci-plot-output/", "tag": "Ready to Render", "width": 136 },
+    { "id": "render_dist", "lane": "user_lane", "col": 5, "type": "external", "label": "Final Figure", "sublabel": "Vector PDF / AI Image", "width": 136 }
+  ],
+  "edges": [
+    { "id": "e1", "from": "user_input", "to": "skill_init", "variant": "emphasis" },
+    { "id": "e2", "from": "skill_init", "to": "isolation_gate", "label": "Round 1", "variant": "emphasis" },
+    { "id": "e3", "from": "isolation_gate", "to": "scene_extract", "label": "Clean Context", "variant": "emphasis" },
+    { "id": "e4", "from": "rules_match", "to": "scene_extract", "label": "Taxonomy" },
+    { "id": "e5", "from": "scene_extract", "to": "layout_plan", "label": "Round 2-3", "variant": "emphasis" },
+    { "id": "e6", "from": "styles_palette", "to": "layout_plan", "label": "Palette" },
+    { "id": "e7", "from": "layout_plan", "to": "prompt_compiler", "label": "Round 4", "variant": "emphasis" },
+    { "id": "e8", "from": "prompt_compiler", "to": "test_gate", "label": "Round 5", "variant": "emphasis" },
+    { "id": "e9", "from": "test_gate", "to": "final_artifact", "label": "Passed", "variant": "emphasis" },
+    { "id": "e10", "from": "final_artifact", "to": "render_dist", "label": "Render", "variant": "dashed" }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Deterministic 5-Round Guarantee",
+      "items": [
+        "Eliminates drifting between planning and prompt synthesis",
+        "Scope filter stops hallucination before reasoning begins",
+        "Output delivery is gated by automated test passes"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Dual-Track Knowledge Feeding",
+      "items": [
+        "Domain taxonomies match scientific paradigms (biology, physics, AI)",
+        "Visual style presets provide tested color-safe palettes",
+        "Universal harvester periodically enriches community rules"
+      ]
+    }
+  ]
+}
+

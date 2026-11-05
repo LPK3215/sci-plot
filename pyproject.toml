@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sci-plot"
+version = "1.2.0"
+description = "Scientific figure prompt engine for AI agents and researchers"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "LPK3215", email = "17538703215@163.com"}
+]
+keywords = [
+    "scientific-visualization",
+    "academic-figures",
+    "ai-skill",
+    "prompt-engineering",
+    "agent-skill",
+    "research-tools"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Visualization",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "ruff>=0.1.0"
+]
+
+[project.urls]
+Homepage = "https://lpk3215.github.io/sci-plot/"
+Repository = "https://github.com/LPK3215/sci-plot.git"
+"Issue Tracker" = "https://github.com/LPK3215/sci-plot/issues"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "run_all_tests.py"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+

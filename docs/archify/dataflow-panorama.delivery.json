@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "d6b9fd3c-6127-41a2-8d41-fb8c59b05cce",
+  "status": "current",
+  "command": "deliver",
+  "type": "dataflow",
+  "input": "D:\\Develop\\SourceCode\\skills\\myskills\\sci-plot\\docs\\archify\\panorama.dataflow.json",
+  "output": "D:\\Develop\\SourceCode\\skills\\myskills\\sci-plot\\docs\\archify\\dataflow-panorama.html",
+  "specification": {
+    "sha256": "0f86a6c02e67b84faac4cdeb42e72a46790da561df503de6cc7c955dfe1c52d8",
+    "bytes": 4075
+  },
+  "artifact": {
+    "sha256": "6c9f99caa4b7d297444a649e0c37b27ada0833e38d8edcc03b3af2b6342b9cbe",
+    "bytes": 822045
+  }
+}

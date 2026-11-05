@@ -18,7 +18,7 @@ Desktop.ini
 # Output directory
 sci-plot-output/
 
-# Python virtualenv
+# Python virtualenv & cache
 venv/
 .venv/
 env/
@@ -26,3 +26,9 @@ __pycache__/
 *.pyc
 *.pyo
 *.egg-info/
+*.egg
+dist/
+build/
+.pytest_cache/
+.coverage
+htmlcov/

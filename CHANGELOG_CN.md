@@ -9,12 +9,26 @@ sci-plot 所有重要变更均记录于此。
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-11-05
+
+### 新增
+- **架构革新：双轨专业规范池 (Dual-Track Rules Pool)**：
+  - 新增 `references/rules-pool/local/`（本地规范池），收录经典预置风格并支持用户自定义 `.md` 规范。
+  - 新增 `references/rules-pool/cloud/`（云端规范池通道），包含权威期刊指南索引、URL 实时提炼协议，以及外部开源生图 Skills 能力借取协议（“只借其词，绝不调图”）。
+  - 新增 `references/core/base-rules.md`，沉淀底座物理法则（防乱码短字、色彩≤3种、主体80%、负向排除3D）。
+- **机制创新：【烟消云散】作用域隔离机制 (Scope Isolation)**：在人机沟通选定规范后，其余所有候选规则全部从后续上下文中剥离清空，确保提示词编译阶段零上下文污染。
+- **双语架构图升级**：更新 `docs/scripts/generate_architecture.py`，重新生成反映新架构的 SVG 流程图。
+
+### 变更
+- 重构 `SKILL.md`，升级为 5 轮高凝聚、模块化的标准化工作流。
+- 升级 `README.zh-CN.md` 与 `README.md`，深入阐述“以提示词作为中间表示（IR）、零环境依赖崩溃、全平台自由消费”的核心设计哲学。
+
 ## [1.1.1] - 2026-06-13
 
 ### 变更
 - 移除 `SKILL.md` frontmatter 中的非标准 `version` 字段，以符合 AI 技能规范（仅保留 `name` + `description`）。版本号仍由本更新日志与 README 徽章追踪。
 - 将 `CONTRIBUTING.md` / `CONTRIBUTING_CN.md` 及更新日志中残留的 "CodeBuddy" 品牌字样替换为中性的 "AI"。
-- 补全 `README.md` / `README_CN.md` 的项目结构树（新增 `index.html`、`examples/`、`SECURITY.md`）。
+- 补全 `README.md` / `README.zh-CN.md` 的项目结构树（新增 `index.html`、`examples/`、`SECURITY.md`）。
 - 取消 git 对本地 `.codebuddy/` 目录的跟踪（已加入 gitignore）。
 
 ## [1.1.0] - 2026-06-13
@@ -30,7 +44,7 @@ sci-plot 所有重要变更均记录于此。
 
 ### 变更
 - 英文名称从 "Scientific Figure Prompt Generator" 改为 "Scientific Figure Prompt Engine"；中文标语更新为"科研绘图 —— 从论文到插图的一站式引擎"。
-- 面向用户的文档拆分为独立中英文文件：README.md/README_CN.md、CHANGELOG.md/CHANGELOG_CN.md、CONTRIBUTING.md/CONTRIBUTING_CN.md。
+- 面向用户的文档拆分为独立中英文文件：README.md/README.zh-CN.md、CHANGELOG.md/CHANGELOG.zh-CN.md、CONTRIBUTING.md/CONTRIBUTING.zh-CN.md。
 - 所有面向 AI 的技能文档（SKILL.md、references/*.md）转为纯英文，提升 AI 理解能力。
 - 重新设计架构 SVG，采用双阶段布局，高亮核心步骤（Round 4），现代视觉风格。
 
@@ -48,7 +62,4 @@ sci-plot 所有重要变更均记录于此。
 - `references/styles/warm-notes.md`：明亮手记风规范。
 - `references/styles/business-research.md`：商业研究简报风规范。
 - `README.md`：面向用户的说明文档，包含安装、使用、风格和产出结构。
-- `LICENSE`：MIT 许可证。
-- `.gitignore`：Windows、macOS、IDE 和 Python 文件的版本控制排除。
-- `CONTRIBUTING.md`：贡献指南。
-- `.gitattributes`：行尾规范化。
+

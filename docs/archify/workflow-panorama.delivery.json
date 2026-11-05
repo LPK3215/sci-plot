@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "e894e6ba-0b8d-41a1-8120-fe905d53c464",
+  "status": "current",
+  "command": "deliver",
+  "type": "workflow",
+  "input": "D:\\Develop\\SourceCode\\skills\\myskills\\sci-plot\\docs\\archify\\panorama.workflow.json",
+  "output": "D:\\Develop\\SourceCode\\skills\\myskills\\sci-plot\\docs\\archify\\workflow-panorama.html",
+  "specification": {
+    "sha256": "270fcf6378a081896f1bc578d306e97006bb30ff3440c55e7f4c0e86b5ab69be",
+    "bytes": 5036
+  },
+  "artifact": {
+    "sha256": "8b9de6586a1fe89d7e5ee8f5a2ed31452f8ac794c06f926c4ec4d1d56275adb6",
+    "bytes": 831723
+  }
+}

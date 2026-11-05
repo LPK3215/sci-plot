@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "170576b8-86a3-4b4d-a061-f0df5659ce7a",
+  "status": "current",
+  "command": "deliver",
+  "type": "architecture",
+  "input": "D:\\Develop\\SourceCode\\skills\\myskills\\sci-plot\\docs\\archify\\panorama.architecture.json",
+  "output": "D:\\Develop\\SourceCode\\skills\\myskills\\sci-plot\\docs\\archify\\architecture-panorama.html",
+  "specification": {
+    "sha256": "9664f084e606dc5c364b80b51a9efea575d3bce9fb583795161fca9a16a6e90b",
+    "bytes": 6773
+  },
+  "artifact": {
+    "sha256": "fd9bb8257de9d6cbf1fd040a4276c2f3be90540ba36aada6280fce044bfcfbd6",
+    "bytes": 837825
+  }
+}

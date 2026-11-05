@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sci-Plot — Project Card</title>
+  <meta name="description" content="Publication-grade scientific figure prompt compiler. Shareable project card.">
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1/dist/html2canvas.min.js"></script>
+  <style>
+    /* ============================================================
+       Sci-Plot Project Card — Optimized for PNG Export
+       Fixed 800px width, high-contrast, system font stack.
+       ============================================================ */
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0b1120;
+      color: #f8fafc;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      padding: 40px 0 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Fixed 800px width container for export */
+    .card-wrapper {
+      width: 800px;
+      margin: 0 auto;
+    }
+
+    .card-container {
+      width: 800px;
+      background-color: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Header */
+    .header {
+      border-bottom: 1px solid #334155;
+      padding-bottom: 24px;
+      margin-bottom: 24px;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .brand-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-logo {
+      width: 52px;
+      height: 52px;
+      background: linear-gradient(135deg, #818cf8 0%, #a855f7 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+    }
+
+    .project-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      line-height: 1.1;
+    }
+
+    .tagline {
+      font-size: 1rem;
+      color: #94a3b8;
+      font-weight: 500;
+      margin-top: 4px;
+    }
+
+    .version-badge {
+      font-family: Consolas, "JetBrains Mono", monospace;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background-color: #1e293b;
+      color: #818cf8;
+      border: 1px solid #475569;
+    }
+
+    .pills-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 12px;
+      border-radius: 6px;
+    }
+
+    .pill-indigo { background: #312e81; color: #a5b4fc; border: 1px solid #4338ca; }
+    .pill-cyan   { background: #164e63; color: #67e8f9; border: 1px solid #0891b2; }
+    .pill-emerald{ background: #064e3b; color: #6ee7b7; border: 1px solid #059669; }
+    .pill-pink   { background: #831843; color: #f9a8d4; border: 1px solid #db2777; }
+
+    /* Value proposition box */
+    .lead-box {
+      background-color: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin-bottom: 24px;
+    }
+
+    .lead-text {
+      font-size: 1.05rem;
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+
+    /* Key stats grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background-color: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: Consolas, "JetBrains Mono", monospace;
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .c-indigo { color: #818cf8; }
+    .c-cyan   { color: #22d3ee; }
+    .c-pink   { color: #f472b6; }
+    .c-emerald{ color: #34d399; }
+
+    .stat-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #94a3b8;
+    }
+
+    /* Section blocks */
+    .section-block {
+      background-color: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+    }
+
+    .block-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #94a3b8;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .block-title::before {
+      content: "";
+      display: inline-block;
+      width: 4px;
+      height: 14px;
+      background: #818cf8;
+      border-radius: 2px;
+    }
+
+    /* Simplified Architecture SVG */
+    .arch-svg-container {
+      width: 100%;
+      margin: 4px 0 2px;
+    }
+
+    /* Highlights list */
+    .highlights-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .highlight-item {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      font-size: 0.92rem;
+      color: #e2e8f0;
+      line-height: 1.5;
+    }
+
+    .highlight-item strong {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .bullet {
+      color: #38bdf8;
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    /* Tech pills */
+    .tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tech-item {
+      background-color: #0f172a;
+      border: 1px solid #475569;
+      color: #cbd5e1;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-family: Consolas, "JetBrains Mono", monospace;
+    }
+
+    /* Quick Start */
+    .cmd-box {
+      background-color: #090d16;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-family: Consolas, "JetBrains Mono", monospace;
+      font-size: 0.88rem;
+      color: #38bdf8;
+      margin-bottom: 8px;
+    }
+
+    .cmd-tip {
+      font-size: 0.82rem;
+      color: #94a3b8;
+    }
+
+    /* Footer */
+    .card-footer {
+      border-top: 1px solid #334155;
+      padding-top: 18px;
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      color: #64748b;
+    }
+
+    .card-footer a {
+      color: #818cf8;
+      text-decoration: none;
+    }
+
+    /* Action bar (Excluded from export) */
+    .action-bar {
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.2s;
+      border: none;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+    }
+
+    .btn-secondary {
+      background-color: #1e293b;
+      color: #f8fafc;
+      border: 1px solid #475569;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background-color: #059669;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      display: none;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card-wrapper">
+    <!-- Card Content to be Rendered into PNG -->
+    <div id="card-content" class="card-container">
+      
+      <!-- 1. Header / Hero -->
+      <div class="header">
+        <div class="brand-row">
+          <div class="brand-left">
+            <div class="brand-logo">📊</div>
+            <div>
+              <h1 class="project-title">Sci-Plot</h1>
+              <div class="tagline">Scientific Figure Prompt Engine</div>
+            </div>
+          </div>
+          <span class="version-badge">v1.2.0</span>
+        </div>
+        <div class="pills-row">
+          <span class="pill pill-indigo">Deterministic Pipeline</span>
+          <span class="pill pill-cyan">Scope Isolation</span>
+          <span class="pill pill-emerald">Publication Grade</span>
+          <span class="pill pill-pink">Multi-Platform</span>
+        </div>
+      </div>
+
+      <!-- 2. Value Proposition -->
+      <div class="lead-box">
+        <p class="lead-text">
+          Transforms academic research papers and mathematical workflows into publication-grade scientific figures. Eliminates hallucinated visual drift through strict scope isolation, and compiles native prompt blueprints for Midjourney, Doubao, and executable Python Matplotlib scripts.
+        </p>
+      </div>
+
+      <!-- 3. Key Stat Counters -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number c-indigo">5</div>
+          <div class="stat-label">Visual Styles</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number c-cyan">5</div>
+          <div class="stat-label">Pipeline Rounds</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number c-pink">10</div>
+          <div class="stat-label">Max Pages / Batch</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number c-emerald">6</div>
+          <div class="stat-label">Render Backends</div>
+        </div>
+      </div>
+
+      <!-- 4. Simplified Architecture SVG Diagram -->
+      <div class="section-block">
+        <div class="block-title">Core Architecture & 5-Round Pipeline</div>
+        <div class="arch-svg-container">
+          <svg viewBox="0 0 720 120" width="100%" height="120" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#64748b"/>
+              </marker>
+            </defs>
+
+            <!-- Node 1: Paper Input -->
+            <rect x="8" y="24" width="115" height="72" rx="8" fill="#1e293b" stroke="#818cf8" stroke-width="1.5"/>
+            <text x="65" y="52" fill="#ffffff" font-size="12" font-weight="700" text-anchor="middle">Paper Input</text>
+            <text x="65" y="70" fill="#94a3b8" font-size="10" text-anchor="middle">PDF / LaTeX / MD</text>
+            <rect x="22" y="78" width="86" height="12" rx="3" fill="#312e81"/>
+            <text x="65" y="87" fill="#a5b4fc" font-size="8" font-weight="700" text-anchor="middle">CLIENT</text>
+
+            <line x1="123" y1="60" x2="151" y2="60" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+            <!-- Node 2: Scope Isolation -->
+            <rect x="153" y="24" width="115" height="72" rx="8" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+            <text x="210" y="52" fill="#ffffff" font-size="12" font-weight="700" text-anchor="middle">Scope Isolation</text>
+            <text x="210" y="70" fill="#94a3b8" font-size="10" text-anchor="middle">≤10p / 15k Tokens</text>
+            <rect x="167" y="78" width="86" height="12" rx="3" fill="#164e63"/>
+            <text x="210" y="87" fill="#67e8f9" font-size="8" font-weight="700" text-anchor="middle">ROUND 1</text>
+
+            <line x1="268" y1="60" x2="296" y2="60" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+            <!-- Node 3: Concept & Layout -->
+            <rect x="298" y="24" width="115" height="72" rx="8" fill="#1e293b" stroke="#f472b6" stroke-width="1.5"/>
+            <text x="355" y="52" fill="#ffffff" font-size="12" font-weight="700" text-anchor="middle">Figure Planner</text>
+            <text x="355" y="70" fill="#94a3b8" font-size="10" text-anchor="middle">Hierarchy & Rules</text>
+            <rect x="312" y="78" width="86" height="12" rx="3" fill="#831843"/>
+            <text x="355" y="87" fill="#f9a8d4" font-size="8" font-weight="700" text-anchor="middle">ROUND 2-3</text>
+
+            <line x1="413" y1="60" x2="441" y2="60" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+            <!-- Node 4: Dialect Compiler -->
+            <rect x="443" y="24" width="115" height="72" rx="8" fill="#1e293b" stroke="#fb923c" stroke-width="1.5"/>
+            <text x="500" y="52" fill="#ffffff" font-size="12" font-weight="700" text-anchor="middle">Dialect Compiler</text>
+            <text x="500" y="70" fill="#94a3b8" font-size="10" text-anchor="middle">Midjourney & Code</text>
+            <rect x="457" y="78" width="86" height="12" rx="3" fill="#7c2d12"/>
+            <text x="500" y="87" fill="#fdba74" font-size="8" font-weight="700" text-anchor="middle">ROUND 4</text>
+
+            <line x1="558" y1="60" x2="586" y2="60" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+            <!-- Node 5: Output & QA -->
+            <rect x="588" y="24" width="124" height="72" rx="8" fill="#1e293b" stroke="#34d399" stroke-width="1.5"/>
+            <text x="650" y="52" fill="#ffffff" font-size="12" font-weight="700" text-anchor="middle">Verified Delivery</text>
+            <text x="650" y="70" fill="#94a3b8" font-size="10" text-anchor="middle">6/6 Tests Passed</text>
+            <rect x="607" y="78" width="86" height="12" rx="3" fill="#064e3b"/>
+            <text x="650" y="87" fill="#6ee7b7" font-size="8" font-weight="700" text-anchor="middle">ROUND 5</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- 5. Core Feature Highlights -->
+      <div class="section-block">
+        <div class="block-title">Key Capabilities</div>
+        <div class="highlights-list">
+          <div class="highlight-item">
+            <span class="bullet">▸</span>
+            <div><strong>Deterministic 5-Round Pipeline:</strong> Strictly ordered phases from paper ingestion to QA verification with zero drift.</div>
+          </div>
+          <div class="highlight-item">
+            <span class="bullet">▸</span>
+            <div><strong>Strict Scope Isolation:</strong> Enforces a ≤10 page / ≤15k token ceiling, stripping references to prevent hallucinations.</div>
+          </div>
+          <div class="highlight-item">
+            <span class="bullet">▸</span>
+            <div><strong>Universal Harvester & Radar:</strong> Dynamically scans and synchronizes domain visualization rules from community repositories.</div>
+          </div>
+          <div class="highlight-item">
+            <span class="bullet">▸</span>
+            <div><strong>Multi-Platform Prompt Compiler:</strong> Compiles native parameters for Midjourney v6.1, Doubao, and executable Python Matplotlib scripts.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Technology Stack -->
+      <div class="section-block">
+        <div class="block-title">Technology Stack</div>
+        <div class="tech-list">
+          <span class="tech-item">Python 3.10+</span>
+          <span class="tech-item">Antigravity / Claude Skill</span>
+          <span class="tech-item">Midjourney v6.1</span>
+          <span class="tech-item">Matplotlib & Seaborn</span>
+          <span class="tech-item">Vector SVG</span>
+          <span class="tech-item">Archify Static Schemas</span>
+        </div>
+      </div>
+
+      <!-- 7. Quick Start -->
+      <div class="section-block">
+        <div class="block-title">Quick Start Verification</div>
+        <div class="cmd-box">python tests/run_all_tests.py</div>
+        <div class="cmd-tip">Prompt: "Please use sci-plot to transform ./paper.pdf into publication-grade figures."</div>
+      </div>
+
+      <!-- 8. Footer -->
+      <div class="card-footer">
+        <span>MIT License © 2026 LPK3215</span>
+        <span>github.com/LPK3215/sci-plot</span>
+      </div>
+
+    </div>
+
+    <!-- 9. Floating / Bottom Action Bar (Excluded from Image Export) -->
+    <div class="action-bar" id="action-bar">
+      <button id="btn-export" class="btn btn-primary" onclick="exportCard()">
+        <span>📸</span> Export as PNG
+      </button>
+      <a href="./index.html" class="btn btn-secondary">
+        <span>🌐</span> Open Full Overview
+      </a>
+      <a href="../archify/core-architecture.html" target="_blank" class="btn btn-secondary">
+        <span>⚡</span> Interactive Architecture
+      </a>
+    </div>
+
+    <div id="toast" class="toast">✓ Card saved to Downloads!</div>
+  </div>
+
+  <script>
+    // Warm up html2canvas
+    window.addEventListener('load', function() {
+      if (typeof html2canvas !== 'undefined') {
+        const dummy = document.createElement('div');
+        dummy.style.display = 'none';
+        document.body.appendChild(dummy);
+        html2canvas(dummy).then(function() {
+          document.body.removeChild(dummy);
+        }).catch(function() {});
+      }
+    });
+
+    function exportCard() {
+      const cardEl = document.getElementById('card-content');
+      const exportBtn = document.getElementById('btn-export');
+      const toast = document.getElementById('toast');
+
+      if (typeof html2canvas === 'undefined') {
+        alert('html2canvas could not be loaded from CDN. Please use browser screenshot (e.g. Win+Shift+S or Cmd+Shift+4).');
+        return;
+      }
+
+      const origText = exportBtn.innerHTML;
+      exportBtn.innerHTML = '<span>⏳</span> Rendering...';
+      exportBtn.disabled = true;
+
+      // Render with 2x scale for crisp retina output
+      html2canvas(cardEl, {
+        scale: 2,
+        useCORS: true,
+        scrollY: -window.scrollY,
+        backgroundColor: '#0f172a'
+      }).then(function(canvas) {
+        const dateStr = new Date().toISOString().split('T')[0];
+        const fileName = `sci-plot_card_${dateStr}.png`;
+
+        const link = document.createElement('a');
+        link.download = fileName;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+
+        exportBtn.innerHTML = origText;
+        exportBtn.disabled = false;
+
+        // Show success toast
+        toast.style.display = 'block';
+        setTimeout(function() {
+          toast.style.display = 'none';
+        }, 2500);
+      }).catch(function(err) {
+        console.error('Export error:', err);
+        exportBtn.innerHTML = origText;
+        exportBtn.disabled = false;
+        alert('Rendering failed. Please use browser screenshot tool.');
+      });
+    }
+  </script>
+
+</body>
+</html>
+

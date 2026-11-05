@@ -1,0 +1,17 @@
+{
+  "name": "academic-static-html-renderer",
+  "version": "1.0.0",
+  "description": "Pluggable downstream prompt-to-static-HTML academic figure compiler",
+  "active_profile": "prompt-profile.md",
+  "output_dir": "sci-plot-output/html/",
+  "settings": {
+    "standalone_single_file": true,
+    "pure_static_inline_svg": true,
+    "no_javascript": true,
+    "no_cdn_or_external_fonts": true,
+    "physical_units": "mm",
+    "default_target_width": "88.5mm",
+    "full_width_target": "185mm"
+  }
+}
+

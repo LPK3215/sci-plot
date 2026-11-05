@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Sci-Plot · Core Architecture",
+    "output": "docs/archify/core-architecture.html",
+    "locale": "en",
+    "quality_profile": "showcase",
+    "legend": {
+      "entries": {
+        "external": { "label": "External · Academic User & Platforms" },
+        "frontend": { "label": "Orchestrator · AI Skill Definition" },
+        "backend": { "label": "Pipeline Engines · Isolation & Compilation" },
+        "database": { "label": "Storage · Generated Artifacts" }
+      }
+    },
+    "views": [
+      {
+        "id": "core-pipeline",
+        "label": "5-Round Core Flow",
+        "focus": ["USER", "SKILL", "INGEST", "PLANNER", "SYNTH", "OUTPUT"],
+        "note": "Deterministic transformation from paper to publication figures"
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "USER",
+      "type": "external",
+      "label": "Academic Researcher",
+      "sublabel": "Paper PDF / LaTeX / Prompt",
+      "tag": "Input Source",
+      "pos": [40, 60],
+      "size": [200, 100]
+    },
+    {
+      "id": "SKILL",
+      "type": "frontend",
+      "label": "Sci-Plot Orchestrator",
+      "sublabel": "SKILL.md · 5-Round Pipeline",
+      "tag": "Master Agent",
+      "pos": [370, 60],
+      "size": [200, 100]
+    },
+    {
+      "id": "INGEST",
+      "type": "backend",
+      "label": "Scope Isolation Engine",
+      "sublabel": "≤10 Pages / ≤15k Tokens Cap",
+      "tag": "Anti-Hallucination",
+      "pos": [700, 60],
+      "size": [200, 100]
+    },
+    {
+      "id": "PLANNER",
+      "type": "backend",
+      "label": "Figure Structure Planner",
+      "sublabel": "Visual Hierarchy & Styles Pool",
+      "tag": "Nature / Science Spec",
+      "pos": [700, 270],
+      "size": [200, 100]
+    },
+    {
+      "id": "SYNTH",
+      "type": "backend",
+      "label": "Multi-Platform Compiler",
+      "sublabel": "Midjourney / Doubao / Matplotlib",
+      "tag": "Dialect Synthesis",
+      "pos": [370, 270],
+      "size": [200, 100]
+    },
+    {
+      "id": "OUTPUT",
+      "type": "database",
+      "label": "Verified Deliverables",
+      "sublabel": "sci-plot-output/ · 6/6 Tested",
+      "tag": "Reproducible",
+      "pos": [40, 270],
+      "size": [200, 100]
+    }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "Client & Input Layer", "wraps": ["USER"] },
+    { "kind": "region", "label": "Agent Master Layer", "wraps": ["SKILL"] },
+    { "kind": "region", "label": "Document Analysis Layer", "wraps": ["INGEST"] },
+    { "kind": "region", "label": "Compilation & Synthesis Layer", "wraps": ["PLANNER", "SYNTH"] },
+    { "kind": "region", "label": "Verified Deliverables Layer", "wraps": ["OUTPUT"] }
+  ],
+  "connections": [
+    { "id": "c-user-skill", "from": "USER", "to": "SKILL", "label": "Paper Input", "variant": "emphasis", "fromSide": "right", "toSide": "left" },
+    { "id": "c-skill-ingest", "from": "SKILL", "to": "INGEST", "label": "Bound Scope (R1)", "variant": "emphasis", "fromSide": "right", "toSide": "left" },
+    { "id": "c-ingest-planner", "from": "INGEST", "to": "PLANNER", "label": "Scene Graph (R2-3)", "variant": "emphasis", "fromSide": "bottom", "toSide": "top" },
+    { "id": "c-planner-synth", "from": "PLANNER", "to": "SYNTH", "label": "Figure Plan (R4)", "variant": "emphasis", "fromSide": "left", "toSide": "right" },
+    { "id": "c-synth-output", "from": "SYNTH", "to": "OUTPUT", "label": "QA Passed (R5)", "variant": "emphasis", "fromSide": "left", "toSide": "right" }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Deterministic 5-Round Core",
+      "items": [
+        "Eliminates prompt randomness through structured, single-direction phases",
+        "Rigorous scope isolation limits input to core mathematical thesis",
+        "Figure planning separates semantic structure from target platform dialects"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Cross-Platform Synthesis",
+      "items": [
+        "Compiles native prompts for generative AI (Midjourney, DALL-E 3, Doubao)",
+        "Generates reproducible Python Matplotlib code for exact vector charts",
+        "Enforces Nature/Science color palettes and typography rules"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Rigorous Quality Verification",
+      "items": [
+        "All output artifacts stored under sci-plot-output/ directory",
+        "Validated by 6-suite automated test gate (tests/run_all_tests.py)",
+        "Zero hallucinated scientific claims or invalid visual relationships"
+      ]
+    }
+  ]
+}

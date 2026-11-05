@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "9f2bf37b-0457-4814-a2b8-402d44816cd1",
+  "status": "current",
+  "command": "deliver",
+  "type": "architecture",
+  "input": "D:\\Develop\\SourceCode\\skills\\myskills\\sci-plot\\docs\\archify\\core.architecture.json",
+  "output": "D:\\Develop\\SourceCode\\skills\\myskills\\sci-plot\\docs\\archify\\core-architecture.html",
+  "specification": {
+    "sha256": "c5fff4d9def99a8fdf6f2e0955ddc474fdef24fdd4a08a8eba19279765210c38",
+    "bytes": 4548
+  },
+  "artifact": {
+    "sha256": "ad366c0254af626d273a1964924b1b995474cdf4d3aa39f3b7f5b5332a7309f7",
+    "bytes": 822337
+  }
+}

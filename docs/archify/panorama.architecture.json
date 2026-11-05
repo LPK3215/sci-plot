@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Sci-Plot · Full System Architecture Panorama",
+    "output": "docs/archify/architecture-panorama.html",
+    "locale": "en",
+    "quality_profile": "showcase",
+    "legend": {
+      "entries": {
+        "external": { "label": "External · User & Cloud Generation Models" },
+        "frontend": { "label": "Master Skill · Antigravity Orchestrator" },
+        "backend": { "label": "Pipeline Engines · Isolation, Compiler & Harvester" },
+        "database": { "label": "Rules Pool & Output Deliverables" }
+      }
+    },
+    "views": [
+      {
+        "id": "full-system",
+        "label": "Full System Landscape",
+        "focus": ["USER", "SKILL", "INGEST", "PLANNER", "SYNTH", "QA_GATE", "OUTPUT", "RULES", "STYLES", "HARVEST", "RENDER_AI", "RENDER_CODE"],
+        "note": "Complete overview of components, data ingestion, compilation and verification"
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "USER",
+      "type": "external",
+      "label": "Academic Researcher",
+      "sublabel": "Input Paper (PDF/LaTeX)",
+      "tag": "Research Client",
+      "pos": [40, 60],
+      "size": [180, 90]
+    },
+    {
+      "id": "SKILL",
+      "type": "frontend",
+      "label": "Sci-Plot Skill",
+      "sublabel": "SKILL.md Orchestrator",
+      "tag": "Master Agent",
+      "pos": [330, 60],
+      "size": [180, 90]
+    },
+    {
+      "id": "INGEST",
+      "type": "backend",
+      "label": "Scope Isolation",
+      "sublabel": "≤10 Pages / ≤15k Tokens",
+      "tag": "Focus Guard",
+      "pos": [620, 60],
+      "size": [180, 90]
+    },
+    {
+      "id": "HARVEST",
+      "type": "backend",
+      "label": "Universal Harvester",
+      "sublabel": "Radar & Skill Crawler",
+      "tag": "Auto Sync",
+      "pos": [910, 60],
+      "size": [180, 90]
+    },
+    {
+      "id": "OUTPUT",
+      "type": "database",
+      "label": "sci-plot-output",
+      "sublabel": "Prompts & Figure Plans",
+      "tag": "Verified Assets",
+      "pos": [40, 240],
+      "size": [180, 90]
+    },
+    {
+      "id": "QA_GATE",
+      "type": "backend",
+      "label": "4-Tier QA Gate",
+      "sublabel": "tests/run_all_tests.py",
+      "tag": "6/6 Suites Pass",
+      "pos": [330, 240],
+      "size": [180, 90]
+    },
+    {
+      "id": "SYNTH",
+      "type": "backend",
+      "label": "Dialect Compiler",
+      "sublabel": "Prompt & Code Synthesis",
+      "tag": "Cross Platform",
+      "pos": [620, 240],
+      "size": [180, 90]
+    },
+    {
+      "id": "PLANNER",
+      "type": "backend",
+      "label": "Figure Planner",
+      "sublabel": "Visual Hierarchy & Layout",
+      "tag": "figure-plan.md",
+      "pos": [910, 240],
+      "size": [180, 90]
+    },
+    {
+      "id": "RENDER_CODE",
+      "type": "backend",
+      "label": "Matplotlib Renderer",
+      "sublabel": "Python Script & SVG",
+      "tag": "Exact Vector",
+      "pos": [40, 420],
+      "size": [180, 90]
+    },
+    {
+      "id": "RENDER_AI",
+      "type": "external",
+      "label": "Generative AI",
+      "sublabel": "Midjourney / Doubao",
+      "tag": "Visual Synthesis",
+      "pos": [330, 420],
+      "size": [180, 90]
+    },
+    {
+      "id": "STYLES",
+      "type": "database",
+      "label": "5 Visual Styles",
+      "sublabel": "paper-figure, minimal...",
+      "tag": "Aesthetic Presets",
+      "pos": [620, 420],
+      "size": [180, 90]
+    },
+    {
+      "id": "RULES",
+      "type": "database",
+      "label": "Dual-Track Pool",
+      "sublabel": "Core + Community Rules",
+      "tag": "Knowledge Hub",
+      "pos": [910, 420],
+      "size": [180, 90]
+    }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "Client & Agent Layer", "wraps": ["USER", "SKILL"] },
+    { "kind": "region", "label": "Ingestion & Sync Layer", "wraps": ["INGEST", "HARVEST"] },
+    { "kind": "region", "label": "Compilation & QA Pipeline", "wraps": ["PLANNER", "SYNTH", "QA_GATE"] },
+    { "kind": "region", "label": "Knowledge & Rules Store", "wraps": ["STYLES", "RULES"] },
+    { "kind": "region", "label": "Verified Deliverables", "wraps": ["OUTPUT"] },
+    { "kind": "region", "label": "Rendering Backends", "wraps": ["RENDER_CODE", "RENDER_AI"] }
+  ],
+  "connections": [
+    { "id": "c-user-skill", "from": "USER", "to": "SKILL", "label": "Input Paper", "variant": "emphasis", "fromSide": "right", "toSide": "left" },
+    { "id": "c-skill-ingest", "from": "SKILL", "to": "INGEST", "label": "Bound Scope (R1)", "variant": "emphasis", "fromSide": "right", "toSide": "left" },
+    { "id": "c-harvest-rules", "from": "HARVEST", "to": "RULES", "label": "Sync Rules", "variant": "dashed" },
+    { "id": "c-ingest-planner", "from": "INGEST", "to": "PLANNER", "label": "Scene Graph", "variant": "emphasis" },
+    { "id": "c-rules-planner", "from": "RULES", "to": "PLANNER", "label": "Match Taxonomy", "fromSide": "top", "toSide": "bottom" },
+    { "id": "c-styles-synth", "from": "STYLES", "to": "SYNTH", "label": "Inject Palette", "fromSide": "top", "toSide": "bottom" },
+    { "id": "c-planner-synth", "from": "PLANNER", "to": "SYNTH", "label": "Figure Plan (R4)", "variant": "emphasis", "fromSide": "left", "toSide": "right" },
+    { "id": "c-synth-qa", "from": "SYNTH", "to": "QA_GATE", "label": "Verify (R5)", "variant": "emphasis", "fromSide": "left", "toSide": "right" },
+    { "id": "c-qa-output", "from": "QA_GATE", "to": "OUTPUT", "label": "Deliver Pass", "variant": "emphasis", "fromSide": "left", "toSide": "right" },
+    { "id": "c-output-code", "from": "OUTPUT", "to": "RENDER_CODE", "label": "Run Python", "variant": "dashed", "fromSide": "bottom", "toSide": "top" },
+    { "id": "c-output-ai", "from": "OUTPUT", "to": "RENDER_AI", "label": "Submit Prompt", "variant": "dashed", "fromSide": "bottom", "toSide": "top" }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "System Architecture Overview",
+      "items": [
+        "Sci-Plot integrates agent orchestration with rigid deterministic compilers",
+        "Dual-track rules pool synchronizes with external community repositories",
+        "Decouples prompt synthesis from final rendering targets"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Automated Quality Gates",
+      "items": [
+        "tests/run_all_tests.py runs 6 comprehensive validation suites",
+        "Enforces zero cognitive drift and strict aspect ratio formatting",
+        "Maintains full reproducibility across Python and generative platforms"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Scope Isolation Protection",
+      "items": [
+        "Hard 10-page / 15,000 token bounding ceiling",
+        "Pre-filters appendices, references, and proofs before figure planning",
+        "Prevents token pollution and hallucinatory diagram connections"
+      ]
+    }
+  ]
+}

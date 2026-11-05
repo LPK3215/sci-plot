@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 380" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradients -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1120"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e1b4b"/>
+    </linearGradient>
+
+    <linearGradient id="hero-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#818cf8"/>
+      <stop offset="45%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#f472b6"/>
+    </linearGradient>
+
+    <linearGradient id="card-border" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.03"/>
+    </linearGradient>
+
+    <linearGradient id="chip-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.02"/>
+    </linearGradient>
+
+    <!-- Glow Filters -->
+    <filter id="glow-cyan" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="80" result="blur"/>
+    </filter>
+    <filter id="glow-pink" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="90" result="blur"/>
+    </filter>
+    <filter id="glow-indigo" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="100" result="blur"/>
+    </filter>
+    <filter id="badge-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <!-- Grid Pattern -->
+    <pattern id="tech-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.03"/>
+      <circle cx="40" cy="40" r="1" fill="#ffffff" fill-opacity="0.08"/>
+    </pattern>
+  </defs>
+
+  <style>
+    .font-sans { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', 'Fira Code', Menlo, Consolas, monospace; }
+  </style>
+
+  <!-- 1. Background Base -->
+  <rect width="1280" height="380" fill="url(#bg-grad)"/>
+  <rect width="1280" height="380" fill="url(#tech-grid)"/>
+
+  <!-- 2. Ambient Light Orbs -->
+  <circle cx="180" cy="90" r="240" fill="#6366f1" opacity="0.22" filter="url(#glow-indigo)"/>
+  <circle cx="1100" cy="280" r="220" fill="#f43f5e" opacity="0.18" filter="url(#glow-pink)"/>
+  <circle cx="680" cy="200" r="260" fill="#06b6d4" opacity="0.15" filter="url(#glow-cyan)"/>
+
+  <!-- 3. Decorative Geometric Vector Accents (Schematic Network) -->
+  <g opacity="0.35" transform="translate(860, 40)">
+    <!-- Circuit & Geometry Graph -->
+    <path d="M 40 80 L 160 80 L 220 140 L 320 140" fill="none" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="4 4"/>
+    <path d="M 160 80 L 160 220 L 260 220" fill="none" stroke="#818cf8" stroke-width="1.5"/>
+    <path d="M 220 140 L 220 260 L 340 260" fill="none" stroke="#f472b6" stroke-width="1.5" stroke-dasharray="6 4"/>
+    
+    <!-- Nodes -->
+    <circle cx="40" cy="80" r="4" fill="#22d3ee"/>
+    <circle cx="160" cy="80" r="5" fill="#818cf8"/>
+    <circle cx="220" cy="140" r="6" fill="#f472b6"/>
+    <circle cx="320" cy="140" r="4" fill="#34d399"/>
+    <circle cx="160" cy="220" r="4" fill="#818cf8"/>
+    <circle cx="260" cy="220" r="5" fill="#22d3ee"/>
+    <circle cx="340" cy="260" r="4" fill="#f472b6"/>
+
+    <!-- Subtle coordinate grid frames -->
+    <rect x="250" y="50" width="80" height="50" rx="6" fill="#1e293b" fill-opacity="0.4" stroke="#ffffff" stroke-opacity="0.1"/>
+    <text x="290" y="80" fill="#94a3b8" font-size="11" text-anchor="middle" class="font-mono">IR :: SPEC</text>
+
+    <rect x="70" y="180" width="70" height="70" rx="8" fill="#1e293b" fill-opacity="0.4" stroke="#ffffff" stroke-opacity="0.1"/>
+    <path d="M 85 225 L 105 200 L 125 215" fill="none" stroke="#22d3ee" stroke-width="2"/>
+    <circle cx="105" cy="200" r="3" fill="#34d399"/>
+  </g>
+
+  <!-- 4. Top Tag / Badge -->
+  <g transform="translate(80, 52)">
+    <rect width="270" height="32" rx="16" fill="#1e293b" fill-opacity="0.75" stroke="#ffffff" stroke-opacity="0.12"/>
+    <circle cx="18" cy="16" r="4" fill="#34d399" filter="url(#badge-glow)"/>
+    <text x="32" y="21" fill="#f1f5f9" font-size="12" font-weight="600" letter-spacing="1" class="font-mono">
+      AI SKILL &middot; v1.2.0 &middot; MIT LICENSE
+    </text>
+  </g>
+
+  <!-- 5. Main Typography -->
+  <!-- Project Title with Linear Gradient -->
+  <text x="80" y="152" fill="url(#hero-gradient)" font-size="64" font-weight="900" letter-spacing="-1.5" class="font-sans">
+    Sci-Plot
+  </text>
+
+  <!-- Secondary Title / Slogan -->
+  <text x="360" y="148" fill="#f8fafc" font-size="28" font-weight="700" letter-spacing="-0.5" class="font-sans">
+    — Scientific Figure Prompt Engine
+  </text>
+
+  <!-- Subtitle / Value Proposition -->
+  <text x="80" y="202" fill="#cbd5e1" font-size="18" font-weight="400" class="font-sans">
+    Prompts as Intermediate Representation (IR) &middot; Zero Runtime Crashes &middot; Cross-Platform
+  </text>
+  
+  <text x="80" y="232" fill="#94a3b8" font-size="14" font-weight="400" class="font-sans">
+    Transform academic papers, algorithms, and code into publication-grade prompts for ChatGPT, Midjourney, SVG &amp; Matplotlib.
+  </text>
+
+  <!-- 6. Feature Chips Row -->
+  <g transform="translate(80, 276)">
+    <!-- Chip 1 -->
+    <g transform="translate(0, 0)">
+      <rect width="210" height="42" rx="10" fill="url(#chip-grad)" stroke="url(#card-border)"/>
+      <circle cx="20" cy="21" r="4" fill="#818cf8"/>
+      <text x="34" y="26" fill="#f1f5f9" font-size="13" font-weight="600" class="font-sans">Dual-Track Rules Pool</text>
+    </g>
+
+    <!-- Chip 2 -->
+    <g transform="translate(225, 0)">
+      <rect width="200" height="42" rx="10" fill="url(#chip-grad)" stroke="url(#card-border)"/>
+      <circle cx="20" cy="21" r="4" fill="#22d3ee"/>
+      <text x="34" y="26" fill="#f1f5f9" font-size="13" font-weight="600" class="font-sans">Scope Isolation</text>
+    </g>
+
+    <!-- Chip 3 -->
+    <g transform="translate(440, 0)">
+      <rect width="230" height="42" rx="10" fill="url(#chip-grad)" stroke="url(#card-border)"/>
+      <circle cx="20" cy="21" r="4" fill="#f472b6"/>
+      <text x="34" y="26" fill="#f1f5f9" font-size="13" font-weight="600" class="font-sans">Universal Radar Harvester</text>
+    </g>
+
+    <!-- Chip 4 -->
+    <g transform="translate(685, 0)">
+      <rect width="220" height="42" rx="10" fill="url(#chip-grad)" stroke="url(#card-border)"/>
+      <circle cx="20" cy="21" r="4" fill="#34d399"/>
+      <text x="34" y="26" fill="#f1f5f9" font-size="13" font-weight="600" class="font-sans">4-Tier Quality Gate</text>
+    </g>
+
+    <!-- Chip 5 -->
+    <g transform="translate(920, 0)">
+      <rect width="180" height="42" rx="10" fill="url(#chip-grad)" stroke="url(#card-border)"/>
+      <circle cx="20" cy="21" r="4" fill="#fb923c"/>
+      <text x="34" y="26" fill="#f1f5f9" font-size="13" font-weight="600" class="font-sans">Zero Lock-in</text>
+    </g>
+  </g>
+
+  <!-- 7. Outer Border Accent -->
+  <rect x="0.5" y="0.5" width="1279" height="379" rx="1" fill="none" stroke="#ffffff" stroke-opacity="0.08"/>
+</svg>

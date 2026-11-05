@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "bfbc5aec-bfd9-448b-97be-1018e6c9cbc3",
+  "status": "current",
+  "command": "deliver",
+  "type": "sequence",
+  "input": "D:\\Develop\\SourceCode\\skills\\myskills\\sci-plot\\docs\\archify\\panorama.sequence.json",
+  "output": "D:\\Develop\\SourceCode\\skills\\myskills\\sci-plot\\docs\\archify\\sequence-panorama.html",
+  "specification": {
+    "sha256": "6b2b2aa516aca13f783c02712ba0fbfbd9b7850e3d48fe52ea60ba121d75be29",
+    "bytes": 3613
+  },
+  "artifact": {
+    "sha256": "04400b1580dbe3ce7f6075874a3520073d48c138b33ad6a43f7305f45c1ebaac",
+    "bytes": 819417
+  }
+}

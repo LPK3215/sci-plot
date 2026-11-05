@@ -1,0 +1,9 @@
+# sci-plot Core Runtime
+# The core prompt engine, harvesting scripts, and automated test suite run entirely
+# on the Python 3 standard library (urllib.request, json, ssl, os, sys, base64, re, pathlib, unittest, subprocess).
+# Zero external runtime dependencies required!
+
+# Optional Development & Quality Assurance Tooling
+pytest>=7.0.0
+ruff>=0.1.0
+
