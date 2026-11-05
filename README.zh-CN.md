@@ -1,7 +1,7 @@
 <div align="center">
 
 <p align="center">
-  <img src="https://cdn.jsdelivr.net/gh/LPK3215/sci-plot@main/docs/assets/banner.svg" alt="Sci-Plot — 可移植 Skill 提示词编译器" width="100%"/>
+  <img src="https://lpk3215.github.io/sci-plot/assets/banner.svg" alt="Sci-Plot — 可移植 Skill 提示词编译器" width="100%"/>
 </p>
 
 # Sci-Plot
@@ -79,7 +79,7 @@ flowchart TD
 
 本项目的端到端工作流、双轨规范池与隔离调度全景如下图所示：
 
-[![Sci-Plot 架构全景](https://cdn.jsdelivr.net/gh/LPK3215/sci-plot@main/docs/architecture_cn.svg)](https://lpk3215.github.io/sci-plot/)
+[![Sci-Plot 架构全景](https://lpk3215.github.io/sci-plot/architecture_cn.svg)](https://lpk3215.github.io/sci-plot/)
 
 > *图 1：Sci-Plot 流程架构图 (v1.2.0) — 从目标自动探测、双轨规范匹配、烟消云散隔离到多端跨平台自由消费。*
 

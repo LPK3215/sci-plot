@@ -1,7 +1,7 @@
 <div align="center">
 
 <p align="center">
-  <img src="https://cdn.jsdelivr.net/gh/LPK3215/sci-plot@main/docs/assets/banner.svg" alt="Sci-Plot — Portable Prompt Compiler for AI Skills" width="100%"/>
+  <img src="https://lpk3215.github.io/sci-plot/assets/banner.svg" alt="Sci-Plot — Portable Prompt Compiler for AI Skills" width="100%"/>
 </p>
 
 # Sci-Plot
@@ -79,7 +79,7 @@ flowchart TD
 
 The end-to-end workflow and dual-track rule isolation pipeline is illustrated below:
 
-[![Sci-Plot Architecture](https://cdn.jsdelivr.net/gh/LPK3215/sci-plot@main/docs/architecture.svg)](https://lpk3215.github.io/sci-plot/)
+[![Sci-Plot Architecture](https://lpk3215.github.io/sci-plot/architecture.svg)](https://lpk3215.github.io/sci-plot/)
 
 > *Figure 1: Sci-Plot Workflow Architecture (v1.2.0) — From input detection to dual-track rule matching, scope isolation, and multi-platform consumption.*
 
