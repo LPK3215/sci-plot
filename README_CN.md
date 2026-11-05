@@ -1,6 +1,8 @@
 <div align="center">
 
-<img src="./docs/assets/banner.svg" alt="Sci-Plot — 科研绘图提示词引擎" width="100%"/>
+<p align="center">
+  <img src="https://cdn.jsdelivr.net/gh/LPK3215/sci-plot@main/docs/assets/banner.svg" alt="Sci-Plot — 科研绘图提示词引擎" width="100%"/>
+</p>
 
 # Sci-Plot
 
@@ -38,17 +40,35 @@ Sci-Plot 不在智能体环境中直接调用生图 API，而是产出工业级�
 2. **黑盒输出，无法微调**：生成的位图一旦出现字母乱码或连线反向，整张图彻底作废，无法做局部手术级修改。
 3. **不可持久化**：位图无法作为可审计、可代码审查（PR）、可版本控制的工程资产沉淀在 Git 仓库中。
 
+| 评估维度 | ❌ 传统直接出图模式（黑盒盲盒） | ✅ Sci-Plot 提示词引擎（白盒 IR 规范） |
+| :--- | :--- | :--- |
+| **执行模式** | 在智能体环境内强行调用外接生图 API | 纯净提示词架构与结构化 IR 规范合成 |
+| **交付产物** | 不可分割的死位图（PNG/JPEG） | 工业级提示词资产包（`.md` 纯文本 IR） |
+| **修改容错** | 字母乱码或箭头反向导致整图报废 | **1 秒外科手术级微调**（改色号/改标签极简） |
+| **跨端消费** | 被单一 API 密钥与模型环境死死绑架 | 自由复制至 **ChatGPT、Midjourney、豆包** 或编译为 **HTML/SVG** |
+| **环境健壮性** | 极度脆弱：依赖外部 Python 包、断网/欠费即崩溃 | **零外部运行时依赖**，永远不崩溃 |
+| **版本化管理** | 二进制死图片，无法进行 Git PR 审计与协同 | 纯文本规范，100% 支持 Git 差分比对与长期归档 |
+
 ```mermaid
 flowchart TD
-    subgraph ModeA["传统模式: 对方直接出图 (黑盒抽盲盒)"]
-        A1["后台直接调生图 API"] --> A2["输出一张死图片 (PNG)"]
-        A2 --> A3["致命缺陷: 发现一个错别字或箭头反了<br/>整张图彻底报废，无法局部修改！<br/>且 API 依赖特定环境，断网/欠费直接崩溃。"]
+    subgraph Trad["❌ 传统模式: 智能体直接调用生图 API (黑盒抽盲盒)"]
+        direction LR
+        T1(["调用生图 API<br/><i>强依赖本地环境与密钥</i>"]) --> T2(["输出死位图<br/><i>不可逆 PNG/JPG</i>"]) --> T3{{"💥 致命痛点<br/><i>单字乱码/连线反向，整张作废无法微调</i>"}}
     end
 
-    subgraph ModeB["Sci-Plot 模式: 提示词落实 (白盒可控资产)"]
-        B1["萃取全部显性+隐性规范"] --> B2["落盘为结构化提示词 (IR 中间表示)"]
-        B2 --> B3["核心优势: 自由微调 (改色号/改标签只需1秒)<br/>全平台跨端消费 (ChatGPT/MJ/豆包自由选)<br/>零代码依赖，永远不崩溃！"]
+    subgraph Sci["✅ Sci-Plot 模式: 提示词作为中间表示 IR (白盒全可控)"]
+        direction LR
+        S1(["双轨萃取规范<br/><i>物理红线 + 学术级风格</i>"]) --> S2(["落盘标准 IR<br/><i>结构化提示词资产</i>"]) --> S3{{"✨ 自由掌控<br/><i>1秒外科级微调 · 零依赖全平台消费</i>"}}
     end
+
+    style Trad fill:#fff1f2,stroke:#fda4af,stroke-width:1.5px,color:#9f1239
+    style Sci fill:#f0fdf4,stroke:#86efac,stroke-width:1.5px,color:#166534
+    style T1 fill:#ffffff,stroke:#f43f5e,stroke-width:1.5px,color:#9f1239
+    style T2 fill:#ffffff,stroke:#f43f5e,stroke-width:1.5px,color:#9f1239
+    style T3 fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#881337
+    style S1 fill:#ffffff,stroke:#22c55e,stroke-width:1.5px,color:#166534
+    style S2 fill:#ffffff,stroke:#22c55e,stroke-width:1.5px,color:#166534
+    style S3 fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d
 ```
 
 ---
@@ -57,7 +77,7 @@ flowchart TD
 
 本项目的端到端工作流、双轨规范池与隔离调度全景如下图所示：
 
-![Sci-Plot 架构全景](./docs/architecture.svg)
+[![Sci-Plot 架构全景](https://cdn.jsdelivr.net/gh/LPK3215/sci-plot@main/docs/architecture_cn.svg)](https://lpk3215.github.io/sci-plot/)
 
 > *图 1：Sci-Plot 流程架构图 (v1.2.0) — 从目标自动探测、双轨规范匹配、烟消云散隔离到多端跨平台自由消费。*
 
@@ -94,46 +114,67 @@ $$\text{底座物理红线 (base-rules.md)} + \text{唯一选中的专业规范}
 
 ```mermaid
 flowchart TD
-    User["提供公开 GitHub 仓库链接 / 期刊指南"] --> Fetch{"多途径自适应获取"}
-    Fetch -->|途径1: 默认高速| S1["脚本通用雷达嗅探 (1秒定位目标)"]
-    Fetch -->|途径2: 网络通畅| S2["AI 直接联网 / 在线阅读 GitHub 文件"]
-    Fetch -->|途径3: 网络波动/结构复杂| S3["AI 临时拉取本地全文扫描"]
-    S1 --> Extract["AI 深度阅读与萃取核心图表规范"]
-    S2 --> Extract
-    S3 --> Extract
-    Extract --> Save["【文件归位】<br/>规范落盘 references/rules-pool/local/downloaded-*.md"]
-    Save --> Clean["【彻底清理多余文件】<br/>临时仓库、代码杂质物理级删除，干干净净！"]
-    Clean --> Ready["【一劳永逸资产化】<br/>断网可用、防丢失、可自由修改"]
+    User(["📥 输入目标: 公开 GitHub 仓库链接 / 期刊指南 URL"]) --> Router{"📡 多途径自适应获取雷达"}
+    
+    Router -->|⚡ 默认高速| S1["<b>途径 1: 通用启发式雷达嗅探</b><br/><i>1 秒准确定位目标规范文档</i>"]
+    Router -->|🌐 网络通畅| S2["<b>途径 2: AI 在线语义速读</b><br/><i>直接读取 GitHub 文件树与内容</i>"]
+    Router -->|📦 沙箱兜底| S3["<b>途径 3: 临时隔离区拉取</b><br/><i>网络受限或结构复杂时本地扫描</i>"]
+    
+    S1 --> Synth[["🧠 AI 深度阅读与规范萃取合成<br/><i>解析尺寸几何、Hex色号、专业词库、Prompt模板</i>"]]
+    S2 --> Synth
+    S3 --> Synth
+    
+    Synth --> Save[("💾 规范落盘归位<br/><code>references/rules-pool/local/downloaded-*.md</code>")]
+    Save --> Purge(["✨ 物理级彻底清理<br/><i>临时仓库与代码杂质物理级删除，零残留</i>"])
+    Purge --> Ready(["🎯 一劳永逸资产化<br/><i>100% 离线可用、防丢失、可自由修改</i>"])
+
+    classDef input fill:#e0f2fe,stroke:#0284c7,stroke-width:1.5px,color:#0369a1;
+    classDef router fill:#f8fafc,stroke:#64748b,stroke-width:2px,color:#1e293b;
+    classDef route fill:#f1f5f9,stroke:#94a3b8,stroke-width:1.5px,color:#334155;
+    classDef synth fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#5b21b6;
+    classDef storage fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#1e40af;
+    classDef clean fill:#fef3c7,stroke:#d97706,stroke-width:1.5px,color:#92400e;
+    classDef done fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#166534;
+
+    class User input;
+    class Router router;
+    class S1,S2,S3 route;
+    class Synth synth;
+    class Save storage;
+    class Purge clean;
+    class Ready done;
 ```
 
 ### 4. 四重硬核质检网 (Four-Tier Quality Assurance)
 提示词的准确性是全系统的生命线，四道质量防线确保零缺陷交付：
 
 ```mermaid
-flowchart TD
-    subgraph Layer1["第一道防线: 底座物理红线 (Base Rules)"]
-        L1A["强制负向排除词: 焊死无3D、无油画、无炫光阴影"]
-        L1B["文字防崩溃法则: 标签限制 ≤ 8 字符，防止模型字母乱码"]
-        L1C["视觉重力法则: 核心主体占 75-85%，拒绝空旷散乱"]
-    end
+flowchart LR
+    L1(["<b>🛡️ 第一道防线: 底座物理红线</b><br/>Base Rules<br/><i>焊死无3D · 标签≤8字符 · 视觉主体75-85%</i>"]) 
+    --> L2(["<b>🔍 第二道防线: 规范提取门禁</b><br/>Verification Gate<br/><i>5项硬指标核验 · Hex色号 · 剔除生图API</i>"]) 
+    --> L3(["<b>💨 第三道防线: 烟消云散隔离</b><br/>Scope Isolation<br/><i>彻底清退候选杂质 · 上下文零规则打架</i>"]) 
+    --> L4(["<b>🧪 第四道防线: 自动化质检校验</b><br/>Compliance Linter<br/><i>6大套件自动化扫描 · 纯白底色 · 格式守门</i>"]) 
+    --> Output(["<b>🎯 工业级提示词资产 (IR)</b><br/>多平台自由消费无缝交付"])
 
-    subgraph Layer2["第二道防线: 外部规范提取门禁 (Verification Gate)"]
-        L2A["提取外部仓库时，AI 执行 5 项硬指标自检"]
-        L2B["必须包含尺寸、Hex色号、词典、纯净模板，缺一项自动补齐"]
-    end
+    classDef g1 fill:#e0e7ff,stroke:#6366f1,stroke-width:1.5px,color:#3730a3;
+    classDef g2 fill:#e0f2fe,stroke:#0284c7,stroke-width:1.5px,color:#0369a1;
+    classDef g3 fill:#fef3c7,stroke:#d97706,stroke-width:1.5px,color:#92400e;
+    classDef g4 fill:#ede9fe,stroke:#8b5cf6,stroke-width:1.5px,color:#5b21b6;
+    classDef g5 fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d;
 
-    subgraph Layer3["第三道防线: 烟消云散上下文隔离 (Scope Isolation)"]
-        L3A["清空所有未选中的杂乱规则与历史对话干扰"]
-        L3B["生成时上下文只允许存在: 底座物理红线 + 唯一选定规范"]
-    end
-
-    subgraph Layer4["第四道防线: 自动化 Linter 质检校验 (Compliance Checker)"]
-        L4A["自动化测试套件代码级扫描生成的 Prompt"]
-        L4B["校验纯白背景、无3D关键词、交付物结构，不合规直接报错拦截"]
-    end
-
-    Layer1 --> Layer2 --> Layer3 --> Layer4 --> QualityPrompt["输出: 100% 稳健、发表级的科研提示词"]
+    class L1 g1;
+    class L2 g2;
+    class L3 g3;
+    class L4 g4;
+    class Output g5;
 ```
+
+| 质量防线 | 核心机制 | 确保持久成效 |
+| :--- | :--- | :--- |
+| **第一道防线：底座物理红线** | 绝对物理法则 (`base-rules.md`) | 焊死无3D/油画/杂乱光影；硬核限制英文标签 ≤ 8 字符（防模型乱码）；强制核心图解占画布 75-85% |
+| **第二道防线：外部规范提取门禁** | 5 项基准要素强制自检 | 强制核验尺寸比例、明确 Hex 色号、领域词库、纯净描述模板，必须 100% 剥离并拦截外部生图 API |
+| **第三道防线：烟消云散隔离** | 上下文物理级清退 ("烟消云散") | 选定规范后，其余候选规则与沟通噪音彻底清空；第四步上下文严格只读：底座红线 + 唯一选定规范 |
+| **第四道防线：自动化质检校验** | 自动化测试套件 (`run_all_tests.py`) | 6 大测试套件代码级扫描，确保交付物纯白背景、负向排除词完整、交付物目录严丝合缝 |
 
 ---
 
@@ -238,11 +279,26 @@ python tests/run_all_tests.py
 
 ```mermaid
 flowchart LR
-    R0["Round 0<br/>目标锁定"] --> R1["Round 1<br/>语义分析"]
-    R1 --> R2["Round 2<br/>切片规划"]
-    R2 --> R3["Round 3<br/>沟通选型"]
-    R3 --> R4["Round 4<br/>编译落盘<br/>(烟消云散)"]
-    R4 --> R5["Round 5<br/>标准交付"]
+    R0(["<b>Round 0</b><br/>🎯 目标探测<br/><i>自动感知 .tex / .md / 代码</i>"]) 
+    --> R1(["<b>Round 1</b><br/>🔬 语义深度分析<br/><i>萃取核心逻辑、公式与流向</i>"]) 
+    --> R2(["<b>Round 2</b><br/>📐 提取图解切片<br/><i>规划全局架构与局部微观图</i>"]) 
+    --> R3(["<b>Round 3</b><br/>🎨 沟通与规范匹配<br/><i>双轨规范池智能匹配与推荐</i>"]) 
+    --> R4(["<b>Round 4</b><br/>⚡ 烟消云散单向生成<br/><i>清退噪音上下文，严谨编译提示词</i>"]) 
+    --> R5(["<b>Round 5</b><br/>📦 结构化交付落盘<br/><i>输出跨平台工业级提示词资产包</i>"])
+
+    classDef r0 fill:#f1f5f9,stroke:#64748b,stroke-width:1.5px,color:#1e293b;
+    classDef r1 fill:#e0f2fe,stroke:#0284c7,stroke-width:1.5px,color:#0369a1;
+    classDef r2 fill:#ede9fe,stroke:#7c3aed,stroke-width:1.5px,color:#5b21b6;
+    classDef r3 fill:#fef3c7,stroke:#d97706,stroke-width:1.5px,color:#92400e;
+    classDef r4 fill:#ffedd5,stroke:#ea580c,stroke-width:1.5px,color:#9a3412;
+    classDef r5 fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d;
+
+    class R0 r0;
+    class R1 r1;
+    class R2 r2;
+    class R3 r3;
+    class R4 r4;
+    class R5 r5;
 ```
 
 ### 输入支持

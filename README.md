@@ -1,6 +1,8 @@
 <div align="center">
 
-<img src="./docs/assets/banner.svg" alt="Sci-Plot — Scientific Figure Prompt Engine" width="100%"/>
+<p align="center">
+  <img src="https://cdn.jsdelivr.net/gh/LPK3215/sci-plot@main/docs/assets/banner.svg" alt="Sci-Plot — Scientific Figure Prompt Engine" width="100%"/>
+</p>
 
 # Sci-Plot
 
@@ -38,17 +40,35 @@ Many scientific illustration tools call image generation APIs directly inside ag
 2. **Black-box Output**: A single typo or inverted arrow ruins an entire raster bitmap (PNG/JPEG) with no way to perform surgical edits.
 3. **No Asset Persistence**: Raster images cannot be easily audited, versioned, or tracked in Git repositories.
 
+| Dimension | ❌ Traditional Direct Generation (Black Box) | ✅ Sci-Plot Prompt Engine (White Box IR) |
+| :--- | :--- | :--- |
+| **Execution Model** | Calls brittle image API inside agent environment | Pure prompt engineering & structured IR synthesis |
+| **Output Asset** | Static raster bitmap (PNG/JPEG) | Publication-grade prompt package (`.md` IR) |
+| **Error Recovery** | Any typo or inverted arrow ruins entire image | **1-second surgical edits** to hex colors or labels |
+| **Consumption** | Locked into one model / API environment | Copy-paste to **ChatGPT, Midjourney, Doubao**, or compile to **HTML/SVG** |
+| **Environment Risk** | High crash risk from missing packages, tokens, network | **Zero external runtime dependencies** |
+| **Asset Persistence**| Binary blobs, cannot review in Git pull requests | 100% human-readable, auditable, Git-friendly |
+
 ```mermaid
 flowchart TD
-    subgraph ModeA["Traditional: Direct Image Generation (Black Box)"]
-        A1["Backend calls image generation API"] --> A2["Outputs a fixed raster image (PNG)"]
-        A2 --> A3["Fatal Flaws: Typo or inverted arrow ruins entire figure.<br/>No partial edits possible.<br/>API tokens or package mismatch crashes environment."]
+    subgraph Trad["❌ Traditional: Direct Image Generation (Black Box)"]
+        direction LR
+        T1(["API Call<br/><i>Tightly Coupled</i>"]) --> T2(["Fixed Bitmap<br/><i>PNG / JPEG</i>"]) --> T3{{"💥 Fatal Bottleneck<br/><i>Single Typo Ruins Entire Figure</i>"}}
     end
 
-    subgraph ModeB["Sci-Plot: Prompts as Intermediate Representation (White Box)"]
-        B1["Extracts full explicit & implicit rules"] --> B2["Materializes structured prompt package (IR)"]
-        B2 --> B3["Key Benefits: 1-second hex/label adjustments.<br/>Copy-paste to any Web UI (ChatGPT, Midjourney, Doubao).<br/>Zero runtime dependency crashes!"]
+    subgraph Sci["✅ Sci-Plot: Prompts as Intermediate Representation (White Box)"]
+        direction LR
+        S1(["Extract Rules<br/><i>Explicit & Implicit</i>"]) --> S2(["Structured IR<br/><i>Prompt Package</i>"]) --> S3{{"✨ Zero-Failure Control<br/><i>1s Micro-Edits · Any Platform</i>"}}
     end
+
+    style Trad fill:#fff1f2,stroke:#fda4af,stroke-width:1.5px,color:#9f1239
+    style Sci fill:#f0fdf4,stroke:#86efac,stroke-width:1.5px,color:#166534
+    style T1 fill:#ffffff,stroke:#f43f5e,stroke-width:1.5px,color:#9f1239
+    style T2 fill:#ffffff,stroke:#f43f5e,stroke-width:1.5px,color:#9f1239
+    style T3 fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#881337
+    style S1 fill:#ffffff,stroke:#22c55e,stroke-width:1.5px,color:#166534
+    style S2 fill:#ffffff,stroke:#22c55e,stroke-width:1.5px,color:#166534
+    style S3 fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d
 ```
 
 ---
@@ -57,7 +77,7 @@ flowchart TD
 
 The end-to-end workflow and dual-track rule isolation pipeline is illustrated below:
 
-![Sci-Plot Architecture](./docs/architecture.svg)
+[![Sci-Plot Architecture](https://cdn.jsdelivr.net/gh/LPK3215/sci-plot@main/docs/architecture.svg)](https://lpk3215.github.io/sci-plot/)
 
 > *Figure 1: Sci-Plot Workflow Architecture (v1.2.0) — From input detection to dual-track rule matching, scope isolation, and multi-platform consumption.*
 
@@ -94,46 +114,67 @@ For external or public GitHub skill repositories, Sci-Plot dynamically discovers
 
 ```mermaid
 flowchart TD
-    User["Provide public GitHub repo link / Guidelines URL"] --> Fetch{"Multi-Route Adaptive Ingestion"}
-    Fetch -->|Default Fast-Track| S1["Universal Radar Discovery (1s lock-in)"]
-    Fetch -->|Online Fluid| S2["AI Live Semantic Reading via GitHub"]
-    Fetch -->|Complex / Throttled| S3["AI Local Clone to Temp Area"]
-    S1 --> Extract["AI Semantic Analysis & Rule Synthesis"]
-    S2 --> Extract
-    S3 --> Extract
-    Extract --> Save["【Rule Materialization】<br/>Save to references/rules-pool/local/downloaded-*.md"]
-    Save --> Clean["【Purge Temporary Clones & Artifacts】<br/>Delete temp clones & noise completely! Spotless!"]
-    Clean --> Ready["【Permanent Offline Asset】<br/>Permanent, offline-ready, fully customizable"]
+    User(["📥 Input: GitHub Skill Repo / Journal Guidelines URL"]) --> Router{"📡 Adaptive Ingestion Radar"}
+    
+    Router -->|⚡ Fast-Track| S1["<b>Route 1: Universal Heuristic Radar</b><br/><i>1-second zero-overhead scan</i>"]
+    Router -->|🌐 Online Fluid| S2["<b>Route 2: AI Live Semantic Reading</b><br/><i>Read raw GitHub files directly</i>"]
+    Router -->|📦 Sandbox Fallback| S3["<b>Route 3: Ephemeral Temp Clone</b><br/><i>Isolated background analysis</i>"]
+    
+    S1 --> Synth[["🧠 AI Semantic Extraction & Rule Synthesis<br/><i>Extracts Aspect Ratio, Hex Palettes, Technical Vocab</i>"]]
+    S2 --> Synth
+    S3 --> Synth
+    
+    Synth --> Save[("💾 Materialize Local Rule<br/><code>references/rules-pool/local/downloaded-*.md</code>")]
+    Save --> Purge(["✨ Physical Deep Clean<br/><i>Zero Residue: Clones & temp files deleted immediately</i>"])
+    Purge --> Ready(["🎯 100% Offline Asset Ready<br/><i>Permanent, portable, zero runtime dependencies</i>"])
+
+    classDef input fill:#e0f2fe,stroke:#0284c7,stroke-width:1.5px,color:#0369a1;
+    classDef router fill:#f8fafc,stroke:#64748b,stroke-width:2px,color:#1e293b;
+    classDef route fill:#f1f5f9,stroke:#94a3b8,stroke-width:1.5px,color:#334155;
+    classDef synth fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#5b21b6;
+    classDef storage fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#1e40af;
+    classDef clean fill:#fef3c7,stroke:#d97706,stroke-width:1.5px,color:#92400e;
+    classDef done fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#166534;
+
+    class User input;
+    class Router router;
+    class S1,S2,S3 route;
+    class Synth synth;
+    class Save storage;
+    class Purge clean;
+    class Ready done;
 ```
 
 ### 4. Four-Tier Quality Assurance Gate
 Prompt precision is the lifeline of Sci-Plot. Four defensive layers ensure zero-defect output:
 
 ```mermaid
-flowchart TD
-    subgraph Layer1["Layer 1: Base Rules (Physical Guardrails)"]
-        L1A["Negative Constraints: Strictly no 3D, no photorealism, no glossy shadows"]
-        L1B["Label Length Guard: Max ≤ 8 chars per label to prevent text garbling"]
-        L1C["Visual Gravity: Focal architecture occupies 75-85% of canvas"]
-    end
+flowchart LR
+    L1(["<b>🛡️ Gate 1: Base Rules</b><br/>Physical Guardrails<br/><i>No 3D · Labels ≤ 8 chars · Focal 75-85%</i>"]) 
+    --> L2(["<b>🔍 Gate 2: Skill Verifier</b><br/>Harvester Checklist<br/><i>Aspect Ratio · Hex Palette · Zero API</i>"]) 
+    --> L3(["<b>💨 Gate 3: Scope Isolation</b><br/>Context Purge<br/><i>Clear Candidate Noise · Zero Conflict</i>"]) 
+    --> L4(["<b>🧪 Gate 4: Compliance Linter</b><br/>Automated Testing<br/><i>6 Test Suites · White Canvas · High Contrast</i>"]) 
+    --> Output(["<b>🎯 Publication-Grade IR</b><br/>Ready for Cross-Platform Use"])
 
-    subgraph Layer2["Layer 2: External Skill Verification Gate"]
-        L2A["AI runs mandatory 5-point checklist before saving any downloaded rule"]
-        L2B["Requires aspect ratio, hex colors, vocabulary, clean prompt, zero API calls"]
-    end
+    classDef g1 fill:#e0e7ff,stroke:#6366f1,stroke-width:1.5px,color:#3730a3;
+    classDef g2 fill:#e0f2fe,stroke:#0284c7,stroke-width:1.5px,color:#0369a1;
+    classDef g3 fill:#fef3c7,stroke:#d97706,stroke-width:1.5px,color:#92400e;
+    classDef g4 fill:#ede9fe,stroke:#8b5cf6,stroke-width:1.5px,color:#5b21b6;
+    classDef g5 fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d;
 
-    subgraph Layer3["Layer 3: Scope Isolation ('烟消云散')"]
-        L3A["Unloads all unselected candidate rules and exploratory dialogue context"]
-        L3B["Context strictly limited to: base-rules.md + ONLY selected rule"]
-    end
-
-    subgraph Layer4["Layer 4: Automated Compliance Linter"]
-        L4A["Automated test suites scan output prompt markdown files"]
-        L4B["Asserts pure white background, negative prompt, structural blocks"]
-    end
-
-    Layer1 --> Layer2 --> Layer3 --> Layer4 --> QualityPrompt["Output: 100% Publication-Grade Scientific Prompts"]
+    class L1 g1;
+    class L2 g2;
+    class L3 g3;
+    class L4 g4;
+    class Output g5;
 ```
+
+| Defense Gate | Core Mechanism | Guaranteed Outcome |
+| :--- | :--- | :--- |
+| **Gate 1: Physical Guardrails** | Invariant base rules (`base-rules.md`) | Strictly eliminates 3D/photorealism; caps labels at ≤ 8 chars to prevent garbled text; enforces 75-85% visual gravity |
+| **Gate 2: Harvester Checklist** | 5-point verification checklist | Requires explicit aspect ratio, exact Hex color palette, domain vocabulary, and pure prompt template; blocks API calls |
+| **Gate 3: Scope Isolation** | "烟消云散" context purge | Completely unloads exploratory candidate rules and dialogue history; final context loads strictly Base Rules + Sole Selected Rule |
+| **Gate 4: Compliance Linter** | Automated test suite (`run_all_tests.py`) | 6 test suites verify pure white background, negative constraints, file integrity, and non-destructive execution |
 
 ---
 
@@ -238,11 +279,26 @@ All 6 test suites run using standard library with zero external dependencies.
 
 ```mermaid
 flowchart LR
-    R0["Round 0<br/>Target Scan"] --> R1["Round 1<br/>Deep Analysis"]
-    R1 --> R2["Round 2<br/>Extract Visuals"]
-    R2 --> R3["Round 3<br/>Confirm & Match"]
-    R3 --> R4["Round 4<br/>Compile Prompts<br/>(Scope Isolation)"]
-    R4 --> R5["Round 5<br/>Deliver Output"]
+    R0(["<b>Round 0</b><br/>🎯 Target Scan<br/><i>Auto-detect .tex / .md / code</i>"]) 
+    --> R1(["<b>Round 1</b><br/>🔬 Deep Analysis<br/><i>Extract core logic & math</i>"]) 
+    --> R2(["<b>Round 2</b><br/>📐 Visual Elements<br/><i>Decompose layout & symbols</i>"]) 
+    --> R3(["<b>Round 3</b><br/>🎨 Confirm & Match<br/><i>Dual-track rules pool selection</i>"]) 
+    --> R4(["<b>Round 4</b><br/>⚡ Scope Isolation<br/><i>Compile prompt & purge noise</i>"]) 
+    --> R5(["<b>Round 5</b><br/>📦 Deliver Asset<br/><i>Multi-platform prompt package</i>"])
+
+    classDef r0 fill:#f1f5f9,stroke:#64748b,stroke-width:1.5px,color:#1e293b;
+    classDef r1 fill:#e0f2fe,stroke:#0284c7,stroke-width:1.5px,color:#0369a1;
+    classDef r2 fill:#ede9fe,stroke:#7c3aed,stroke-width:1.5px,color:#5b21b6;
+    classDef r3 fill:#fef3c7,stroke:#d97706,stroke-width:1.5px,color:#92400e;
+    classDef r4 fill:#ffedd5,stroke:#ea580c,stroke-width:1.5px,color:#9a3412;
+    classDef r5 fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d;
+
+    class R0 r0;
+    class R1 r1;
+    class R2 r2;
+    class R3 r3;
+    class R4 r4;
+    class R5 r5;
 ```
 
 ### Inputs
